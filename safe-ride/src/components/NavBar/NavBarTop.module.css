@@ -1,0 +1,22 @@
+.navbartop {
+  top: 0;
+  left: 0;
+  height: 6vh;
+  width: 100vw;
+  z-index: 999;
+  display: flex;
+  max-height: 8vh;
+  min-height: 6vh;
+  align-items: center;
+  background-color: #f2c718;
+  color: #2d2a32;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbartop p {
+  text-transform: uppercase;
+  padding-top: 0.7rem;
+  font-weight: 800;
+  font-size: 12px;
+}

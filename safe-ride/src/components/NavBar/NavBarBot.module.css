@@ -1,0 +1,37 @@
+.navbarbot {
+  position: absolute;
+  bottom: 0px;
+  height: 9vh;
+  width: 100vw;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background-color: #f7f7f0;
+  color: #2d2a32;
+  justify-content: space-around;
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.campo-img {
+  height: 20px;
+}
+
+.campos img {
+  width: 20px;
+  margin: 0 auto 0 auto;
+}
+.campos p {
+  margin: 0px 0 0px 0;
+  font-weight: 800;
+  font-size: 9px;
+  text-transform: uppercase;
+}
