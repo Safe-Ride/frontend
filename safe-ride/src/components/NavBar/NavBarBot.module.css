@@ -9,6 +9,7 @@
   background-color: #f7f7f0;
   color: #2d2a32;
   justify-content: space-around;
+  border-top: 1px solid #2d2a32;
 }
 
 .campos {
