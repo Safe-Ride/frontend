@@ -17,9 +17,20 @@
   --fonte: 'poppins', sans-serif;
 }
 
+<<<<<<< HEAD
 html, body{
   background-color: var(--branco);
   font-family: var(--fonte);
+=======
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #2d2a32;
+  background-color: #f7f7f0;
+  font-family: "Montserrat", sans-serif;
+>>>>>>> SF-67
 }
 
 ::-webkit-scrollbar {
