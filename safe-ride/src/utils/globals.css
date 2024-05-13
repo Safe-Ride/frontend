@@ -14,14 +14,13 @@
   --branco: #f7f7f0;
   --cinza: #41485d;
   --preto: #2d2a32;
-  --fonte: "poppins", sans-serif;
+  --fonte: "Montserrat", sans-serif;
 }
 
 html,
 body {
   background-color: var(--branco);
   font-family: var(--fonte);
-
   margin: 0;
   padding: 0;
   font-size: 1rem;
