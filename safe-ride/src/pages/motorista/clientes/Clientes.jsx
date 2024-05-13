@@ -1,10 +1,10 @@
-import api from "../../api";
+import api from "../../../api";
 import React, { useState, useEffect } from "react";
 import styles from "./Clientes.module.css";
-import NavBarTop from "../../components/NavBar/NavBarTop";
-import NavBarBot from "../../components/NavBar/NavBarBot";
-import Pesquisa from "../../components/Clientes/Pesquisa";
-import OpcaoCliente from "../../components/Clientes/OpcaoCliente";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
+import NavBarBot from "../../../components/NavBar/NavBarBot";
+import Pesquisa from "../../../components/Clientes/Pesquisa";
+import OpcaoCliente from "../../../components/Clientes/OpcaoCliente";
 
 const titulo = "clientes";
 
