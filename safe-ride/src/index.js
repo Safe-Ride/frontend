@@ -2,11 +2,12 @@
 import React from "react";
 import "./utils/globals.css";
 import ReactDOM from "react-dom/client";
-import Clientes from "./pages/home/Clientes";
+import Home from "./pages/home/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Clientes />
+    <Home />
   </React.StrictMode>
 );

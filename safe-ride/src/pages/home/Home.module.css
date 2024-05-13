@@ -1,0 +1,31 @@
+:root {
+    --header-height: 3.5rem;
+    --h2-font-size: 1.25rem;
+    --small-font-size: 0.813rem;
+    --font-semi-bold: 600;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --amarelo: #ffd940;
+    --amarelo-claro: #ffe990;
+    --branco: #f7f7f0;
+    --cinza: #41485d;
+    --preto: #2d2a32;
+    --fonte: 'poppins', sans-serif;
+}
+.banner-main{
+    background-color: var(--branco);
+    position: absolute;
+    width: 100%;
+}
+.container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+
+}
+.banner-main-text{
+    grid-column: span 4;
+}
