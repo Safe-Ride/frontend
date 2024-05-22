@@ -1,4 +1,4 @@
-.opcao {
+.solicitacoes {
   width: auto;
   height: 8vh;
   padding: 1vh 3vh;
@@ -9,46 +9,27 @@
   align-items: center;
 }
 
-.foto {
-  height: 8vh;
-  width: 8vh;
+.solicitacoes img {
+  height: 6vh;
+  width: 6vh;
+  padding: 1vh;
   margin-right: 2vh;
-  border-radius: 50%;
 }
 
-.campos {
+.solicitacoes .campos {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.campo-infos {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.nome {
+.campos .texto {
   margin: 0;
-  font-weight: 700;
-  font-size: 18px;
-}
-.status {
-  margin: 0;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
-.campo-complementares {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: end;
-}
-.horario {
-  margin: 0;
-  font-size: 14px;
-}
-.notificacao {
+.campos .qtdSolicitacoes {
   margin: 0;
   font-size: 14px;
   background-color: #f2c718;

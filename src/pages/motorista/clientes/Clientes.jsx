@@ -5,10 +5,13 @@ import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import Pesquisa from "../../../components/Clientes/Pesquisa";
 import OpcaoCliente from "../../../components/Clientes/OpcaoCliente";
+import Solicitacoes from "../../../components/Clientes/Solicitacoes";
+import { useNavigate } from "react-router-dom";
 
 const titulo = "clientes";
 
 const Clientes = () => {
+  const navigate = useNavigate();
   const [cardsCliente, setCardCliente] = useState();
 
   function recuperarInformacoesCliente() {
@@ -37,7 +40,10 @@ const Clientes = () => {
       <div>
         {cardsCliente &&
           cardsCliente.map((cliente, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              onClick={() => navigate(`/motorista/clientes/:id`)}
+            >
               <OpcaoCliente
                 foto={cliente.foto}
                 nome={cliente.nome}
@@ -48,6 +54,7 @@ const Clientes = () => {
             </div>
           ))}
       </div>
+      <Solicitacoes></Solicitacoes>
       <NavBarBot />
     </>
   );

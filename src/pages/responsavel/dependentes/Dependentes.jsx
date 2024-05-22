@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./Clientes.module.css";
+import styles from "./Dependentes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 
 const titulo = "pagamentos";
 
-const Clientes = () => {
+const Dependentes = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
@@ -15,4 +15,4 @@ const Clientes = () => {
   );
 };
 
-export default Clientes;
+export default Dependentes;
