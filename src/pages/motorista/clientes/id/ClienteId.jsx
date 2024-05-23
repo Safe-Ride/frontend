@@ -4,6 +4,7 @@ import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import Card1 from "../../../../components/Clientes/ClienteId/Card1";
 import Card2 from "../../../../components/Clientes/ClienteId/Card2";
+import Card3 from "../../../../components/Clientes/ClienteId/Card3";
 // import { useNavigate } from "react-router-dom";
 
 const ClienteId = ({ titulo }) => {
@@ -15,6 +16,7 @@ const ClienteId = ({ titulo }) => {
       <div className={styles["container"]}>
         <Card1></Card1>
         <Card2></Card2>
+        <Card3></Card3>
       </div>
       <NavBarBot />
     </>

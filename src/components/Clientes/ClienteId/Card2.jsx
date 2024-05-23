@@ -4,9 +4,9 @@ import styles from "./Card2.module.css";
 const Card2 = () => {
   return (
     <div className={styles["card2"]}>
-      <div>
+      <div className={styles["inicio"]}>
         <p>Dados do Responsável:</p>
-        <p>ver perfil</p>
+        <p className={styles["ver-perfil"]}>ver perfil</p>
       </div>
     </div>
   );
