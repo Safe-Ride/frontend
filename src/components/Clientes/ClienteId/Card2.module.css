@@ -1,0 +1,28 @@
+.card2 {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+  padding: 1vh 0;
+}
+
+.inicio {
+  width: 95%;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.inicio p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+}
+.ver-perfil {
+  color: blue;
+  font-size: 12px !important;
+  cursor: pointer;
+}
