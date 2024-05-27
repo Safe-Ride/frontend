@@ -7,6 +7,7 @@ import RDependentes from "./pages/responsavel/dependentes/Dependentes";
 import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
 import RPagamentos from "./pages/responsavel/pagamentos/Pagamentos";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/notFound/NotFound";
 
 function Rotas() {
   return (
@@ -23,6 +24,7 @@ function Rotas() {
           <Route path="/responsavel/clientes" element={<RDependentes />} />
           <Route path="/responsavel/trajetos" element={<RTempoReal />} />
           <Route path="/responsavel/pagamentos" element={<RPagamentos />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
