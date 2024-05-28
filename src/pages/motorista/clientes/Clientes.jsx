@@ -42,7 +42,7 @@ const Clientes = () => {
           cardsCliente.map((cliente, index) => (
             <div
               key={index}
-              onClick={() => navigate(`/motorista/clientes/:id`)}
+              onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
             >
               <OpcaoCliente
                 foto={cliente.foto}
