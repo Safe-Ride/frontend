@@ -56,8 +56,24 @@
 }
 
 .leg-1 {
-  background-color: #ff944d;
+  background: linear-gradient(
+    180deg,
+    #64adad 25%,
+    #018789 25%,
+    #018789 50%,
+    #64adad 50%,
+    #64adad 75%,
+    #018789 75%
+  );
 }
 .leg-2 {
-  background-color: #64adad;
+  background: linear-gradient(
+    320deg,
+    #ff944d 25%,
+    #f60 25%,
+    #f60 50%,
+    #ff944d 50%,
+    #ff944d 75%,
+    #f60 75%
+  );
 }

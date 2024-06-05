@@ -12,12 +12,12 @@
 
 .texto {
   font-size: 12px;
-  padding: 1vh 2vh;
+  padding: 1vh 10%;
   font-weight: 700;
   margin-bottom: 2vh;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  width: auto;
+  width: 80%;
   height: auto;
   background-color: #f2c718;
 }
