@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Card2.module.css";
 
 const Card2 = () => {
-  const mes = "Junho";
+  // const mes = "Junho";
 
   return (
     <div className={styles["card1"]}>

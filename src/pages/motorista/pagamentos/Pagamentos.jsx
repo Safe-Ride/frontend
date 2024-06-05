@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Pagamentos.module.css";
+// import styles from "./Pagamentos.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 

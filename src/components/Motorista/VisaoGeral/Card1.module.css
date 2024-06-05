@@ -23,6 +23,7 @@
   flex-direction: row;
   width: 100%;
   margin-bottom: 2vh;
+  align-items: center;
 }
 
 .campo-legendas {
@@ -63,11 +64,35 @@
 }
 
 .leg-1 {
-  background-color: #64adad;
+  background: linear-gradient(
+    180deg,
+    #64adad 25%,
+    #018789 25%,
+    #018789 50%,
+    #64adad 50%,
+    #64adad 75%,
+    #018789 75%
+  );
 }
 .leg-2 {
-  background-color: #ff944d;
+  background: linear-gradient(
+    320deg,
+    #ff944d 25%,
+    #f60 25%,
+    #f60 50%,
+    #ff944d 50%,
+    #ff944d 75%,
+    #f60 75%
+  );
 }
 .leg-3 {
-  background-color: #ff6363;
+  background: linear-gradient(
+    270deg,
+    #ff6363 25%,
+    #e50101 25%,
+    #e50101 50%,
+    #ff6363 50%,
+    #ff6363 75%,
+    #e50101 75%
+  );
 }
