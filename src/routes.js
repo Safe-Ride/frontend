@@ -1,12 +1,13 @@
 import React from "react";
-import MTrajetos from "./pages/motorista/trajetos/Trajetos";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Cadastro from "./pages/cadastro/Cadastro";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
 import MPagamentos from "./pages/motorista/pagamentos/Pagamentos";
+import MTrajetos from "./pages/motorista/trajetos/Trajetos";
+import NotFound from "./pages/notFound/NotFound";
 import RDependentes from "./pages/responsavel/dependentes/Dependentes";
-import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
 import RPagamentos from "./pages/responsavel/pagamentos/Pagamentos";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/notFound/NotFound";
 
 function Rotas() {
@@ -25,6 +26,7 @@ function Rotas() {
           <Route path="/responsavel/trajetos" element={<RTempoReal />} />
           <Route path="/responsavel/pagamentos" element={<RPagamentos />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </BrowserRouter>
     </>
