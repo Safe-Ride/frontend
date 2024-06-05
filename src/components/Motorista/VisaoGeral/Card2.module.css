@@ -21,6 +21,8 @@
 .campo-grafico {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin-bottom: 2vh;
+  width: 90%;
+  height: 50vh;
+  margin: 0 auto;
+  /* margin-bottom: 2vh; */
 }
