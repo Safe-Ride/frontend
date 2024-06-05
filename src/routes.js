@@ -1,4 +1,5 @@
 import React from "react";
+import MVisaoGeral from "./pages/motorista/visaoGeral/VisaoGeral";
 import MTrajetos from "./pages/motorista/trajetos/Trajetos";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
@@ -14,6 +15,7 @@ function Rotas() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/motorista/visao-geral" element={<MVisaoGeral />} />
           <Route path="/motorista/trajetos" element={<MTrajetos />} />
           <Route path="/motorista/clientes" element={<MClientes />} />
           <Route
