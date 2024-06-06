@@ -5,11 +5,14 @@ import imgVoltar from "../../utils/assets/navbar/voltar.png";
 
 const NavBarTop = ({ titulo }) => {
   return (
-    <nav className={styles["navbartop"]}>
-      <img className={styles["voltar"]} src={imgVoltar} alt="" />
-      <p className={styles["titulo"]}>{titulo}</p>
-      <img className={styles["perfil"]} src={imgPerfil} alt="" />
-    </nav>
+    <>
+      <div className={styles["espaco-inicio"]}></div>
+      <nav className={styles["navbartop"]}>
+        <img className={styles["voltar"]} src={imgVoltar} alt="" />
+        <p className={styles["titulo"]}>{titulo}</p>
+        <img className={styles["perfil"]} src={imgPerfil} alt="" />
+      </nav>
+    </>
   );
 };
 

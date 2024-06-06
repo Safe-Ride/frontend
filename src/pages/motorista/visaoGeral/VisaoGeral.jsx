@@ -19,11 +19,10 @@ const Clientes = () => {
           <KPI1></KPI1>
           <KPI2></KPI2>
         </div>
-        {/* <Card1></Card1> */}
+        <Card1></Card1>
         <Card2></Card2>
         <Card3></Card3>
       </div>
-      <div className={styles["espaco-fim"]}></div>
       <NavBarBot />
     </>
   );

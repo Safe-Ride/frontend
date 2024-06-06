@@ -1,14 +1,5 @@
-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: orange;
-  border-radius: 8px;
-}
-
 .navbarbot {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   height: 9vh;
   width: 95%;
@@ -46,4 +37,9 @@ body::-webkit-scrollbar-thumb {
   font-weight: 800;
   font-size: 9px;
   text-transform: uppercase;
+}
+
+.espaco-fim {
+  width: 100%;
+  margin-bottom: 10vh;
 }

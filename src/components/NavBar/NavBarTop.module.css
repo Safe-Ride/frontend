@@ -1,4 +1,5 @@
 .navbartop {
+  position: fixed;
   top: 0;
   left: 0;
   height: 6vh;
@@ -27,4 +28,9 @@
 .navbartop img {
   width: 20px;
   margin: 0 auto 0 auto;
+}
+
+.espaco-inicio {
+  width: 100%;
+  height: 6vh;
 }
