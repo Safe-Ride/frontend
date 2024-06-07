@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Card3.module.css";
+import BarChart from "./Graficos/BarChart";
 
 const Card3 = () => {
   return (
@@ -15,7 +16,9 @@ const Card3 = () => {
           <p>Efetuados</p>
         </div>
       </div>
-      <div className={styles["grafico"]}></div>
+      <div className={styles["grafico"]}>
+        <BarChart></BarChart>
+      </div>
     </div>
   );
 };

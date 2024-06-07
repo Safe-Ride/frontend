@@ -12,8 +12,7 @@ const DonutChart = () => {
       .get()
       .then((response) => {
         const { data } = response;
-        console.log(data[0]);
-        const { pago, pendente, atrasado } = data[0];
+        const { pago, pendente, atrasado } = data;
 
         setQtdPago(pago);
         setQtdPendente(pendente);
