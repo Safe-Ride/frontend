@@ -13,7 +13,7 @@
   text-align: center;
   margin-bottom: 10px;
   width: 90%;
-    margin-left: 1.2rem;
+  margin-left: 1.2rem;
 }
 
 button {
@@ -36,6 +36,83 @@ button {
 }
 
 img {
+  width: 50%;
+  margin: 10% 25%;
+}
+
+ol {
+  list-style: none;
+  display: block;
+  padding: 0;
+  counter-reset: my-counter;
+}
+
+ol li {
+  counter-increment: my-counter;
+  padding: 0.2rem;
+  margin: 1rem;
+}
+ol li::before {
+  content: "⠀" counter(my-counter) "⠀" ;
+  border-radius: 100%;
+  padding-top: 0.2rem;
+  padding-bottom: 0.3rem;
+  margin-right: 0.4rem;
+}
+
+.bullet-active::before {
+  background-color: var(--amarelo);
+  color: var(--preto);
+}
+
+.bullet-inactive::before {
+  background-color: var(--preto);
+  color: var(--branco);
+}
+
+input {
+    border-color: var(--preto);
+    border-radius: 2rem;
+    border-style: solid;
+    border-width: 0.09rem;
+    padding: 0.3rem;
+    margin-left: 1.5rem;
+    background-color: var(--branco);
+    width: 80%;
+    
+}
+
+label {
     width: 50%;
-    margin: 10% 25%;
+    text-align: left;
+    padding: 0.5rem 0.5rem;
+    margin-left: 1.4rem;
+    margin-top: 0.7rem;
+}
+
+.input-medium-left {
+}
+
+.input-medium-right {
+    grid-column-start: 2;
+    width: 83%;
+}
+
+.inner-grid {
+    display: grid;
+    text-align: left;
+    margin-top: 0.8rem;
+}
+
+.inner-grid button {
+    width: 50%;
+}
+
+.inner-grid .btn-light {
+    grid-column-start: 2;
+    margin-left: 40%;
+}
+
+.inner-grid .btn-dark {
+    margin-left: 10%;
 }
