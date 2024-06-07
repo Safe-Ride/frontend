@@ -8,15 +8,17 @@ const LineChart = () => {
   const recuperarInformacoesCliente = async () => {
     try {
       const response = await apiLine.get();
-      const data = response.data[0];
+      const data = response.data;
 
       const months = [];
       const values = [];
 
+      console.log(data);
+
       for (const key in data) {
         if (data.hasOwnProperty(key) && key !== "id") {
-          months.push(key);
-          values.push(data[key]);
+          months.push(nomeMes(data[key].data));
+          values.push(data[key].valor);
         }
       }
 
@@ -40,6 +42,9 @@ const LineChart = () => {
       xAxis: {
         type: "category",
         data: chartData.months,
+        axisLabel: {
+          rotate: 45, // 0 graus para manter os nomes deitados (horizontalmente)
+        },
       },
       yAxis: {
         type: "value",
@@ -63,5 +68,14 @@ const LineChart = () => {
     />
   );
 };
+
+function nomeMes(data) {
+  const dateFormatter = new Intl.DateTimeFormat("pt-BR", { month: "long" });
+  const date = new Date(data);
+  date.setMonth(date.getMonth() + 1);
+  const monthName = dateFormatter.format(date);
+
+  return monthName.charAt(0).toUpperCase() + monthName.slice(1);
+}
 
 export default LineChart;
