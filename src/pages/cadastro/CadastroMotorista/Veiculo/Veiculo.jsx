@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Formulario from "../../../../components/Formulario/Formulario";
 import styles from "../../Cadastro.module.css";
 
-
-function Veiculo({ onSubmit }) {
+function Veiculo({ onSubmit, show }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -13,10 +12,11 @@ function Veiculo({ onSubmit }) {
   const [confirmaSenha, setConfirmaSenha] = useState("");
 
   const handleSubmit = (data) => {
+    data.action = "salvar"
     onSubmit(data);
   };
 
-  const dependenteFields = [
+  const veiculoFields = [
     {
       name: "cnpj",
       label: "CNPJ",
@@ -27,13 +27,14 @@ function Veiculo({ onSubmit }) {
       name: "nomeFantasia",
       label: "Nome Fantasia",
       type: "text",
-      disabled: true
+      isDisabled: true
     },
     {
       name: "naturezaJuridica",
       label: "Natureza Juridica",
       placeholder: "Transporte Escola",
       type: "text",
+      isDisabled: true
     },
     {
       name: "placaCnhContainer",
@@ -75,7 +76,7 @@ function Veiculo({ onSubmit }) {
 
   return (
     <>
-      <Formulario onSubmit={handleSubmit} fields={dependenteFields} action={{name: "Concluir"}} />
+      <Formulario show={show} onSubmit={handleSubmit} fields={veiculoFields} action={{name: "Concluir"}} />
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Formulario from "../../../components/Formulario/Formulario";
 import styles from "../Cadastro.module.css";
 
-function Endereco({ onSubmit }) {
+function Endereco({ onSubmit, show }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -12,6 +12,7 @@ function Endereco({ onSubmit }) {
   const [confirmaSenha, setConfirmaSenha] = useState("");
 
   const handleSubmit = (data) => {
+    data.action = "continuar"
     onSubmit(data);
   };
 
@@ -82,7 +83,7 @@ function Endereco({ onSubmit }) {
 
   return (
     <>
-      <Formulario onSubmit={handleSubmit} fields={enderecoFields} action={{name: "Avançar"}} />
+      <Formulario show={show} onSubmit={handleSubmit} fields={enderecoFields} action={{name: "Avançar"}} />
     </>
   );
 }

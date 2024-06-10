@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Formulario from "../../../../components/Formulario/Formulario";
 
-function Dependente({ onSubmit }) {
+function Dependente({ onSubmit, show }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -51,7 +51,7 @@ function Dependente({ onSubmit }) {
 
   return (
     <>
-      <Formulario onSubmit={handleSubmit} fields={dependenteFields} action={{name: "Concluir"}} />
+      <Formulario show={show} onSubmit={handleSubmit} fields={dependenteFields} action={{name: "Concluir"}} />
     </>
   );
 }

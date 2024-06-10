@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Formulario from "../../../components/Formulario/Formulario";
 import styles from "../Cadastro.module.css";
 
-function DadosPessoais({ onSubmit }) {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [dataNascimento, setDataNascimento] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmaSenha, setConfirmaSenha] = useState("");
+function DadosPessoais({ onSubmit, show }) {
 
   const handleSubmit = (data) => {
+    data.action = "continuar"
     onSubmit(data);
   };
 
@@ -76,11 +70,14 @@ function DadosPessoais({ onSubmit }) {
     }
   ];
 
+  if (show) {
   return (
+    
     <>
-      <Formulario onSubmit={handleSubmit} fields={dadosPessoaisFields} action={{name: "Concluir"}} />
+      <Formulario show={show} onSubmit={handleSubmit} fields={dadosPessoaisFields} action={{name: "Avançar"}} />
     </>
   );
+}
 }
 
 export default DadosPessoais;

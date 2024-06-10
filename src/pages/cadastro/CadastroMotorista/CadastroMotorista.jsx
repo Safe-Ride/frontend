@@ -1,103 +1,54 @@
 import React, { useState } from "react";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
+import Bullet from "../Bullet/Bullet";
 import styles from "../Cadastro.module.css";
+import DadosPessoais from "../DadosPessoais/DadosPessoais";
+import Endereco from "../Endereco/Endereco";
 import Veiculo from "./Veiculo/Veiculo";
 function CadastroMotorista() {
-  const [estagioCadastro, setEstagioCadasto] = useState(1);
+  const [estagioCadastro, setEstagioCadastro] = useState(1);
 
-  const [dadosPessoais, setDadosPessoais] = useState({});
+  const [dados, setDados] = useState({});
+  const [bullet1, setBullet1] = useState(true);
+  const [bullet2, setBullet2] = useState(false);
+  const [bullet3, setBullet3] = useState(false);
 
-  const [cep, setCep] = useState("");
-  const [numero, setNumero] = useState(0);
-  const [complemento, setComplemento] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [uf, setUf] = useState("");
-  const [cidade, setCidade] = useState("");
-
-  const [nomeDependente, setNomeDependente] = useState("");
-  const [dataNascimentoDependente, setDataNascimentoDependente] = useState("");
-  const [escola, setEscola] = useState("");
-  const [serie, setSerie] = useState("");
+  const [form1, setForm1] = useState(true);
+  const [form2, setForm2] = useState(false);
+  const [form3, setForm3] = useState(false);
 
   const onSubmit = (data) => {
+    if (data.action === "continuar") {
+      atualizarEstagioCadastro();
+    } else if (data.action === "salvar") {
+    }
     console.log(data);
   };
 
-  const dadosPessoaisFields = [
-    {
-      name: "nome",
-      label: "Nome",
-      type: "text",
-      placeholder: "Digite seu nome"
-    },
-    {
-      name: "email",
-      label: "E-mail",
-      type: "email",
-      placeholder: "Digite seu e-mail"
-    },
-    {
-      name: "telefone",
-      label: "Telefone",
-      type: "tel",
-      placeholder: "(xx) xxxxx-xxxx"
-    },
-    {
-      name: "senhaContainer",
-      type: "container",
-      children: [
-        {
-          name: "senha",
-          label: "Senha",
-          type: "password",
-          placeholder: "Digite sua Senha",
-          className: styles["input-medium-left"]
-        },
-        {
-          name: "confirmaSenha",
-          label: "Confirmar Senha",
-          type: "password",
-          placeholder: "Digite sua Senha",
-          className: styles["input-medium-right"]
-        }
-      ]
-    },
-    {
-      name: "senhaContainer",
-      type: "container",
-      children: [
-        {
-          name: "senha",
-          label: "Senha",
-          type: "password",
-          placeholder: "Digite sua Senha",
-          className: styles["input-medium-left"]
-        },
-        {
-          name: "confirmaSenha",
-          label: "Confirmar Senha",
-          type: "password",
-          placeholder: "Digite sua Senha",
-          className: styles["input-medium-right"]
-        }
-      ]
-    }
-  ];
+  const idsEstagios = [setBullet1, setBullet2, setBullet3];
+  const formularios = [setForm1, setForm2, setForm3];
+
+  const atualizarEstagioCadastro = () => {
+    formularios[estagioCadastro-1](false)
+
+    setEstagioCadastro(estagioCadastro + 1);
+    idsEstagios[estagioCadastro](true)
+    formularios[estagioCadastro](true)
+  }
 
   return (
     <>
       <NavBarTop titulo="CADASTRO" />
 
       <ol>
-        <li className={styles["bullet-active"]}>Dados Pessoais</li>
-        <li className={styles["bullet-inactive"]}>Endereço</li>
-        <li className={styles["bullet-inactive"]}>Veículo</li>
+        <Bullet titulo={"Dados Pessoais"} ativo={bullet1} />
+        <Bullet titulo={"Endereço"} ativo={bullet2} />
+        <Bullet titulo={"Veículo"} ativo={bullet3} />
       </ol>
-      <div className={styles["grid-container"]}>
-        {/* <DadosPessoais onSubmit={onSubmit} /> */}
-        {/* <Endereco onSubmit={onSubmit} /> */}
-        <Veiculo onSubmit={onSubmit} />
+      <div className={styles["grid-container"]} id={"formContainer"}>
+        <DadosPessoais onSubmit={onSubmit} show={form1} />
+        <Endereco onSubmit={onSubmit} show={form2} />
+        <Veiculo onSubmit={onSubmit} show={form3} />
       </div>
     </>
   );

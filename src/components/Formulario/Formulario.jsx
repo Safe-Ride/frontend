@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../../pages/cadastro/Cadastro.module.css";
-
-function Formulario({ onSubmit, fields, action }) {
+function Formulario({ show, onSubmit, fields, action }) {
   // Use state to manage form data
   const [formData, setFormData] = useState({});
 
@@ -14,83 +14,93 @@ function Formulario({ onSubmit, fields, action }) {
     onSubmit(formData); // Pass form data to onSubmit prop function
   };
 
-  return (
-    <form onSubmit={handleSubmit} className={styles["form"]}>
-      {fields.map((field) => {
-        if (field.type === "container") {
-          return (
-            <div key={field.name} className={styles["inner-grid"]}>
-              {" "}
-              {field.children.map((childField) => (
-                <React.Fragment key={childField.name}>
-                  <label
-                    htmlFor={childField.name}
-                    className={childField.className}
-                  >
-                    {childField.label}
-                  </label>
-                  <input
-                    type={childField.type}
-                    aria-label={childField.label}
-                    placeholder={childField.placeholder}
-                    name={childField.name}
-                    value={formData[childField.name] || ""}
-                    onChange={handleChange}
-                    className={childField.className || ""}
-                    disabled={childField.isDisabled}
-                  />
-                </React.Fragment>
-              ))}
-            </div>
-          );
-        } else if (field.type === "datalist") {
-          return (
-            <React.Fragment key={field.name}>
-              <label htmlFor={field.name} className={field.className}>
-                {field.label}
-              </label>
-              <input
-                aria-label={field.label}
-                placeholder={field.placeholder}
-                list={field.name}
-                onChange={handleChange}
-              />
-              <datalist onChange={handleChange} id={field.name}>
-                {field.options.map((opt) => (
-                  <option value={opt.value}>{opt.name}</option>
+  const navigate = useNavigate();
+
+  if (show) {
+    return (
+      <form onSubmit={handleSubmit} className={styles["form"]}>
+        {fields.map((field) => {
+          if (field.type === "container") {
+            return (
+              <div key={field.name} className={styles["inner-grid"]}>
+                {" "}
+                {field.children.map((childField) => (
+                  <React.Fragment key={childField.name}>
+                    <label
+                      htmlFor={childField.name}
+                      className={childField.className}
+                    >
+                      {childField.label}
+                    </label>
+                    <input
+                      type={childField.type}
+                      aria-label={childField.label}
+                      placeholder={childField.placeholder}
+                      name={childField.name}
+                      value={formData[childField.name] || ""}
+                      onChange={handleChange}
+                      className={childField.className || ""}
+                      disabled={childField.isDisabled}
+                    />
+                  </React.Fragment>
                 ))}
-              </datalist>
-            </React.Fragment>
-          );
-        } else {
-          // Render individual fields as before
-          return (
-            <React.Fragment key={field.name}>
-              <label htmlFor={field.name} className={field.className}>
-                {field.label}
-              </label>
-              <input
-                type={field.type}
-                aria-label={field.label}
-                placeholder={field.placeholder}
-                name={field.name}
-                value={formData[field.name] || ""}
-                onChange={handleChange}
-                className={field.className || ""}
-                disabled={field.isDisabled}
-              />
-            </React.Fragment>
-          );
-        }
-      })}
-      <div className={styles["inner-grid"]}>
-        <button className={styles["btn-dark"]}>Voltar</button>
-        <button type="submit" className={styles["btn-light"]}>
-          {action.name}
-        </button>
-      </div>
-    </form>
-  );
+              </div>
+            );
+          } else if (field.type === "datalist") {
+            return (
+              <React.Fragment key={field.name}>
+                <label htmlFor={field.name} className={field.className}>
+                  {field.label}
+                </label>
+                <input
+                  aria-label={field.label}
+                  placeholder={field.placeholder}
+                  list={field.name}
+                  onChange={handleChange}
+                />
+                <datalist onChange={handleChange} id={field.name}>
+                  {field.options.map((opt) => (
+                    <option value={opt.value}>{opt.name}</option>
+                  ))}
+                </datalist>
+              </React.Fragment>
+            );
+          } else {
+            // Render individual fields as before
+            return (
+              <React.Fragment key={field.name}>
+                <label htmlFor={field.name} className={field.className}>
+                  {field.label}
+                </label>
+                <input
+                  type={field.type}
+                  aria-label={field.label}
+                  placeholder={field.placeholder}
+                  name={field.name}
+                  value={formData[field.name] || ""}
+                  onChange={handleChange}
+                  className={field.className || ""}
+                  disabled={field.isDisabled}
+                />
+              </React.Fragment>
+            );
+          }
+        })}
+        <div className={styles["inner-grid"]}>
+          <button
+            className={styles["btn-dark"]}
+            onClick={() => navigate("/cadastro")}
+          >
+            Voltar
+          </button>
+          <button type="submit" className={styles["btn-light"]}>
+            {action.name}
+          </button>
+        </div>
+      </form>
+    );
+  }
+  return null;
 }
 
 export default Formulario;
