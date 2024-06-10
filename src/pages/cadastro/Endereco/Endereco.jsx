@@ -82,7 +82,7 @@ function Endereco({ onSubmit }) {
 
   return (
     <>
-      <Formulario onSubmit={handleSubmit} fields={enderecoFields} />
+      <Formulario onSubmit={handleSubmit} fields={enderecoFields} action={{name: "Avançar"}} />
     </>
   );
 }

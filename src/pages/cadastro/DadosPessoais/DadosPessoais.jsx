@@ -78,7 +78,7 @@ function DadosPessoais({ onSubmit }) {
 
   return (
     <>
-      <Formulario onSubmit={handleSubmit} fields={dadosPessoaisFields} />
+      <Formulario onSubmit={handleSubmit} fields={dadosPessoaisFields} action={{name: "Concluir"}} />
     </>
   );
 }

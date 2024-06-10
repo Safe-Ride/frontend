@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../pages/cadastro/Cadastro.module.css";
 
-function Formulario({ onSubmit, fields }) {
+function Formulario({ onSubmit, fields, action }) {
   // Use state to manage form data
   const [formData, setFormData] = useState({});
 
@@ -43,6 +43,25 @@ function Formulario({ onSubmit, fields }) {
               ))}
             </div>
           );
+        } else if (field.type === "datalist") {
+          return (
+            <React.Fragment key={field.name}>
+              <label htmlFor={field.name} className={field.className}>
+                {field.label}
+              </label>
+              <input
+                aria-label={field.label}
+                placeholder={field.placeholder}
+                list={field.name}
+                onChange={handleChange}
+              />
+              <datalist onChange={handleChange} id={field.name}>
+                {field.options.map((opt) => (
+                  <option value={opt.value}>{opt.name}</option>
+                ))}
+              </datalist>
+            </React.Fragment>
+          );
         } else {
           // Render individual fields as before
           return (
@@ -67,7 +86,7 @@ function Formulario({ onSubmit, fields }) {
       <div className={styles["inner-grid"]}>
         <button className={styles["btn-dark"]}>Voltar</button>
         <button type="submit" className={styles["btn-light"]}>
-          Avançar
+          {action.name}
         </button>
       </div>
     </form>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import styles from "../Cadastro.module.css";
-import Endereco from "../Endereco/Endereco";
+import Dependente from "./Dependente/Dependente";
 function CadastroResponsavel() {
   const [estagioCadastro, setEstagioCadasto] = useState(1);
 
@@ -96,7 +96,8 @@ function CadastroResponsavel() {
       </ol>
       <div className={styles["grid-container"]}>
         {/* <DadosPessoais onSubmit={onSubmit} /> */}
-        <Endereco onSubmit={onSubmit} />
+        {/* <Endereco onSubmit={onSubmit} /> */}
+        <Dependente onSubmit={onSubmit} />
       </div>
     </>
   );
