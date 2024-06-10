@@ -1,3 +1,5 @@
+import Fila from "./fila.js";
+
 main();
 
 function main() {
@@ -51,13 +53,14 @@ function tsp(matrix) {
     const start = 0; // The index of the starting point on the arrCoordinates array
     var previous = start;
 
-    const bestRoute = [start];
+    const bestRoute = new Fila();
+    bestRoute.insert(start);
     var cost = 0;
 
-    while (bestRoute.length != matrix.length) {
+    while (bestRoute.size() != matrix.length) {
 
         var closest = start;
-        previous = bestRoute[bestRoute.length - 1]
+        previous = bestRoute.previous();
 
         const row = matrix[previous]; // Array
         // console.log("matrix[previous]: " + matrix[previous])
@@ -86,12 +89,12 @@ function tsp(matrix) {
 
         }
         // console.log("Fim do FOR\n")
-        bestRoute.push(closest);
+        bestRoute.insert(closest);
         cost += row[closest]
         // console.log(`bestRoute = ${bestRoute}\n`);
     }
 
     // console.log("Acabou")
-    console.log(`Melhor rota = ${bestRoute}`);
+    console.log(`Melhor rota = ${bestRoute.toString()}`);
     console.log(`Custo total = ${cost}`)
 }
