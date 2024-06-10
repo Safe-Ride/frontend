@@ -54,7 +54,7 @@ background: var(--branco, #F7F7F0);
     color: var(--preto, #2D2A32);
 text-align: center;
 font-family: 'Montserrat', sans-serif;
-font-size: 12px;
+font-size: 2vh;
 }
 .text-input{
     color: var(--preto, #2D2A32);
@@ -87,6 +87,7 @@ height: 5vh;
     font-size: 12px;
 }
 .bottom-links{
+    font-size: 2%;
     display: flex;
     justify-content: space-between;
     margin: 5vw;
