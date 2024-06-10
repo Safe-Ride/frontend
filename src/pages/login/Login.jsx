@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from 'react-router-dom'; 
 import NavBarTop from "../../components/NavBar/NavBarTop";
-import { Link } from 'react-router-dom';
+
+
 const titulo = "Entrar";
 const Clientes = () => {
     const[email, setEmail] = useState('')
@@ -72,11 +73,9 @@ const handleLogin = async() => {
       </div>
 
       <div className={styles["bottom-links"]}>
-        <p onClick={handleNavigate}>
-            Não possui uma conta?{''}
-           
-        </p>
-        <p>Esqueci minha senha</p>
+        <p className={styles["links"]} onClick={handleNavigate}>Não possui uma conta?</p>
+        <p className={styles["links"]} >Esqueci minha senha</p>
+        
       </div>
     </div>
     </div>
