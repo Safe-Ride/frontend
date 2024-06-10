@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cadastro from "./pages/cadastro/Cadastro";
+import CadastroMotorista from "./pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "./pages/cadastro/CadastroResponsavel/CadastroResponsavel";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
@@ -29,6 +30,7 @@ function Rotas() {
           <Route path="*" element={<NotFound />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/cadastro/responsavel" element={<CadastroResponsavel />} />
+          <Route path="/cadastro/motorista" element={<CadastroMotorista />} />
         </Routes>
       </BrowserRouter>
     </>
