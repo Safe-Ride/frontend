@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { handleInputChange } from "../../../handlers";
+import Formulario from "../../../components/Formulario/Formulario";
 import styles from "../Cadastro.module.css";
 
-function DadosPessoais({ setDadosPessoais }) {
+function DadosPessoais({ onSubmit }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -11,89 +11,74 @@ function DadosPessoais({ setDadosPessoais }) {
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
 
+  const handleSubmit = (data) => {
+    onSubmit(data);
+  };
+
+  const dadosPessoaisFields = [
+    {
+      name: "nome",
+      label: "Nome",
+      type: "text",
+      placeholder: "Digite seu nome"
+    },
+    {
+      name: "email",
+      label: "E-mail",
+      type: "email",
+      placeholder: "Digite seu e-mail"
+    },
+    {
+      name: "telefone",
+      label: "Telefone",
+      type: "tel",
+      placeholder: "(xx) xxxxx-xxxx"
+    },
+    {
+      name: "cpfDataContainer",
+      type: "container",
+      children: [
+        {
+          name: "cpf",
+          label: "CPF",
+          type: "text",
+          placeholder: "Digite seu CPF",
+          className: styles["input-medium-left"]
+        },
+        {
+          name: "dataNascimento",
+          label: "Data de Nascimento",
+          type: "date",
+          placeholder: "",
+          className: styles["input-medium-right"]
+        }
+      ]
+    },
+    {
+      name: "senhaContainer",
+      type: "container",
+      children: [
+        {
+          name: "senha",
+          label: "Senha",
+          type: "password",
+          placeholder: "Digite sua Senha",
+          className: styles["input-medium-left"]
+        },
+        {
+          name: "confirmaSenha",
+          label: "Confirmar Senha",
+          type: "password",
+          placeholder: "Digite sua Senha",
+          className: styles["input-medium-right"]
+        }
+      ]
+    }
+  ];
+
   return (
     <>
-      <ol>
-        <li className={styles["bullet-active"]}>Dados Pessoais</li>
-        <li className={styles["bullet-inactive"]}>Endereço</li>
-        <li className={styles["bullet-inactive"]}>Dependente</li>
-
-        <form action="" className={styles["form"]}>
-          <label htmlFor="">Nome</label>
-          <input
-            type="text"
-            aria-label="Nome"
-            placeholder="Digite seu nome"
-            onChange={(e) => handleInputChange(e, setNome)}
-          />
-          <label htmlFor="">E-mail</label>
-          <input
-            type="email"
-            aria-label="E-mail"
-            placeholder="Digite seu e-mail"
-            onChange={(e) => handleInputChange(e, setEmail)}
-          />
-          <label htmlFor="">Telefone</label>
-          <input
-            type="tel"
-            aria-label="Telefone"
-            placeholder="(xx) xxxxx-xxxx"
-            onChange={(e) => handleInputChange(e, setTelefone)}
-          />
-          <div className={styles["inner-grid"]}>
-            <div className={styles["input-medium-left"]}>
-              <label htmlFor="">CPF</label>
-              <input
-                type="text"
-                aria-label="CPF"
-                placeholder="Digite seu CPF"
-                onChange={(e) => handleInputChange(e, setCpf)}
-              />
-            </div>
-            <div className={styles["input-medium-right"]}>
-              <label htmlFor="">Nascimento</label>
-              <input
-                className={styles["input-medium-right"]}
-                type="date"
-                aria-label="Data de Nascimento"
-                onChange={(e) => handleInputChange(e, setDataNascimento)}
-              />
-            </div>
-          </div>
-          <div className={styles["inner-grid"]}>
-            <div className={styles["input-medium-left"]}>
-              <label htmlFor="">Senha</label>
-              <input
-                type="password"
-                aria-label="Senha"
-                placeholder="********"
-                onChange={(e) => handleInputChange(e, setSenha)}
-              />
-            </div>
-            <div className={styles["input-medium-right"]}>
-              <label htmlFor="">Confirmar</label>
-              <input
-                className={styles["input-medium-right"]}
-                type="password"
-                placeholder="********"
-                aria-label="Confirmar Senha"
-                onChange={(e) => handleInputChange(e, setConfirmaSenha)}
-              />
-            </div>
-          </div>
-          <div className={styles["inner-grid"]}>
-            <button className={styles["btn-dark"]}>Voltar</button>
-
-            <button
-              className={styles["btn-light"]}
-              type="submit"
-              onSubmit={(e) => handleInputChange={e, setDadosPessoais}}
-            >
-              Avançar
-            </button>
-          </div>
-        </form>
-      </ol>
+      <Formulario onSubmit={handleSubmit} fields={dadosPessoaisFields} />
     </>
   );
 }

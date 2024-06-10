@@ -7,7 +7,7 @@ function Cadastro() {
     <>
       <NavBarTop titulo={"CADASTRO"} />
       <div className={styles["grid-container"]}>
-        <div className={styles["form"]}>
+        <div className={styles["card"]}>
           <Logo tamanho={"logo-grande"} />
           <p>Conte-nos um pouco mais sobre você</p>
           <button className={styles["btn-light"]}>Sou Responsável</button>
