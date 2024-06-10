@@ -1,0 +1,25 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.container {
+  height: 100%;
+  margin: 3vh;
+}
+
+.content h1 {
+  width: 80%;
+  color: #2d2a32;
+  font-size: 2rem;
+  text-align: center;
+  margin: 4rem auto;
+  justify-content: center;
+}
+
+.content img {
+  height: auto;
+  max-width: 100%;
+}

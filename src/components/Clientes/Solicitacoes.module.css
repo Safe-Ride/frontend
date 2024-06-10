@@ -1,0 +1,42 @@
+.solicitacoes {
+  width: auto;
+  height: 8vh;
+  padding: 1vh 3vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid hsla(263, 9%, 18%, 0.3);
+  align-items: center;
+}
+
+.solicitacoes img {
+  height: 6vh;
+  width: 6vh;
+  padding: 1vh;
+  margin-right: 2vh;
+}
+
+.solicitacoes .campos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.campos .texto {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.campos .qtdSolicitacoes {
+  margin: 0;
+  font-size: 14px;
+  background-color: #f2c718;
+  width: 3vh;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
