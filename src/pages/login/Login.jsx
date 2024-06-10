@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from 'react-router-dom'; 
 import NavBarTop from "../../components/NavBar/NavBarTop";
-
+import { Link } from 'react-router-dom';
 const titulo = "Entrar";
 const Clientes = () => {
     const[email, setEmail] = useState('')
     const[senha,setSenha] = useState('')
     const navigate = useNavigate();
+
+    const handleNavigate = () =>{
+navigate("../cadastro/Cadastro")
+    }
 const handleLogin = async() => {
     try{
         const response = await api.post('/login',{
@@ -68,7 +72,10 @@ const handleLogin = async() => {
       </div>
 
       <div className={styles["bottom-links"]}>
-        <p>Não possui uma conta?</p>
+        <p onClick={handleNavigate}>
+            Não possui uma conta?{''}
+           
+        </p>
         <p>Esqueci minha senha</p>
       </div>
     </div>
