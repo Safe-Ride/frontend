@@ -15,10 +15,8 @@ function Rotas() {
   return (
     <>
       <BrowserRouter>
-      <Routes>
-      <Route path="/Login" element={<PGLogin/>} />
-      </Routes>
         <Routes>
+          <Route path="/login" element={<PGLogin />} />
           <Route path="/motorista/visao-geral" element={<MVisaoGeral />} />
           <Route path="/motorista/trajetos" element={<MTrajetos />} />
           <Route path="/motorista/clientes" element={<MClientes />} />

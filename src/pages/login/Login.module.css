@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/src/utils/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("/src/utils/fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
-
 
 body,
 html {
@@ -15,80 +15,91 @@ html {
 .container {
   height: 100%;
   display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
 
+.login-page {
+  width: 95%;
+  height: 70%;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+  padding: 1vh 0;
+  margin-top: 15vh;
 }
-.input-container{
-    display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 4px;
-align-self: stretch;
+.input-container {
+  padding-right: 5vw;
+  height: 10vh;
+  align-items: center;
+}
+.input-field {
+  height: 5vh;
+  width: 75vw;
+  border-radius: 32px;
+  border: 1px solid var(--preto, #2d2a32);
+  background: var(--branco, #f7f7f0);
+  padding-left: 2vh;
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+.text-introduction {
+  color: var(--preto, #2d2a32);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  padding: 0 2vh;
+}
+.text-input {
+  color: var(--preto, #2d2a32);
+  padding-left: 6vw;
+  font-size: 14px;
+}
+.div-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 5vw;
+}
+.checkBox {
+  border-radius: 4px;
+  border: 1px solid var(--preto, #2d2a32);
+  background: var(--branco, #f7f7f0);
+}
+.login-button {
+  border-radius: var(--border-radius-8, 8px);
+  background: var(--amarelo, #f2c718);
+  border: none;
+  width: 90%;
+  height: 5vh;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+.container-but {
+  padding-left: 5vw;
+  height: 5vh;
+  align-items: center;
+  font-size: 12px;
+}
+.bottom-links {
+  font-size: 2%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5vw;
 }
 
-
-.login-page{
-    width: 95%;
-    height: 70%;
-    box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
-    border-radius: 8px;
-    margin-bottom: 2vh;
-    padding: 1vh 0;
-}
-.input-container{
-
-    padding-right: 5vw;
-    height: 10vh;
-    align-items: center;
-}
-.input-field{
-    height: 5vh;
-    width: 80vw;
-    border-radius: 32px;
-border: 1px solid var(--preto, #2D2A32);
-background: var(--branco, #F7F7F0);
-}
-.text-introduction{
-    color: var(--preto, #2D2A32);
-text-align: center;
-font-family: 'Montserrat', sans-serif;
-font-size: 2vh;
-}
-.text-input{
-    color: var(--preto, #2D2A32);
-    padding-left: 6vw;
-    font-size: 12px;
-}
-.div-checkbox{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 5vw;
-}
-.checkBox{
- border-radius: 4px;
-border: 1px solid var(--preto, #2D2A32);
-background: var(--branco, #F7F7F0);
-
-}
-.login-button{
-    border-radius: var(--border-radius-8, 8px);
-background: var(--amarelo, #F2C718);
-border: none;
-width: 90%;
-height: 5vh;
-}
-.container-but{
-    padding-left: 5vw;
-    height: 5vh;
-    align-items: center;
-    font-size: 12px;
-}
-.bottom-links{
-    font-size: 2%;
-    display: flex;
-    justify-content: space-between;
-    margin: 5vw;
+input::placeholder {
+  color: #6f6f6f; /* Cor cinza clara */
+  font-weight: 700; /* Texto em itálico */
+  opacity: 1; /* Totalmente opaco para garantir visibilidade */
+  font-family: "Montserrat";
+  /* padding-left: 2vh; */
 }
