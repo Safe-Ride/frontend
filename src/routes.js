@@ -7,7 +7,7 @@ import MPagamentos from "./pages/motorista/pagamentos/Pagamentos";
 import RDependentes from "./pages/responsavel/dependentes/Dependentes";
 import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
 import RPagamentos from "./pages/responsavel/pagamentos/Pagamentos";
-import Login from "./pages/login/Login";
+import PGLogin from "./pages/login/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/notFound/NotFound";
 
@@ -15,7 +15,9 @@ function Rotas() {
   return (
     <>
       <BrowserRouter>
-
+      <Routes>
+      <Route path="/Login" element={<PGLogin/>} />
+      </Routes>
         <Routes>
           <Route path="/motorista/visao-geral" element={<MVisaoGeral />} />
           <Route path="/motorista/trajetos" element={<MTrajetos />} />
