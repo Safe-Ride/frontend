@@ -1,0 +1,25 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3vh;
+}
+
+.kpis {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.espaco-fim {
+  width: 100%;
+  height: 5vh;
+}
