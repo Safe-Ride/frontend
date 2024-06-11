@@ -72,6 +72,7 @@ const Clientes = () => {
               onChange={(event) => setSenha(event.target.value)}
             />
           </div>
+
           <div className={styles["div-checkbox"]}>
             <input type="checkbox" className={styles["checkBox"]} id="" />
             <p>Manter Conectado</p>
@@ -82,10 +83,8 @@ const Clientes = () => {
               Entrar
             </button>
           </div>
-
           <div className={styles["bottom-links"]}>
-            <p>Não possui uma conta?</p>
-            <p>Esqueci minha senha</p>
+            <a href="/cadastro">Não possui uma conta? Cadastrar!</a>
           </div>
         </div>
       </div>
