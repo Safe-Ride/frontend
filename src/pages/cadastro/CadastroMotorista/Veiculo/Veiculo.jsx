@@ -1,15 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Formulario from "../../../../components/Formulario/Formulario";
 import styles from "../../Cadastro.module.css";
 
 function Veiculo({ onSubmit, show }) {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [dataNascimento, setDataNascimento] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmaSenha, setConfirmaSenha] = useState("");
 
   const handleSubmit = (data) => {
     data.action = "salvar"
