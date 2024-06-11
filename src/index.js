@@ -1,11 +1,11 @@
 import React from "react";
-import "./utils/globals.css";
 import ReactDOM from "react-dom/client";
-import Rotas from "./routes";
+import App from "./App";
+import "./utils/globals.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Rotas />
+    <App />
   </React.StrictMode>
 );
