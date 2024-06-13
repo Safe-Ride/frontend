@@ -1,0 +1,101 @@
+.card2 {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+  /* height: 20vh; */
+}
+
+.inicio {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  padding: 1vh 2vh;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: var(--laranja);
+}
+
+.inicio p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.campo {
+  margin: auto;
+  padding: 1vh;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dados {
+  margin: auto;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.dados p {
+  margin: 1vh;
+  font-weight: 700;
+  font-size: 14px;
+  width: 25%;
+}
+
+.dados span {
+  font-weight: 500;
+  font-size: 14px;
+  width: 65%;
+}
+
+.dados img {
+  margin: 0;
+  height: 17px;
+  width: 17px;
+  cursor: pointer;
+}
+
+.dados input {
+  width: 45%;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Montserrat";
+  border: 1px solid var(--preto);
+  align-items: center;
+  font-weight: 500;
+}
+
+.opcoes {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.opcoes img {
+  height: 15px;
+  width: 15px;
+  margin: 0 0 0 2vh;
+}
+
+.opcoes .salvar {
+  background-color: #64adad;
+  border-radius: 8px;
+  padding: 1vh;
+}
+
+.opcoes .excluir {
+  background-color: #ff6363;
+  border-radius: 8px;
+  padding: 1vh;
+}

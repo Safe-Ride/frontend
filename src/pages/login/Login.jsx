@@ -5,11 +5,18 @@ import { useNavigate } from "react-router-dom";
 import NavBarTop from "../../components/NavBar/NavBarTop";
 
 const titulo = "Entrar";
+
 const Clientes = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
+
   const handleLogin = async () => {
+    if (!email || !senha) {
+      console.error("Email ou senha vazios.");
+      return;
+    }
+
     try {
       const response = await apiLogin.post(
         "/login",
@@ -19,14 +26,23 @@ const Clientes = () => {
         },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZW1haWwuY29tIiwiaWF0IjoxNzE0NDUyMDk0LCJleHAiOjE3MTgwNTIwOTR9.Wc_k08Pidr5Fbrcsi3oV6i_rl1yANNCjZjderjGIKTENJ-d0KBcR1-ITsPyG5kbRQDyKPgv1Vrizcri8ACRYVA",
+            Authorization: "",
           },
         }
       );
       if (response.status === 200 && response.data && response.data.token) {
         sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("id", response.data.UserId);
+        sessionStorage.setItem("ID_USUARIO", response.data.userId);
+        sessionStorage.setItem("NOME_USUARIO", response.data.nome);
+        sessionStorage.setItem("EMAIL_USUARIO", response.data.email);
+        sessionStorage.setItem("CPF_USUARIO", response.data.cpf);
+        sessionStorage.setItem("TELEFONE_USUARIO", response.data.telefone);
+        sessionStorage.setItem(
+          "DATA_NASCIMENTO_USUARIO",
+          response.data.dataNascimento
+        );
+        sessionStorage.setItem("TIPO_USUARIO", response.data.tipo);
+        // sessionStorage.setItem("FOTO_USUARIO", response.data.foto);
 
         if (response.data.tipo === "MOTORISTA") {
           navigate("/motorista/visao-geral");
