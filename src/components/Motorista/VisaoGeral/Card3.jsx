@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card3.module.css";
-import BarChart from "./Graficos/BarChart";
+import BarChart from "../Graficos/BarChart";
 
 const Card3 = () => {
   return (

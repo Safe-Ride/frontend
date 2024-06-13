@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card1.module.css";
-import DonutChart from "./Graficos/DonutChart";
+import DonutChart from "../Graficos/DonutChart";
 
 const Card1 = () => {
   const mes = "Junho";

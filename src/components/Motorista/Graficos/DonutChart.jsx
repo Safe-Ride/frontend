@@ -1,4 +1,4 @@
-import apiDonut from "../../../../apiDonut";
+import apiDonut from "../../../apiDonut";
 import React, { useState } from "react";
 import ReactEcharts from "echarts-for-react";
 
