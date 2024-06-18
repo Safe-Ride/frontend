@@ -56,17 +56,17 @@ function Formulario({ show, onSubmit, fields, action }) {
                   aria-label={field.label}
                   placeholder={field.placeholder}
                   list={field.name}
+                  name={field.name}
                   onChange={handleChange}
                 />
-                <datalist onChange={handleChange} id={field.name}>
+                <datalist id={field.name} onChange={handleChange} name={field.name}>
                   {field.options.map((opt) => (
-                    <option value={opt.value}>{opt.name}</option>
+                    <option name={field.name} value={opt.value}>{opt.name}</option>
                   ))}
                 </datalist>
               </React.Fragment>
             );
           } else {
-            // Render individual fields as before
             return (
               <React.Fragment key={field.name}>
                 <label htmlFor={field.name} className={field.className}>

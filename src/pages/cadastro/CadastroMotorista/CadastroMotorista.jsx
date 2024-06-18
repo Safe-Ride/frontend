@@ -39,8 +39,9 @@ function CadastroMotorista() {
       .post(`/usuarios`, clienteRequest)
       .then((res) => {
         toast.success("Cadastro de usuário realizado com sucesso!");
-        console.log("Resposta: " + res["id"]);
-        idUsuario = res.id;
+        const { data } = res; 
+        console.log("Resposta: " + data["id"]);
+        idUsuario = data.id;
 
         const enderecoRequest = {
           latitude: dados.latitude,

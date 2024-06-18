@@ -13,7 +13,6 @@ function CadastroResponsavel() {
   const navigate = useNavigate();
 
   const [estagioCadastro, setEstagioCadastro] = useState(1);
-  const [escolas, setEscolas] = useState([])
 
   const [dados, setDados] = useState({});
   const [bullet1, setBullet1] = useState(true);
@@ -25,6 +24,7 @@ function CadastroResponsavel() {
   const [form3, setForm3] = useState(false);
 
   const handleSave = () => {
+    console.log(dados);
     let idUsuario = 0;
     const clienteRequest = {
       nome: dados.nome,
@@ -33,15 +33,16 @@ function CadastroResponsavel() {
       cpf: dados.cpf,
       telefone: dados.telefone,
       dataNascimento: dados.dataNascimento,
-      tipo: "MOTORISTA"
+      tipo: "RESPONSAVEL",
     };
 
     api
       .post(`/usuarios`, clienteRequest)
       .then((res) => {
+        const { data } = res
         toast.success("Cadastro de usuário realizado com sucesso!");
-        console.log("Resposta: " + res["id"]);
-        idUsuario = res.id;
+        console.log("Resposta: " + data["id"]);
+        idUsuario = data.id;
 
         const enderecoRequest = {
           latitude: dados.latitude,
@@ -49,7 +50,7 @@ function CadastroResponsavel() {
           cep: dados.cep,
           numero: dados.numero,
           complemento: dados.complemento,
-          usuarioId: idUsuario
+          usuarioId: idUsuario,
         };
         api
           .post(`/enderecos`, enderecoRequest)
@@ -60,8 +61,8 @@ function CadastroResponsavel() {
               nome: dados.nomeDependente,
               dataNascimento: dados.dataNascimento,
               serie: dados.serie,
-              responsavelId: dados.idUsuario,
-              escolaId: dados.escolaId,
+              responsavelId: idUsuario,
+              escolaId: dados.escola,
             };
 
             api
@@ -108,17 +109,11 @@ function CadastroResponsavel() {
   const formularios = [setForm1, setForm2, setForm3];
 
   const atualizarEstagioCadastro = () => {
-    if(estagioCadastro === 2) {
-      api.get(`/escolas`).then((res) => {
-        setEscolas(res)
-      })
-    }
     formularios[estagioCadastro - 1](false);
 
     setEstagioCadastro(estagioCadastro + 1);
     idsEstagios[estagioCadastro](true);
     formularios[estagioCadastro](true);
-    
   };
 
   return (
@@ -133,7 +128,7 @@ function CadastroResponsavel() {
       <div className={styles["grid-container"]}>
         <DadosPessoais onSubmit={onSubmit} show={form1} />
         <Endereco onSubmit={onSubmit} show={form2} />
-        <Dependente onSubmit={onSubmit} show={form3} escolas={escolas} />
+        <Dependente onSubmit={onSubmit} show={form3} />
       </div>
     </>
   );
