@@ -13,7 +13,7 @@ const Card1 = ({ foto }) => {
       />
       <div className={styles["campos"]}>
         <h2 className={styles["nome"]}>{sessionStorage.NOME_USUARIO}</h2>
-        <p className={styles["status"]}>
+        <p className={styles["idade"]}>
           {calcularIdade(sessionStorage.DATA_NASCIMENTO_USUARIO)} anos
         </p>
       </div>
