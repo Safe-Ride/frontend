@@ -23,13 +23,6 @@ function Veiculo({ onSubmit, show }) {
       isDisabled: true
     },
     {
-      name: "naturezaJuridica",
-      label: "Natureza Juridica",
-      placeholder: "Transporte Escola",
-      type: "text",
-      isDisabled: true
-    },
-    {
       name: "placaCnhContainer",
       type: "container",
       children: [

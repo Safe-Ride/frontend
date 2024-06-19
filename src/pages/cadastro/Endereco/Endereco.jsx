@@ -19,7 +19,7 @@ function Endereco({ onSubmit, show }) {
           label: "CEP",
           type: "text",
           placeholder: "Digite o CEP",
-          className: styles["input-medium-left"]
+          className: styles["input-medium-left"],
         },
         {
           name: "numero",
