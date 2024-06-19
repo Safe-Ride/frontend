@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TempoReal.module.css";
+// import styles from "./TempoReal.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 

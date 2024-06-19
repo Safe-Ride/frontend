@@ -3,20 +3,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cadastro from "./pages/cadastro/Cadastro";
 import CadastroMotorista from "./pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "./pages/cadastro/CadastroResponsavel/CadastroResponsavel";
+import MVisaoGeral from "./pages/motorista/visaoGeral/VisaoGeral";
+import MTrajetos from "./pages/motorista/trajetos/Trajetos";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
 import MPagamentos from "./pages/motorista/pagamentos/Pagamentos";
-import MTrajetos from "./pages/motorista/trajetos/Trajetos";
 import NotFound from "./pages/notFound/NotFound";
 import RDependentes from "./pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "./pages/responsavel/pagamentos/Pagamentos";
 import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
+import PGLogin from "./pages/login/Login";
 
 function Rotas() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<PGLogin />} />
+          <Route path="/motorista/visao-geral" element={<MVisaoGeral />} />
           <Route path="/motorista/trajetos" element={<MTrajetos />} />
           <Route path="/motorista/clientes" element={<MClientes />} />
           <Route

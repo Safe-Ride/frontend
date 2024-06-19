@@ -6,7 +6,6 @@ import styles from "./Cadastro.module.css";
 function Cadastro() {
   const navigate = useNavigate();
 
-
   return (
     <>
       <NavBarTop titulo={"CADASTRO"} />
@@ -14,8 +13,19 @@ function Cadastro() {
         <div className={styles["card"]}>
           <Logo tamanho={"logo-grande"} />
           <p>Conte-nos um pouco mais sobre você</p>
-          <button className={styles["btn-light"]} onClick={() => navigate("/cadastro/responsavel")}>Sou Responsável</button>
-          <button className={styles["btn-dark"]}  onClick={() => navigate("/cadastro/motorista")}>Sou Motorista</button>
+          <button
+            className={styles["btn-light"]}
+            onClick={() => navigate("/cadastro/responsavel")}
+          >
+            Sou Responsável
+          </button>
+          <button
+            className={styles["btn-dark"]}
+            onClick={() => navigate("/cadastro/motorista")}
+          >
+            Sou Motorista
+          </button>
+          <a href="/login">Já tem uma conta? Entrar!</a>
         </div>
       </div>
     </>
