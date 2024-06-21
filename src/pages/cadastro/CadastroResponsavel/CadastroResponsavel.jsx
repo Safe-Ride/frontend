@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import api from "../../../api";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import Bullet from "../Bullet/Bullet";
@@ -39,8 +38,7 @@ function CadastroResponsavel() {
     api
       .post(`/usuarios`, clienteRequest)
       .then((res) => {
-        const { data } = res
-        toast.success("Cadastro de usuário realizado com sucesso!");
+        const { data } = res;
         console.log("Resposta: " + data["id"]);
         idUsuario = data.id;
 
@@ -55,8 +53,6 @@ function CadastroResponsavel() {
         api
           .post(`/enderecos`, enderecoRequest)
           .then((res) => {
-            toast.success("Cadastro de endereço realizado com sucesso!");
-
             const dependenteRequest = {
               nome: dados.nomeDependente,
               dataNascimento: dados.dataNascimento,
@@ -68,25 +64,18 @@ function CadastroResponsavel() {
             api
               .post(`/dependentes`, dependenteRequest)
               .then((res) => {
-                toast.success("Cadastro de veículo realizado com sucesso!");
                 navigate("/login");
               })
-              .catch(() => {
-                toast.error(
-                  "Ocorreu um erro ao salvar os dados, por favor, tente novamente."
-                );
+              .catch((err) => {
+                console.log(err);
               });
           })
-          .catch(() => {
-            toast.error(
-              "Ocorreu um erro ao salvar os dados, por favor, tente novamente."
-            );
+          .catch((err) => {
+            console.log(err);
           });
       })
-      .catch(() => {
-        toast.error(
-          "Ocorreu um erro ao salvar os dados, por favor, tente novamente."
-        );
+      .catch((err) => {
+        console.log(err);
       });
   };
 
