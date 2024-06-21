@@ -1,17 +1,43 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api";
 import styles from "../../pages/cadastro/Cadastro.module.css";
 function Formulario({ show, onSubmit, fields, action }) {
   // Use state to manage form data
   const [formData, setFormData] = useState({});
 
+  const cepApi = axios.create({
+    baseURL: "https://api-publica.speedio.com.br",
+  });
+
   const handleChange = (event) => {
+    if (event.target.name === "cep" && event.target.value.length === 8) {
+      api.get(`/enderecos/buscar-cep/${event.target.value}`).then((res) => {
+        const { data } = res;
+        document.getElementsByName("logradouro")[0].placeholder = data.logradouro;
+        document.getElementsByName("bairro")[0].placeholder = data.bairro;
+        document.getElementsByName("cidade")[0].placeholder = data.localidade;
+        document.getElementsByName("uf")[0].placeholder = data.uf;
+      });
+    }
+    if (event.target.name === "cnpj" && event.target.value.length === 14) {
+      cepApi.get(`buscarcnpj?cnpj=${event.target.value}`).then((res) => {
+        const { data } = res;
+
+        let nome =
+          data["NOME FANTASIA"].length > 0
+            ? data["NOME FANTASIA"]
+            : data["RAZAO SOCIAL"];
+        document.getElementsByName("nomeFantasia")[0].placeholder = nome;
+      });
+    }
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData); // Pass form data to onSubmit prop function
+    onSubmit(formData);
   };
 
   const navigate = useNavigate();
@@ -56,17 +82,23 @@ function Formulario({ show, onSubmit, fields, action }) {
                   aria-label={field.label}
                   placeholder={field.placeholder}
                   list={field.name}
+                  name={field.name}
                   onChange={handleChange}
                 />
-                <datalist onChange={handleChange} id={field.name}>
+                <datalist
+                  id={field.name}
+                  onChange={handleChange}
+                  name={field.name}
+                >
                   {field.options.map((opt) => (
-                    <option value={opt.value}>{opt.name}</option>
+                    <option name={field.name} value={opt.value}>
+                      {opt.name}
+                    </option>
                   ))}
                 </datalist>
               </React.Fragment>
             );
           } else {
-            // Render individual fields as before
             return (
               <React.Fragment key={field.name}>
                 <label htmlFor={field.name} className={field.className}>
