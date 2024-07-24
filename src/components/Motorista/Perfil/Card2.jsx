@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Card2.module.css";
+import apiPerfil from "../../../apiPerfil";
 import imgEditar from "../../../utils/assets/perfil/editar.png";
 import imgSalvar from "../../../utils/assets/perfil/done.png";
 import imgExcluir from "../../../utils/assets/perfil/excluir.png";
@@ -24,6 +25,7 @@ const Card2 = ({ nome, email }) => {
       editandoCampo.toUpperCase() + "_USUARIO",
       campos[editandoCampo]
     );
+    salvarBanco(editandoCampo, campos[editandoCampo]);
     setEditandoCampo(null);
   };
 
@@ -117,5 +119,17 @@ const Card2 = ({ nome, email }) => {
     </div>
   );
 };
+
+function salvarBanco(campo, info) {
+  const data = { [campo]: info };
+  apiPerfil
+    .post(`/alterar-${campo}}`, data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log("Erro ao salvar dados no banco: ", error);
+    });
+}
 
 export default Card2;
