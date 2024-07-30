@@ -1,4 +1,4 @@
-import apiLine from "../../../../apiLine";
+import apiLine from "../../../apiLine";
 import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 

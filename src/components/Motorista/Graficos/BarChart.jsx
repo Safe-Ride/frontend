@@ -1,4 +1,4 @@
-import apiBar from "../../../../apiBar";
+import apiBar from "../../../apiBar";
 import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 
