@@ -4,6 +4,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import CadastroMotorista from "./pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "./pages/cadastro/CadastroResponsavel/CadastroResponsavel";
 import MVisaoGeral from "./pages/motorista/visaoGeral/VisaoGeral";
+import MPerfil from "./pages/motorista/perfil/Perfil";
 import MTrajetos from "./pages/motorista/trajetos/Trajetos";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
@@ -21,6 +22,7 @@ function Rotas() {
         <Routes>
           <Route path="/login" element={<PGLogin />} />
           <Route path="/motorista/visao-geral" element={<MVisaoGeral />} />
+          <Route path="/motorista/perfil" element={<MPerfil />} />
           <Route path="/motorista/trajetos" element={<MTrajetos />} />
           <Route path="/motorista/clientes" element={<MClientes />} />
           <Route
@@ -32,9 +34,12 @@ function Rotas() {
           <Route path="/responsavel/trajetos" element={<RTempoReal />} />
           <Route path="/responsavel/pagamentos" element={<RPagamentos />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/cadastro/responsavel" element={<CadastroResponsavel />} />
-          <Route path="/cadastro/motorista" element={<CadastroMotorista />} />
+          <Route path="/cadastrar" element={<Cadastro />} />
+          <Route
+            path="/cadastrar/responsavel"
+            element={<CadastroResponsavel />}
+          />
+          <Route path="/cadastrar/motorista" element={<CadastroMotorista />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -10,7 +10,9 @@ const NavBarTop = ({ titulo }) => {
       <nav className={styles["navbartop"]}>
         <img className={styles["voltar"]} src={imgVoltar} alt="" />
         <p className={styles["titulo"]}>{titulo}</p>
-        <img className={styles["perfil"]} src={imgPerfil} alt="" />
+        <a href="/motorista/perfil">
+          <img className={styles["perfil"]} src={imgPerfil} alt="" />
+        </a>
       </nav>
     </>
   );

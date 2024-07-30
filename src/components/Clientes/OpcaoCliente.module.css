@@ -12,6 +12,7 @@
 .foto {
   height: 8vh;
   width: 8vh;
+  margin: 0;
   margin-right: 2vh;
   border-radius: 50%;
 }
