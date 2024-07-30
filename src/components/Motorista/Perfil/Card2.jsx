@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Card2.module.css";
 import apiPerfil from "../../../apiPerfil";
 import imgEditar from "../../../utils/assets/perfil/editar.png";
@@ -121,9 +121,14 @@ const Card2 = ({ nome, email }) => {
 };
 
 function salvarBanco(campo, info) {
-  const data = { [campo]: info };
+  const data = {
+    id: sessionStorage.ID_USUARIO,
+    campo: campo,
+    alteracao: info,
+  };
+  console.log(data);
   apiPerfil
-    .post(`/alterar-${campo}}`, data)
+    .post(`/atualizar-${campo}`, data)
     .then((response) => {
       console.log(response);
     })

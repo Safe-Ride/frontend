@@ -32,7 +32,7 @@ const Clientes = () => {
       );
       if (response.status === 200 && response.data && response.data.token) {
         sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("ID_USUARIO", response.data.userId);
+        sessionStorage.setItem("ID_USUARIO", response.data.usuarioId);
         sessionStorage.setItem("NOME_USUARIO", response.data.nome);
         sessionStorage.setItem("EMAIL_USUARIO", response.data.email);
         sessionStorage.setItem("CPF_USUARIO", response.data.cpf);

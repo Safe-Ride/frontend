@@ -3,7 +3,7 @@ import api from "../../../../api";
 import Formulario from "../../../../components/Formulario/Formulario";
 
 function Dependente({ onSubmit, show }) {
-  const [escolas, setEscolas] = useState([])
+  const [escolas, setEscolas] = useState([]);
 
   const handleSubmit = (data) => {
     data.action = "salvar";
@@ -107,7 +107,7 @@ function Dependente({ onSubmit, show }) {
 
   useEffect(() => {
     updateEscolas();
-  }, []);
+  });
 
   return (
     <>
