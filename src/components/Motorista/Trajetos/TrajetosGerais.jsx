@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TrajetosGerais.module.css";
-import Card from '../CardTrajeto/CardTrajeto'
+import Card from './CardTrajeto'
 
 const TRJG = () => {
     return (
