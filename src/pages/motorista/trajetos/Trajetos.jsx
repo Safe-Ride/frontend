@@ -10,7 +10,7 @@ const titulo = "trajetos";
 const id = sessionStorage.getItem('ID_USUARIO')
 
 api
-.get(`/trajetos`, id)
+.get(`/trajetos/${id}`)
 .then((res)=> {
   console.log(res)
 })

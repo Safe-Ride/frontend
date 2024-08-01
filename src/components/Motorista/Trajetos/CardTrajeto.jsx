@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./CardTrajeto.module.css";
 import OnOff from "./OnOff"
 
-const CARD = () => {
+const CARD = ({escola, tipo, turno, infTrajeto}) => {
     return (
         <div className={styles['container']}>
-            <h3 className={styles['text']}>Etec Getúlio Vargas</h3>
-            <h3 className={styles['text']}>IDA</h3>
-            <h3 className={styles['turno']}>M</h3>
-            <OnOff/>
+            <h3 className={styles['text']}>{escola}</h3>
+            <h3 className={styles['text']}>{tipo}</h3>
+            <h3 className={styles['turno']}>{turno}</h3>
+            <OnOff info={infTrajeto}/>
         </div>
     );
 };
