@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose, nome }) => {
         setSelectedLegenda(index);
     };
 
-    if (!isOpen) return null; // Não renderiza o modal se não estiver aberto
+    if (!isOpen) return null;
 
     return (
         <div className={style['modal-overlay']} onClick={onClose}>

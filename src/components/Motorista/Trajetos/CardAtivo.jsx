@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./CardAtivo.module.css";
-import Modal from "./Modal"; // Ajuste o caminho conforme necessário
+import Modal from "./Modal"; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const CARD = ({ nome, hora, status }) => {
