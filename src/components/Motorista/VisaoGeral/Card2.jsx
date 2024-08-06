@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card2.module.css";
-import LineChart from "./Graficos/LineChart";
+import LineChart from "../Graficos/LineChart";
 
 const Card2 = () => {
   // const mes = "Junho";
