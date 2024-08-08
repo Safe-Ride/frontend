@@ -15,7 +15,6 @@ function ClienteId() {
   const [status, setStatus] = useState("");
   const [horario, setHorario] = useState("");
 
-  console.log("idCard", id);
   useEffect(() => {
     api
       .get(`/${id}`)
