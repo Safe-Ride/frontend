@@ -10,6 +10,62 @@ import { useNavigate } from "react-router-dom";
 const NavBarBot = () => {
   const navigate = useNavigate();
 
+  if ((sessionStorage.TIPO_USUARIO = "RESPONSAVEL")) {
+    return (
+      <>
+        <div className={styles["espaco-fim"]}></div>
+        <nav className={styles["navbarbot"]}>
+          <div
+            className={styles["campos"]}
+            onClick={() => navigate("/responsavel/visao-geral")}
+          >
+            <div className={styles["campo-img"]}>
+              <img src={imgVisaoGeral} alt="clientes" />
+            </div>
+            <p>dash</p>
+          </div>
+          <div
+            className={styles["campos"]}
+            onClick={() => navigate("/responsavel/conversas")}
+          >
+            <div className={styles["campo-img"]}>
+              <img src={imgConversas} alt="conversas" />
+            </div>
+            <p>conversas</p>
+          </div>
+          <div
+            className={styles["campos"]}
+            onClick={() => navigate("/responsavel/clientes")}
+          >
+            <div className={styles["campo-img"]}>
+              <img src={imgUsuarios} alt="clientes" />
+            </div>
+            <p>clientes</p>
+          </div>
+          <div
+            className={styles["campos"]}
+            onClick={() => navigate("/responsavel/trajetos")}
+          >
+            <div className={styles["campo-img"]}>
+              <img src={imgTempoReal} alt="trajetos" />
+            </div>
+            <p>tempo real</p>
+          </div>
+
+          <div
+            className={styles["campos"]}
+            onClick={() => navigate("/responsavel/pagamentos")}
+          >
+            <div className={styles["campo-img"]}>
+              <img src={imgPagamentos} alt="pagamentos" />
+            </div>
+            <p>pagamentos</p>
+          </div>
+        </nav>
+      </>
+    );
+  }
+
   return (
     <>
       <div className={styles["espaco-fim"]}></div>
