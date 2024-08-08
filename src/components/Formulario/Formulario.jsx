@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import styles from "../../pages/cadastro/Cadastro.module.css";
-function Formulario({ show, onSubmit, fields, action }) {
+function Formulario({ show, onSubmit, fields, action, onBack }) {
   // Use state to manage form data
   const [formData, setFormData] = useState({});
 
@@ -120,8 +120,9 @@ function Formulario({ show, onSubmit, fields, action }) {
         })}
         <div className={styles["inner-grid"]}>
           <button
+            type="button"
             className={styles["btn-dark"]}
-            onClick={() => navigate("/cadastro")}
+            onClick={() => onBack()}
           >
             Voltar
           </button>

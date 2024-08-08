@@ -2,7 +2,7 @@ import React from "react";
 import Formulario from "../../../../components/Formulario/Formulario";
 import styles from "../../Cadastro.module.css";
 
-function Veiculo({ onSubmit, show }) {
+function Veiculo({ onSubmit, show, onBack }) {
 
   const handleSubmit = (data) => {
     data.action = "salvar"
@@ -62,7 +62,7 @@ function Veiculo({ onSubmit, show }) {
 
   return (
     <>
-      <Formulario show={show} onSubmit={handleSubmit} fields={veiculoFields} action={{name: "Concluir"}} />
+      <Formulario onBack={onBack} show={show} onSubmit={handleSubmit} fields={veiculoFields} action={{name: "Concluir"}} />
     </>
   );
 }

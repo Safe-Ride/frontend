@@ -2,7 +2,7 @@ import React from "react";
 import Formulario from "../../../components/Formulario/Formulario";
 import styles from "../Cadastro.module.css";
 
-function Endereco({ onSubmit, show }) {
+function Endereco({ onSubmit, show, onBack }) {
 
   const handleSubmit = (data) => {
     data.action = "continuar"
@@ -76,7 +76,7 @@ function Endereco({ onSubmit, show }) {
 
   return (
     <>
-      <Formulario show={show} onSubmit={handleSubmit} fields={enderecoFields} action={{name: "Avançar"}} />
+      <Formulario show={show} onBack={onBack} onSubmit={handleSubmit} fields={enderecoFields} action={{name: "Avançar"}} />
     </>
   );
 }

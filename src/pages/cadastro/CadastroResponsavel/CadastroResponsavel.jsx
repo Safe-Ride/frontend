@@ -32,7 +32,7 @@ function CadastroResponsavel() {
       cpf: dados.cpf,
       telefone: dados.telefone,
       dataNascimento: dados.dataNascimento,
-      tipo: "RESPONSAVEL",
+      tipo: "RESPONSAVEL"
     };
 
     api
@@ -48,7 +48,7 @@ function CadastroResponsavel() {
           cep: dados.cep,
           numero: dados.numero,
           complemento: dados.complemento,
-          usuarioId: idUsuario,
+          usuarioId: idUsuario
         };
         api
           .post(`/enderecos`, enderecoRequest)
@@ -58,7 +58,7 @@ function CadastroResponsavel() {
               dataNascimento: dados.dataNascimento,
               serie: dados.serie,
               responsavelId: idUsuario,
-              escolaId: dados.escola,
+              escolaId: dados.escola
             };
 
             api
@@ -105,6 +105,20 @@ function CadastroResponsavel() {
     formularios[estagioCadastro](true);
   };
 
+  const onBack = () => {
+    voltarEstagioCadastro();
+    console.log("voltando");
+  };
+
+  const voltarEstagioCadastro = () => {
+    formularios[estagioCadastro-1](false);
+    idsEstagios[estagioCadastro-1](false);
+
+    setEstagioCadastro(estagioCadastro - 1);
+    idsEstagios[estagioCadastro-2](true);
+    formularios[estagioCadastro-2](true);
+  }
+
   return (
     <>
       <NavBarTop titulo="CADASTRO" />
@@ -116,8 +130,8 @@ function CadastroResponsavel() {
       </ol>
       <div className={styles["grid-container"]}>
         <DadosPessoais onSubmit={onSubmit} show={form1} />
-        <Endereco onSubmit={onSubmit} show={form2} />
-        <Dependente onSubmit={onSubmit} show={form3} />
+        <Endereco onBack={onBack} onSubmit={onSubmit} show={form2} />
+        <Dependente onBack={onBack} onSubmit={onSubmit} show={form3} />
       </div>
     </>
   );

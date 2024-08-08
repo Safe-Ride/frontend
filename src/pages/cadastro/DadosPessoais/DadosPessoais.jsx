@@ -1,13 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Formulario from "../../../components/Formulario/Formulario";
 import styles from "../Cadastro.module.css";
 
 function DadosPessoais({ onSubmit, show }) {
 
+  const navigate = useNavigate()
+
   const handleSubmit = (data) => {
     data.action = "continuar"
     onSubmit(data);
   };
+
+  const onBack = () => {
+    navigate("/cadastrar")
+  }
 
   const dadosPessoaisFields = [
     {
@@ -74,7 +81,7 @@ function DadosPessoais({ onSubmit, show }) {
   return (
     
     <>
-      <Formulario show={show} onSubmit={handleSubmit} fields={dadosPessoaisFields} action={{name: "Avançar"}} />
+      <Formulario show={show} onBack={onBack} onSubmit={handleSubmit} fields={dadosPessoaisFields} action={{name: "Avançar"}} />
     </>
   );
 }
