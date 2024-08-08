@@ -3,17 +3,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cadastro from "./pages/cadastro/Cadastro";
 import CadastroMotorista from "./pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "./pages/cadastro/CadastroResponsavel/CadastroResponsavel";
-import MVisaoGeral from "./pages/motorista/visaoGeral/VisaoGeral";
-import MPerfil from "./pages/motorista/perfil/Perfil";
-import MTrajetos from "./pages/motorista/trajetos/Trajetos";
+import PGLogin from "./pages/login/Login";
 import MClientes from "./pages/motorista/clientes/Clientes";
 import MClientesClienteId from "./pages/motorista/clientes/id/ClienteId";
 import MPagamentos from "./pages/motorista/pagamentos/Pagamentos";
+import MPerfil from "./pages/motorista/perfil/Perfil";
+import MTrajetos from "./pages/motorista/trajetos/Trajetos";
+import MVisaoGeral from "./pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "./pages/notFound/NotFound";
 import RDependentes from "./pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "./pages/responsavel/pagamentos/Pagamentos";
 import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
-import PGLogin from "./pages/login/Login";
 
 function Rotas() {
   return (

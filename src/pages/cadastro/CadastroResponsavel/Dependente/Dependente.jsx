@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../../../api";
 import Formulario from "../../../../components/Formulario/Formulario";
 
-function Dependente({ onSubmit, show }) {
+function Dependente({ onSubmit, show, onBack }) {
   const [escolas, setEscolas] = useState([]);
 
   const handleSubmit = (data) => {
@@ -116,6 +116,7 @@ function Dependente({ onSubmit, show }) {
         onSubmit={handleSubmit}
         fields={dependenteFields}
         action={{ name: "Concluir" }}
+        onBack={{onBack}}
       />
     </>
   );
