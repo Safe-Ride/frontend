@@ -1,4 +1,4 @@
-import React, {useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../../api";
 import styles from "./Trajetos.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
@@ -6,37 +6,38 @@ import NavBarBot from "../../../components/NavBar/NavBarBot";
 import TrajetosAtivos from "../../../components/Motorista/Trajetos/TrajetosAtivos"
 import TrajetosGerais from "../../../components/Motorista/Trajetos/TrajetosGerais"
 
-const titulo = "trajetos";
-const id = sessionStorage.getItem('ID_USUARIO')
-const token = sessionStorage.getItem('token')
-
-const requi = () => {
-  api
-    .get(`/trajetos/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      }
-    })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
 const Clientes = () => {
-  useEffect(()=>{
-    requi()
-  })
+  const titulo = "trajetos";
+  const [dados, setDados] = useState(null);
+  const [trajetoAtivo, setAtivo] = useState('NAO_INICIADO');
+  const id = sessionStorage.getItem('ID_USUARIO')
+  const token = sessionStorage.getItem('token')
+
+  useEffect(() => {
+    const requi = async () => {
+      api
+      .get(`/trajetos/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      })
+      .then((res) => {
+        setDados(res.data)
+      })
+      .catch((err) => {
+        console.log('erro:',err)
+      })
+    }
+    requi();
+  }, [id, token])
 
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <div className={styles["trajeto"]}></div>
-        <TrajetosAtivos />
-        <TrajetosGerais />
+        <TrajetosAtivos res={dados} ativo={trajetoAtivo}/>
+        <TrajetosGerais res={dados} setAtivo={setAtivo} isAtivo={trajetoAtivo}/>
       </div>
       <NavBarBot />
     </>

@@ -3,7 +3,7 @@ import styles from "./CardAtivo.module.css";
 import Modal from "./Modal"; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const CARD = ({ nome, hora, status }) => {
+const CardAtivo = ({ nome, hora, status }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -30,4 +30,4 @@ const CARD = ({ nome, hora, status }) => {
     );
 };
 
-export default CARD;
+export default CardAtivo;
