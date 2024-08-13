@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./Dependente.module.css";
+import styles from "./Responsavel.module.css";
 import FormatarData from "../../../utils/functions/FormatarData";
 
-const Dependente = ({ dependente, pagamento }) => {
+const Responsavel = ({ responsavel, pagamento }) => {
   return (
-    <div className={styles["dependente"]}>
-      <img src={dependente.foto} alt="" className={styles["foto"]} />
+    <div className={styles["responsavel"]}>
+      <img src={responsavel.foto} alt="" className={styles["foto"]} />
       <div className={styles["campos"]}>
-        <h2 className={styles["nome"]}>{dependente.nome}</h2>
+        <h2 className={styles["nome"]}>{responsavel.nome}</h2>
         <p className={styles["ultimo-pagamento"]}>
           {FormatarData(pagamento.dataVencimento)} R${pagamento.valor},00
         </p>
@@ -16,4 +16,4 @@ const Dependente = ({ dependente, pagamento }) => {
   );
 };
 
-export default Dependente;
+export default Responsavel;

@@ -21,7 +21,7 @@ const Cobranca = ({ dataVencimento, valor, status }) => {
           </div>
         </div>
         <div className={styles["gerar-boleto"]}>
-          <button className={styles["btn-gerar-boleto"]}>Gerar Boleto</button>
+          <button className={styles["btn-gerar-boleto"]}>Gerar Pix</button>
         </div>
       </div>
     </div>

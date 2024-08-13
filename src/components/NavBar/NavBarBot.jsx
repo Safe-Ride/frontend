@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const NavBarBot = () => {
   const navigate = useNavigate();
 
-  if ((sessionStorage.TIPO_USUARIO = "RESPONSAVEL")) {
+  if (sessionStorage.TIPO_USUARIO === "RESPONSAVEL") {
     return (
       <>
         <div className={styles["espaco-fim"]}></div>

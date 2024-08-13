@@ -46,8 +46,10 @@ const Clientes = () => {
 
         if (response.data.tipo === "MOTORISTA") {
           navigate("/motorista/visao-geral");
-        } else {
+        } else if (response.data.tipo === "RESPONSAVEL") {
           navigate("/responsavel/visao-geral");
+        } else {
+          navigate("");
         }
       } else {
         console.error("Resposta inesperada do servidor:", response);

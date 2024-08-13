@@ -1,4 +1,4 @@
-.dependente {
+.responsavel {
   width: 100%;
   height: 12vh;
   display: flex;
@@ -7,14 +7,14 @@
   border-top: 1px solid rgba(0, 0, 0, 0.201);
 }
 
-.dependente .foto {
+.responsavel .foto {
   width: 10vh;
   border-radius: 50%;
   margin: 0;
   background-color: black;
 }
 
-.dependente .campos {
+.responsavel .campos {
   width: auto;
   height: auto;
   padding: 2vh;

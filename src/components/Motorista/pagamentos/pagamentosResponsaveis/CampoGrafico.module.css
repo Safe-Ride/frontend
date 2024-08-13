@@ -1,0 +1,98 @@
+.card1 {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card1 .texto {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 2vh auto;
+  width: 90%;
+  height: auto;
+}
+
+.campo-grafico {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 2vh;
+  align-items: center;
+}
+
+.campo-legendas {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  text-align: start;
+  padding-left: 4vh;
+  font-size: 12px;
+}
+
+.legenda {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.legenda p {
+  margin: 1vh 2vh 1vh 0;
+}
+
+.grafico {
+  display: flex;
+  width: 60%;
+}
+
+.leg-1,
+.leg-2,
+.leg-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #64adad;
+  width: 4vh;
+  height: 4vh;
+}
+
+.leg-1 {
+  background: linear-gradient(
+    180deg,
+    #64adad 25%,
+    #018789 25%,
+    #018789 50%,
+    #64adad 50%,
+    #64adad 75%,
+    #018789 75%
+  );
+}
+.leg-2 {
+  background: linear-gradient(
+    320deg,
+    #ff944d 25%,
+    #f60 25%,
+    #f60 50%,
+    #ff944d 50%,
+    #ff944d 75%,
+    #f60 75%
+  );
+}
+.leg-3 {
+  background: linear-gradient(
+    270deg,
+    #ff6363 25%,
+    #e50101 25%,
+    #e50101 50%,
+    #ff6363 50%,
+    #ff6363 75%,
+    #e50101 75%
+  );
+}

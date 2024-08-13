@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import api from "../../../apiPerfil";
-import styles from "./ListDependente.module.css";
-import Dependente from "./Dependente";
+import styles from "./ListaMotoristas.module.css";
 import { useNavigate } from "react-router-dom";
+import Motorista from "./Motorista";
 import axios from "axios";
 
-const ListDependente = () => {
+const ListaMotoristas = () => {
   const api = axios.create({
     baseURL: "http://localhost:8080/contratos/responsavel",
   });
@@ -35,7 +34,7 @@ const ListDependente = () => {
   }, []);
 
   return (
-    <div className={styles["list-dependente"]}>
+    <div className={styles["lista-motoristas"]}>
       {cardContrato &&
         cardContrato.map((contrato, index) => (
           <div
@@ -44,8 +43,8 @@ const ListDependente = () => {
               navigate(`/responsavel/pagamentos/dependente/${contrato.id}`)
             }
           >
-            <Dependente
-              dependente={contrato.dependente}
+            <Motorista
+              motorista={contrato.motorista}
               pagamento={ultimoPagamento(contrato.pagamentos)}
             />
           </div>
@@ -71,4 +70,4 @@ function ultimoPagamento(pagamentos) {
   return null;
 }
 
-export default ListDependente;
+export default ListaMotoristas;

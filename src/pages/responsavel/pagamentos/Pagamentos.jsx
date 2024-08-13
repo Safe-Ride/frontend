@@ -3,7 +3,7 @@ import styles from "./Pagamentos.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import DefaultMessage from "../../../components/responsavel/pagamentos/DefaultMessage";
-import ListDependente from "../../../components/responsavel/pagamentos/ListDependente";
+import ListaMotoristas from "../../../components/responsavel/pagamentos/ListaMotoristas";
 
 const titulo = "pagamentos";
 
@@ -12,8 +12,8 @@ const Pagamentos = () => {
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
-        <DefaultMessage></DefaultMessage>
-        <ListDependente></ListDependente>
+        <DefaultMessage tipo="motorista"></DefaultMessage>
+        <ListaMotoristas></ListaMotoristas>
       </div>
       <NavBarBot />
     </>
