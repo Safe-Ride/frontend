@@ -6,8 +6,8 @@ const TrajetosAtivos = ({ res, ativo }) => {
   const statusMap = {
     'NAO_INICIADO': 0,
     'INICIADO': 1,
-    'NAO_IRA': 2,
-    'NA_VAN': 3,
+    'NA_VAN': 2,
+    'NAO_IRA': 3,
     'NA_ESCOLA': 4
   };
 
@@ -23,6 +23,9 @@ const TrajetosAtivos = ({ res, ativo }) => {
             nome={dependente.nome}
             hora={'12:00'}
             status={statusMap[dependente.status] || 0}
+            id={res.id}
+            dependenteId={dependente.id}
+            enderecoId={dependente.endereco.id}
           />
         ))
       ) : (

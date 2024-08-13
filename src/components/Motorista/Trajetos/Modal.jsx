@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import style from './Modal.module.css';
 
-const Modal = ({ isOpen, onClose, nome }) => {
+const Modal = ({ isOpen, onClose, salvar ,setStatus}) => {
     const [selectedLegenda, setSelectedLegenda] = useState(null);
 
     const handleLegendaClick = (index) => {
+        const statusMap = {
+            0: 'NAO_INICIADO',
+            1: 'INICIADO',
+            2: 'NA_VAN',
+            3: 'NAO_IRA',
+            4: 'NA_ESCOLA'
+        };
+    
         setSelectedLegenda(index);
+        setStatus(statusMap[index]);
     };
 
     if (!isOpen) return null;
@@ -24,7 +33,7 @@ const Modal = ({ isOpen, onClose, nome }) => {
                     onClick={() => handleLegendaClick(0)}
                 >
                     <p className={style["leg-0"]}></p>
-                    <p>{nome}</p>
+                    <p>Não Iniciado</p>
                 </div>
 
                 <div
@@ -36,7 +45,7 @@ const Modal = ({ isOpen, onClose, nome }) => {
                     onClick={() => handleLegendaClick(1)}
                 >
                     <p className={style["leg-1"]}></p>
-                    <p>Na van!</p>
+                    <p>Iniciado</p>
                 </div>
 
                 <div
@@ -48,7 +57,7 @@ const Modal = ({ isOpen, onClose, nome }) => {
                     onClick={() => handleLegendaClick(2)}
                 >
                     <p className={style["leg-2"]}></p>
-                    <p>Não compareceu!</p>
+                    <p>Na Van</p>
                 </div>
 
                 <div
@@ -60,7 +69,7 @@ const Modal = ({ isOpen, onClose, nome }) => {
                     onClick={() => handleLegendaClick(3)}
                 >
                     <p className={style["leg-3"]}></p>
-                    <p>Não irá!</p>
+                    <p>Não irá</p>
                 </div>
 
                 <div
@@ -72,10 +81,10 @@ const Modal = ({ isOpen, onClose, nome }) => {
                     onClick={() => handleLegendaClick(4)}
                 >
                     <p className={style["leg-4"]}></p>
-                    <p>A caminho!</p>
+                    <p>Na Escola</p>
                 </div>
 
-                <button className={style["login-button"]} onClick={onClose}>
+                <button className={style["login-button"]} onClick={salvar}>
                     Salvar
                 </button>
             </div>

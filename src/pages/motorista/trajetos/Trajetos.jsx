@@ -9,7 +9,9 @@ import TrajetosGerais from "../../../components/Motorista/Trajetos/TrajetosGerai
 const Clientes = () => {
   const titulo = "trajetos";
   const [dados, setDados] = useState(null);
-  const [trajetoAtivo, setAtivo] = useState('NAO_INICIADO');
+  const [trajetoAtivo, setAtivo] = useState(() => {
+    return sessionStorage.getItem('isAtivo') || 'NAO_INICIADO';
+  });
   const id = sessionStorage.getItem('ID_USUARIO')
   const token = sessionStorage.getItem('token')
 
