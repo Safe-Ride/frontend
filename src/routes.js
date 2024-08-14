@@ -16,6 +16,9 @@ import RTempoReal from "./pages/responsavel/tempo_real/TempoReal";
 import PGLogin from "./pages/login/Login";
 import Dependentes from "./pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "./pages/responsavel/dependentes/perfilDependente/PerfilDependente";
+import CadastroDependente from "./pages/responsavel/dependentes/cadastroDependente/CadastroDependente";
+import EditarDependente from "./pages/responsavel/dependentes/editarDependente/EditarDependente";
+import PerfilMotorista from "./pages/responsavel/dependentes/perfilMotorista/PerfilMotorista";
 
 function Rotas() {
   return (
@@ -36,7 +39,10 @@ function Rotas() {
           <Route path="/responsavel/trajetos" element={<RTempoReal />} />
           <Route path="/responsavel/pagamentos" element={<RPagamentos />} />
           <Route path="/responsavel/dependentes" element={<Dependentes />} />
-          <Route path="/responsavel/dependente/:id" element={<PerfilDependente />} />
+          <Route path="/responsavel/dependentes/:id" element={<PerfilDependente />} />
+          <Route path="/responsavel/dependentes/cadastrar" element={ <CadastroDependente /> } />
+          <Route path="/responsavel/dependentes/:id/editar" element={ <EditarDependente /> } />
+          <Route path="/responsavel/dependentes/:id/motorista/:id" element={ <PerfilMotorista /> } />
           <Route path="*" element={<NotFound />} />
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route

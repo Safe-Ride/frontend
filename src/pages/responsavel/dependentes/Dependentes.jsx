@@ -3,6 +3,7 @@ import styles from "./Dependentes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import CardDependente from "./CardDependente/CardDependente"
+import { useNavigate } from "react-router-dom";
 
 const titulo = "dependentes";
 
@@ -12,17 +13,23 @@ const listaDependentes = [
 ];
 
 const Dependentes = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <NavBarTop titulo={titulo} />
         <div className={styles.dependentes}>
           {
             listaDependentes.map(dependente => {
-              return <CardDependente dependente={ dependente } />  
+              return <CardDependente key={ dependente.id } dependente={ dependente } />  
             })
           }
           <div className={styles['adicionar']}>
-            <span>+</span><span>Adicionar Dependente</span>
+            <div onClick={ () => navigate("/responsavel/dependentes/cadastrar") }>
+              <span>+</span>
+              <span>Adicionar Dependente</span>
+            </div>
           </div>
         </div>
       
