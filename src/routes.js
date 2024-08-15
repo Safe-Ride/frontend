@@ -19,6 +19,7 @@ import PerfilDependente from "./pages/responsavel/dependentes/perfilDependente/P
 import CadastroDependente from "./pages/responsavel/dependentes/cadastroDependente/CadastroDependente";
 import EditarDependente from "./pages/responsavel/dependentes/editarDependente/EditarDependente";
 import PerfilMotorista from "./pages/responsavel/dependentes/perfilMotorista/PerfilMotorista";
+import EncontrarMotorista from "./pages/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 
 function Rotas() {
   return (
@@ -43,6 +44,7 @@ function Rotas() {
           <Route path="/responsavel/dependentes/cadastrar" element={ <CadastroDependente /> } />
           <Route path="/responsavel/dependentes/:id/editar" element={ <EditarDependente /> } />
           <Route path="/responsavel/dependentes/:id/motorista/:id" element={ <PerfilMotorista /> } />
+          <Route path="/responsavel/dependentes/:id/encontrar-motorista" element={ <EncontrarMotorista /> } />
           <Route path="*" element={<NotFound />} />
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route
