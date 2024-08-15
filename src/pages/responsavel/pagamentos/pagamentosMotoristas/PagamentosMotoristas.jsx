@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "./PagamentosDependente.module.css";
-import NavBarTop from "../../../../components/NavBar/NavBarTop";
-import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import styles from "./PagamentosMotoristas.module.css";
+import NavBarTop from "../../../../components/NavBar/NavBarTop";
+import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import LegendaStatus from "../../../../components/pagamentos/LegendaStatus";
 import ProximoPagamento from "../../../../components/pagamentos/responsavel/ProximoPagamento";
 import Cobranca from "../../../../components/pagamentos/Cobranca";
 
 const api = axios.create({
-  baseURL: `http://localhost:8080/contratos/dependente`,
+  baseURL: `http://localhost:8080/contratos`,
 });
 
-const PagamentosDependente = () => {
+const PagamentosMotoristas = () => {
   const { id } = useParams();
 
   const [nome, setNome] = useState("");
@@ -28,13 +28,13 @@ const PagamentosDependente = () => {
       .then((response) => {
         console.log(response);
         const { data } = response;
-        const { nome } = data.dependente;
+        const { nome } = data.motorista;
 
         setCardContrato(data.pagamentos);
         setNome(nome);
       })
       .catch((error) => {
-        console.log("Erro ao buscar os detalhes da música: ", error);
+        console.log(`Erro ao buscar contrato de id ${id}: `, error);
       });
   }
 
@@ -64,4 +64,4 @@ const PagamentosDependente = () => {
   );
 };
 
-export default PagamentosDependente;
+export default PagamentosMotoristas;

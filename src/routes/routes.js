@@ -12,15 +12,16 @@ import MPagamentos from "../pages/motorista/pagamentos/Pagamentos";
 import NotFound from "../pages/notFound/NotFound";
 import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
-import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosDependente/PagamentosDependente";
+import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
+import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
-import PGLogin from "../pages/login/Login";
+import Login from "../pages/login/Login";
 
 function Rotas() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<PGLogin />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/cadastro/responsavel" element={<CadastroResponsavel />} />
         <Route path="/cadastro/motorista" element={<CadastroMotorista />} />
@@ -66,6 +67,14 @@ function Rotas() {
           }
         />
         <Route
+          path="/motorista/pagamentos/responsavel/:id"
+          element={
+            <PrivateRoute>
+              <MotoristaPagamentosResponsaveis />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/responsavel/clientes"
           element={
             <PrivateRoute>
@@ -97,7 +106,14 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <NotFound />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
