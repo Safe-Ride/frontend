@@ -16,7 +16,7 @@ const PagamentosMotoristas = () => {
   const { id } = useParams();
 
   const [nome, setNome] = useState("");
-  const [cardContrato, setCardContrato] = useState();
+  const [cardContrato, setCardContrato] = useState([]);
 
   function recuperarInformacoesCobranca() {
     api
@@ -26,7 +26,7 @@ const PagamentosMotoristas = () => {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         const { data } = response;
         const { nome } = data.motorista;
 
@@ -47,7 +47,9 @@ const PagamentosMotoristas = () => {
       <NavBarTop titulo={nome} />
       <div className={styles["container"]}>
         <LegendaStatus></LegendaStatus>
-        <ProximoPagamento></ProximoPagamento>
+        <ProximoPagamento
+          pagamento={calcularProximoPagamento(cardContrato)}
+        ></ProximoPagamento>
         <div className={styles["lista-cobranca"]}>
           {cardContrato &&
             cardContrato.map((cobranca) => (
@@ -63,5 +65,14 @@ const PagamentosMotoristas = () => {
     </>
   );
 };
+
+function calcularProximoPagamento(cardContrato) {
+  for (let i = 0; i < cardContrato.length; i++) {
+    if (cardContrato[i].status === "PENDENTE") {
+      return cardContrato[i];
+    }
+  }
+  return null;
+}
 
 export default PagamentosMotoristas;
