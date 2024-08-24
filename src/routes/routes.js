@@ -15,6 +15,7 @@ import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
 import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
 import MotoristaConversa from "../pages/motorista/conversa/Conversa";
+import MotoristaPerfil from "../pages/motorista/perfil/Perfil"
 
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Login from "../pages/login/Login";
@@ -82,6 +83,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <MotoristaConversa />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/motorista/perfil"
+          element={
+            <PrivateRoute>
+              <MotoristaPerfil />
             </PrivateRoute>
           }
         />

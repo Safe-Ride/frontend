@@ -7,7 +7,7 @@ import Card2 from "../../../components/Motorista/Perfil/Card2";
 import apiPerfil from "../../../apiPerfil";
 import { useParams } from "react-router-dom";
 
-function Perfil() {
+function Perfil({idUsuario}) {
   const { id } = useParams();
   const [nome, setNome] = useState("");
   const [imagem, setImagem] = useState("");
@@ -15,8 +15,14 @@ function Perfil() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    if (!idUsuario) {
+      console.log(idUsuario)
+        idUsuario = sessionStorage.ID_USUARIO
+    } 
+    console.log(idUsuario)
+
     apiPerfil
-      .get(`/${sessionStorage.ID_USUARIO}`)
+      .get(`/${idUsuario}`)
       .then((response) => {
         const { data } = response;
         const { nome, imagem, dataNascimento } = data;

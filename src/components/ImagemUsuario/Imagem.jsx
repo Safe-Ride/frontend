@@ -7,7 +7,7 @@ import ProfilePage from '../../pages/motorista/perfil/Perfil'; // Importe o cont
 
 Modal.setAppElement('#root'); // Defina o elemento raiz da sua aplicação
 
-const ProfileRedirect = ({ img_path }) => {
+const ProfileRedirect = ({ img_path , idUsuario}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -37,9 +37,7 @@ const ProfileRedirect = ({ img_path }) => {
       >
         <button onClick={closeModal} className={styles['close-button']}>X</button>
         <div className={styles['modal-content']}>
-          {/* Aqui, utilize o conteúdo do perfil do motorista */}
-          {/* Pode ser um componente que renderiza a tela de perfil */}
-          <ProfilePage /> {/* Substitua por seu componente de perfil */}
+          <ProfilePage idUsuario={idUsuario}/>
         </div>
       </Modal>
     </>

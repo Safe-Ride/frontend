@@ -9,8 +9,10 @@ import ImagemUs from "../../../utils/assets/perfil/profile.png"
 
 const MotoristaConversa = () => {
   const titulo = "conversas";
-  const [dados, setDados] = useState(null);
+  const [clientes, setClientes] = useState([])
   const [img_path, setImage] = useState(ImagemUs)
+  const [loading, setLoading] = useState(true);
+
   const id = sessionStorage.getItem('ID_USUARIO')
   const token = sessionStorage.getItem('token')
 
@@ -23,24 +25,37 @@ const MotoristaConversa = () => {
           }
         })
         .then((res) => {
-          setDados(res.data)
+          console.log(res.data)
+          setClientes(res.data.clientes);
           const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.imagem.caminho}`);
           setImage(caminhoImagem);
+          setLoading(false)
         })
         .catch((err) => {
           console.log('erro:', err)
+          setLoading(false)
         })
     }
     requi();
   }, [id, token])
 
+  if (loading) {
+    return <div>Loading...</div>; // Exibir um indicador de carregamento
+  }
 
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <div className={styles["trajeto"]}>
-          <ImagemUsuario img_path={img_path}/>
+          {clientes.map(cliente => (
+            <div key={cliente.id} className={styles["imagem-container"]}>
+              <ImagemUsuario
+                img_path={img_path}
+                idUsuario={cliente.id}
+              />
+            </div>
+          ))}
         </div>
       </div>
       <NavBarBot />
