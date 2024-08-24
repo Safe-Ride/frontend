@@ -14,8 +14,11 @@ import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
 import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
+import MotoristaConversa from "../pages/motorista/conversa/Conversa";
+
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Login from "../pages/login/Login";
+import Motorista from "../components/responsavel/pagamentos/Motorista";
 
 function Rotas() {
   return (
@@ -71,6 +74,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <MotoristaPagamentosResponsaveis />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/conversas"
+          element={
+            <PrivateRoute>
+              <MotoristaConversa />
             </PrivateRoute>
           }
         />
