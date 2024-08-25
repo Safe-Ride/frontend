@@ -16,10 +16,8 @@ function Perfil({idUsuario}) {
 
   useEffect(() => {
     if (!idUsuario) {
-      console.log(idUsuario)
         idUsuario = sessionStorage.ID_USUARIO
     } 
-    console.log(idUsuario)
 
     apiPerfil
       .get(`/${idUsuario}`)

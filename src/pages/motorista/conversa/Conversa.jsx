@@ -25,7 +25,6 @@ const MotoristaConversa = () => {
           }
         })
         .then((res) => {
-          console.log(res.data)
           setClientes(res.data.clientes);
           const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.imagem.caminho}`);
           setImage(caminhoImagem);
