@@ -10,10 +10,6 @@ const OpcaoCliente = ({ foto, nome, status, horario, notificacao }) => {
           <h2 className={styles["nome"]}>{nome}</h2>
           <p className={styles["status"]}>{status}</p>
         </div>
-        <div className={styles["campo-complementares"]}>
-          <p className={styles["horario"]}>{horario}</p>
-          <p className={styles["notificacao"]}>{notificacao}</p>
-        </div>
       </div>
     </div>
   );
