@@ -1,0 +1,73 @@
+.dados-dependentes {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+}
+
+.inicio {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  padding: 1vh 2vh;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: var(--laranja);
+}
+
+.inicio p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.lista-dependentes {
+  margin: auto;
+  padding: 1vh;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.opcao-dependente {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-inicial {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.foto {
+  height: 8vh;
+  width: 8vh;
+  margin: 0;
+  margin-right: 2vh;
+  border-radius: 50%;
+}
+
+.nome {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+}
+.ver-perfil {
+  font-weight: 400;
+  font-size: 10px;
+  margin: 0;
+}
+.campo-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

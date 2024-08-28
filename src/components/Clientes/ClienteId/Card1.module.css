@@ -19,7 +19,6 @@
 .card1 .campos {
   width: auto;
   height: auto;
-  padding: 2vh;
   display: flex;
   flex-direction: column;
 }
