@@ -3,6 +3,8 @@ import NavBarTop from "../../../../components/NavBar/NavBarTop"
 import Box from "../Box/Box"
 import CardInfo from "../perfilDependente/CardInfo/CardInfo"
 import styles from "./PerfilMotorista.module.css"
+import icoProfile from "../../../../utils/assets/dependentes/profile.png"
+import icoTelefone from "../../../../utils/assets/dependentes/telefone.png"
 
 const titulo = "PERFIL MOTORISTA"
 
@@ -29,32 +31,32 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
 
                 <div className={styles['wrapper']}>
                     <Box>
-                        <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: 16 + "px"}} >
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 + "px" }} >
 
-                        <img className={styles['foto-perfil']} src="" alt="" />
-                        <h2 className={styles['nome']}>{motorista.nome}</h2>
-                        <p className={styles['veiculo-info']}>{motorista.veiculo.modelo} · {motorista.veiculo.placa}</p>
-                        <div className={styles['container-info']}>
-                            <div className={styles['info']}>
-                                <p className={styles['info-nro']}>{motorista.veiculo.qtdLugares}</p>
-                                <p className={styles['info-sub']}>Lugares Disponíveis</p>
+                            <img className={styles['foto-perfil']} src="" alt="" />
+                            <h2 className={styles['nome']}>{motorista.nome}</h2>
+                            <p className={styles['veiculo-info']}>{motorista.veiculo.modelo} · {motorista.veiculo.placa}</p>
+                            <div className={styles['container-info']}>
+                                <div className={styles['info']}>
+                                    <p className={styles['info-nro']}>{motorista.veiculo.qtdLugares}</p>
+                                    <p className={styles['info-sub']}>Lugares Disponíveis</p>
+                                </div>
+
+                                <div className={styles['info']}>
+                                    <p className={styles['info-nro']}>{motorista.avaliacao} &#9733;</p>
+                                    <p className={styles['info-sub']}>Avaliação</p>
+                                </div>
+
+                                <div className={styles['info']}>
+                                    <p className={styles['info-nro']}>{motorista.experiencia} Anos</p>
+                                    <p className={styles['info-sub']}>Experiência</p>
+                                </div>
                             </div>
 
-                            <div className={styles['info']}>
-                                <p className={styles['info-nro']}>{motorista.avaliacao} &#9733;</p>
-                                <p className={styles['info-sub']}>Avaliação</p>
-                            </div>
+                            <CardInfo icone={icoTelefone} categoria={"Telefone:"} info={motorista.telefone} />
+                            <CardInfo icone={icoProfile} categoria={"Idade:"} info={motorista.idade} />
 
-                            <div className={styles['info']}>
-                                <p className={styles['info-nro']}>{motorista.experiencia} Anos</p>
-                                <p className={styles['info-sub']}>Experiência</p>
-                            </div>
-                        </div>
-
-                        <CardInfo icone={""} categoria={"Telefone:"} info={motorista.telefone} />
-                        <CardInfo icone={""} categoria={"Idade:"} info={motorista.idade} />
-
-                        {encontrarMotorista && <button>aaa</button>}
+                            {encontrarMotorista && <button>aaa</button>}
                         </div>
 
                     </Box>

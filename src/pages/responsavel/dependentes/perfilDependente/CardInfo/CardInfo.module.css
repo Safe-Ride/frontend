@@ -1,3 +1,7 @@
+input {
+    all: unset;
+}
+
 .card {
     display: flex;
     flex-direction: row;
@@ -41,4 +45,32 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.info-editar {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.info-editar:focus {
+    border-bottom: 1px solid var(--preto);
+}
+
+.info-editar:disabled {
+    background-color: var(--branco);
+}
+
+.campo-editar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img-editar {
+    width: 12px;
+    height: 12px;
 }
