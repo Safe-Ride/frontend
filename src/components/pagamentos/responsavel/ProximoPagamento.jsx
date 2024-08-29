@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./ProximoPagamento.module.css";
+import FormatarData from "../../../utils/functions/FormatarData";
 
-const ProximoPagamento = () => {
+const ProximoPagamento = ({ pagamento }) => {
+  console.log(pagamento.dataVencimento);
   return (
     <div className={styles["proximo-pagamento"]}>
       <div className={styles["titulo"]}>
@@ -11,11 +13,11 @@ const ProximoPagamento = () => {
       <div className={styles["campos"]}>
         <div className={styles["vencimento"]}>
           <p>Vencimento</p>
-          <p>XPTO</p>
+          <p>{FormatarData(pagamento.dataVencimento)}</p>
         </div>
         <div className={styles["valor"]}>
           <p>Valor</p>
-          <p>R$</p>
+          <p>R${pagamento.valor},00</p>
         </div>
       </div>
     </div>
