@@ -1,7 +1,3 @@
-input {
-    all: unset;
-}
-
 .card {
     display: flex;
     flex-direction: row;
@@ -48,6 +44,7 @@ input {
 }
 
 .info-editar {
+    all: unset;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;

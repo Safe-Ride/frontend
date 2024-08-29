@@ -76,9 +76,9 @@ const PerfilDependente = ({ }) => {
                 <Box titulo={"Dados do Dependente"} >
                     
                     <CardInfo editar key={"nomeDependente"} icone={icoProfile} categoria={"Nome:"} info={ dependente.nome } />
-                    <CardInfo key={"dataNascimento"} icone={icoProfile} categoria={"Data de Nascimento:"} info={ dependente.dataNascimento } />
-                    <CardInfo key={"serie"} icone={icoProfile} categoria={"Série:"} info={ dependente.serie } />
-                    <CardInfo key={"escola"} icone={icoEscola} categoria={"Escola:"} info={ dependente.escola } />
+                    <CardInfo editar key={"dataNascimento"} icone={icoProfile} categoria={"Data de Nascimento:"} info={ dependente.dataNascimento } />
+                    <CardInfo editar key={"serie"} icone={icoProfile} categoria={"Série:"} info={ dependente.serie } />
+                    <CardInfo editar key={"escola"} icone={icoEscola} categoria={"Escola:"} info={ dependente.escola } />
 
                 </Box>
             </div>
