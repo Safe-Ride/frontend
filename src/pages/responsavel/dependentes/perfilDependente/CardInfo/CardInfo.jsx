@@ -5,28 +5,13 @@ import { useState } from "react";
 
 const CardInfo = ({ icone, categoria, info, editar = false }) => {
 
+    var modoEditar = true;
+
     const [inputValue, setInputValue] = useState(info);
-    const [iconeEditar, setIconeEditar] = useState(icoEditar);
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
-
-    const habilitarModoEditar = () => {
-            const input = document.getElementById(`info-editar-${categoria.slice(0,categoria.length-1)}`)
-            if (input.disabled) {
-                setIconeEditar(icoConfirmar);
-                input.disabled = false;
-                input.focus();
-            } else {
-                
-                // Adicionar a chamada da integração aqui
-
-                setIconeEditar(icoEditar);
-                input.disabled = true;
-            }
-            
-    }
 
     return (
 
@@ -48,8 +33,19 @@ const CardInfo = ({ icone, categoria, info, editar = false }) => {
                             />
                             <img 
                                 className={styles['img-editar']}
-                                src={iconeEditar}
-                                onClick={habilitarModoEditar}
+                                src={modoEditar ? icoEditar : icoConfirmar}
+                                onClick={() => {
+                                    const input = document.getElementById(`info-editar-${categoria.slice(0,categoria.length-1)}`)
+                                    if (input.disabled) {
+                                        modoEditar = true;
+                                        input.disabled = false;
+                                        input.focus();
+                                    } else {
+                                        modoEditar = true;
+                                        input.disabled = false;
+                                    }
+                                    
+                                }}
                                 alt="" 
                             />
                         </div>
