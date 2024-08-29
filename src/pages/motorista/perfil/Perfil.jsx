@@ -13,20 +13,18 @@ function Perfil() {
   const [imagem, setImagem] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [email, setEmail] = useState("");
-  const [tipo, setTipo] = useState("");
 
   useEffect(() => {
     apiPerfil
       .get(`/${sessionStorage.ID_USUARIO}`)
       .then((response) => {
         const { data } = response;
-        const { nome, imagem, dataNascimento, tipo } = data;
+        const { nome, imagem, dataNascimento } = data;
         console.log(data);
 
         setNome(nome);
         setImagem(imagem);
         setDataNascimento(dataNascimento);
-        setTipo(tipo);
         setEmail(sessionStorage.EMAIL_USUARIO);
       })
       .catch((error) => {
