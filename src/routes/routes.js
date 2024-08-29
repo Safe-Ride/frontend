@@ -13,6 +13,7 @@ import NotFound from "../pages/notFound/NotFound";
 import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
+import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
 import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
@@ -96,6 +97,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <ResponsavelConversas />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/conversas/:id"
+          element={
+            <PrivateRoute>
+              <ResponsavelConversaMotorista />
             </PrivateRoute>
           }
         />
