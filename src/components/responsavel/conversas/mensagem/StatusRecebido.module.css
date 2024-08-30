@@ -49,7 +49,7 @@
 
 .campo-horario {
   margin: 0;
-  width: calc(100% - 4vh);
+  width: calc(100%);
   font-size: 12px;
   display: flex;
   justify-content: right;
