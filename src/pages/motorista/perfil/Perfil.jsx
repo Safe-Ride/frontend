@@ -7,7 +7,7 @@ import Card2 from "../../../components/Motorista/Perfil/Card2";
 import apiPerfil from "../../../apiPerfil";
 import { useParams } from "react-router-dom";
 
-function Perfil({idUsuario}) {
+function Perfil({ idUsuario }) {
   const { id } = useParams();
   const [nome, setNome] = useState("");
   const [imagem, setImagem] = useState("");
@@ -16,15 +16,14 @@ function Perfil({idUsuario}) {
 
   useEffect(() => {
     if (!idUsuario) {
-        idUsuario = sessionStorage.ID_USUARIO
-    } 
+      idUsuario = sessionStorage.ID_USUARIO
+    }
 
     apiPerfil
       .get(`/${idUsuario}`)
       .then((response) => {
         const { data } = response;
         const { nome, imagem, dataNascimento } = data;
-        console.log(data);
 
         setNome(nome);
         setImagem(imagem);
@@ -45,7 +44,9 @@ function Perfil({idUsuario}) {
           foto={imagem.caminho}
           dataNascimento={dataNascimento}
         ></Card1>
-        <Card2 nome={nome} email={email}></Card2>
+        {sessionStorage.getItem('ID_USUARIO') === id && (
+          <Card2 nome={nome} email={email} />
+        )}
       </div>
       <NavBarBot />
     </>

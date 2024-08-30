@@ -19,13 +19,13 @@ const MotoristaConversa = () => {
   useEffect(() => {
     const requi = async () => {
       api
-        .get(`/usuarios/${id}`, {
+        .get(`/usuarios/clientes-motorista/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           }
         })
         .then((res) => {
-          setClientes(res.data.clientes);
+          setClientes(res.data);
           const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.imagem.caminho}`);
           setImage(caminhoImagem);
           setLoading(false)
@@ -35,12 +35,12 @@ const MotoristaConversa = () => {
           setLoading(false)
         })
     }
-    requi();
+    requi()
   }, [id, token])
 
-  if (loading) {
-    return <div>Loading...</div>; // Exibir um indicador de carregamento
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>; // Exibir um indicador de carregamento
+  // }
 
   return (
     <>
