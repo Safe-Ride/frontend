@@ -1,17 +1,17 @@
 .motorista {
   width: 100%;
-  height: 12vh;
+  height: auto;
   display: flex;
+  padding: 1vh 3vh;
   flex-direction: row;
   align-items: center;
   border-top: 1px solid rgba(0, 0, 0, 0.201);
 }
 
 .motorista .foto {
-  width: 10vh;
+  width: 8vh;
   border-radius: 50%;
   margin: 0;
-  background-color: black;
 }
 
 .motorista .campos {

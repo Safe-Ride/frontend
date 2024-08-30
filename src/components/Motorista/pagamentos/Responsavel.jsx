@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "./Responsavel.module.css";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
 import FormatarData from "../../../utils/functions/FormatarData";
 
 const Responsavel = ({ responsavel, pagamento }) => {
   return (
     <div className={styles["responsavel"]}>
-      <img src={responsavel.foto} alt="" className={styles["foto"]} />
+      <img
+        src={FotoPerfil(responsavel.foto)}
+        alt=""
+        className={styles["foto"]}
+      />
       <div className={styles["campos"]}>
         <h2 className={styles["nome"]}>{responsavel.nome}</h2>
         <p className={styles["ultimo-pagamento"]}>
