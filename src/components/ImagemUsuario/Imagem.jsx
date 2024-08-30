@@ -3,11 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import styles from './Imagem.module.css'; // Importe seu arquivo de estilos
 import ProfilePage from '../../pages/motorista/perfil/Perfil'; // Importe o conteúdo da página do perfil
-
-
 Modal.setAppElement('#root'); // Defina o elemento raiz da sua aplicação
 
-const ProfileRedirect = ({ img_path , idUsuario}) => {
+const ProfileRedirect = ({ foto , idUsuario}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -23,10 +21,11 @@ const ProfileRedirect = ({ img_path , idUsuario}) => {
     <>
       <div className={styles['profile-container']} onClick={openModal}>
         <img 
-          src={img_path} 
+          src={`../../utils/assets/perfil/${foto}`} 
           alt="Profile" 
           className={styles['profile-image']}
         />
+        {/* <img src="../../utils/assets/perfil/profile.png" alt="" /> */}
       </div>
 
       <Modal

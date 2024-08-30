@@ -4,14 +4,14 @@ import styles from "./Conversa.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import ImagemUsuario from "../../../components/ImagemUsuario/Imagem"
-import ImagemUs from "../../../utils/assets/perfil/profile.png"
+// import ImagemUs from "../../../utils/assets/perfil/profile.png"
 
 
 const MotoristaConversa = () => {
   const titulo = "conversas";
   const [clientes, setClientes] = useState([])
-  const [img_path, setImage] = useState(ImagemUs)
-  const [loading, setLoading] = useState(true);
+  // const [img_path, setImage] = useState(ImagemUs)
+  // const [loading, setLoading] = useState(true);
 
   const id = sessionStorage.getItem('ID_USUARIO')
   const token = sessionStorage.getItem('token')
@@ -25,14 +25,15 @@ const MotoristaConversa = () => {
           }
         })
         .then((res) => {
+          console.log(res.data)
           setClientes(res.data);
-          const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.imagem.caminho}`);
-          setImage(caminhoImagem);
-          setLoading(false)
+          // const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.foto}`);
+          // setImage(caminhoImagem);
+          // setLoading(false)
         })
         .catch((err) => {
           console.log('erro:', err)
-          setLoading(false)
+          // setLoading(false)
         })
     }
     requi()
@@ -50,7 +51,7 @@ const MotoristaConversa = () => {
           {clientes.map(cliente => (
             <div key={cliente.id} className={styles["imagem-container"]}>
               <ImagemUsuario
-                img_path={img_path}
+                foto={cliente.foto}
                 idUsuario={cliente.id}
               />
             </div>
