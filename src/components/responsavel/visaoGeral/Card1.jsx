@@ -14,14 +14,16 @@ const CardVisao = () => {
             <div className="img-status">
                 <img src="" alt="" />
             </div>
+            
+            </div>
             <div className="BoxArrow">
                 <img className="Arrow" src="" alt="" />
             </div>
             <div className="returnBox">
-                
+                 
             </div>
             
-        </div>
+        
     </div>
 
    </div>
