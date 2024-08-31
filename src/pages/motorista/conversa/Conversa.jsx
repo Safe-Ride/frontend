@@ -4,7 +4,6 @@ import styles from "./Conversa.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import ImagemUsuario from "../../../components/ImagemUsuario/Imagem"
-// import ImagemUs from "../../../utils/assets/perfil/profile.png"
 
 
 const MotoristaConversa = () => {
@@ -23,7 +22,6 @@ const MotoristaConversa = () => {
           }
         })
         .then((res) => {
-          console.log(res.data)
           setClientes(res.data);
         })
         .catch((err) => {

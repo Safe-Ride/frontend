@@ -16,13 +16,12 @@ function Perfil() {
   const [email, setEmail] = useState("");
   
   useEffect(() => {
-    console.log(idUsuario)
     apiPerfil
     .get(`/${idUsuario}`)
     .then((response) => {
       const { data } = response;
       const { nome, imagem, dataNascimento } = data;
-        console.log(idUsuario)
+
         setNome(nome);
         setImagem(imagem);
         setDataNascimento(dataNascimento);
@@ -43,8 +42,7 @@ function Perfil() {
             dataNascimento={dataNascimento}
           ></Card1>
           {sessionStorage.getItem("ID_USUARIO") === idUsuario && (
-
-          <Card2 nome={nome} email={email} />
+            <Card2 nome={nome} email={email} />
           )}
         </div>
         <NavBarBot />
