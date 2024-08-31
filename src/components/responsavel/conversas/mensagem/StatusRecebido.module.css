@@ -3,10 +3,11 @@
   display: flex;
   justify-content: left;
   align-items: start;
+  margin-top: 10%;
 }
 
 .status-enviado {
-  width: 40%;
+  width: 70%;
   height: auto;
   background-color: var(--branco);
   border-radius: 8px;
