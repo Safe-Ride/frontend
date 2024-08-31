@@ -1,5 +1,5 @@
-import api from "../../../api";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./Clientes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
@@ -8,15 +8,23 @@ import OpcaoCliente from "../../../components/Clientes/OpcaoCliente";
 import Solicitacoes from "../../../components/Clientes/Solicitacoes";
 import { useNavigate } from "react-router-dom";
 
+const api = axios.create({
+  baseURL: `http://localhost:8080/usuarios/clientes-motorista`,
+});
+
 const titulo = "clientes";
 
 const Clientes = () => {
   const navigate = useNavigate();
   const [cardsCliente, setCardCliente] = useState();
 
-  function recuperarInformacoesCliente() {
+  function recuperarInformacoes() {
     api
-      .get()
+      .get(`/${sessionStorage.ID_USUARIO}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         const { data } = response;
@@ -28,15 +36,14 @@ const Clientes = () => {
   }
 
   useEffect(() => {
-    recuperarInformacoesCliente();
+    recuperarInformacoes();
   }, []);
 
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <div className={styles["container"]}>
-        <Pesquisa></Pesquisa>
-      </div>
+      <Pesquisa></Pesquisa>
+
       <div>
         {cardsCliente &&
           cardsCliente.map((cliente, index) => (
@@ -44,13 +51,7 @@ const Clientes = () => {
               key={index}
               onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
             >
-              <OpcaoCliente
-                foto={cliente.foto}
-                nome={cliente.nome}
-                status={cliente.status}
-                horario={"12:30"}
-                notificacao={cliente.notificacao}
-              />
+              <OpcaoCliente foto={cliente.foto} nome={cliente.nome} />
             </div>
           ))}
       </div>

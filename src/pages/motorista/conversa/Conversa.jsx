@@ -10,8 +10,6 @@ import ImagemUsuario from "../../../components/ImagemUsuario/Imagem"
 const MotoristaConversa = () => {
   const titulo = "conversas";
   const [clientes, setClientes] = useState([])
-  // const [img_path, setImage] = useState(ImagemUs)
-  // const [loading, setLoading] = useState(true);
 
   const id = sessionStorage.getItem('ID_USUARIO')
   const token = sessionStorage.getItem('token')
@@ -27,21 +25,14 @@ const MotoristaConversa = () => {
         .then((res) => {
           console.log(res.data)
           setClientes(res.data);
-          // const caminhoImagem = require(`../../../utils/assets/perfil/${res.data.foto}`);
-          // setImage(caminhoImagem);
-          // setLoading(false)
         })
         .catch((err) => {
           console.log('erro:', err)
-          // setLoading(false)
         })
     }
     requi()
   }, [id, token])
 
-  // if (loading) {
-  //   return <div>Loading...</div>; // Exibir um indicador de carregamento
-  // }
 
   return (
     <>

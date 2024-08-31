@@ -5,26 +5,24 @@ import NavBarBot from "../../../components/NavBar/NavBarBot";
 import Card1 from "../../../components/Motorista/Perfil/Card1";
 import Card2 from "../../../components/Motorista/Perfil/Card2";
 import apiPerfil from "../../../apiPerfil";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function Perfil({ idUsuario }) {
-  const { id } = useParams();
+function Perfil() {
+  const location = useLocation();
+  const idUsuario = location.state?.idUsuario || sessionStorage.getItem("ID_USUARIO");
   const [nome, setNome] = useState("");
   const [imagem, setImagem] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [email, setEmail] = useState("");
-
+  
   useEffect(() => {
-    if (!idUsuario) {
-      idUsuario = sessionStorage.ID_USUARIO
-    }
-
+    console.log(idUsuario)
     apiPerfil
-      .get(`/${idUsuario}`)
-      .then((response) => {
-        const { data } = response;
-        const { nome, imagem, dataNascimento } = data;
-
+    .get(`/${idUsuario}`)
+    .then((response) => {
+      const { data } = response;
+      const { nome, imagem, dataNascimento } = data;
+        console.log(idUsuario)
         setNome(nome);
         setImagem(imagem);
         setDataNascimento(dataNascimento);
@@ -33,24 +31,26 @@ function Perfil({ idUsuario }) {
       .catch((error) => {
         console.log("Erro ao buscar os detalhes da música: ", error);
       });
-  }, [id]);
+  }, [idUsuario]);
 
-  return (
-    <>
-      <NavBarTop titulo={nome} />
-      <div className={styles["container"]}>
-        <Card1
-          nome={nome}
-          foto={imagem.caminho}
-          dataNascimento={dataNascimento}
-        ></Card1>
-        {sessionStorage.getItem('ID_USUARIO') === id && (
+    return (
+      <>
+        <NavBarTop titulo={nome} />
+        <div className={styles["container"]}>
+          <Card1
+            nome={nome}
+            foto={imagem.caminho}
+            dataNascimento={dataNascimento}
+          ></Card1>
+          {sessionStorage.getItem("ID_USUARIO") === idUsuario && (
+
           <Card2 nome={nome} email={email} />
-        )}
-      </div>
-      <NavBarBot />
-    </>
-  );
+          )}
+        </div>
+        <NavBarBot />
+      </>
+    );
+
 }
 
 export default Perfil;

@@ -11,10 +11,8 @@ const Pagamentos = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <div className={styles["container"]}>
-        <DefaultMessage tipo="motorista"></DefaultMessage>
-        <ListaMotoristas></ListaMotoristas>
-      </div>
+      <DefaultMessage tipo="motorista"></DefaultMessage>
+      <ListaMotoristas></ListaMotoristas>
       <NavBarBot />
     </>
   );
