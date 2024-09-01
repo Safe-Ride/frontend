@@ -1,0 +1,46 @@
+.campo {
+    display: flex;
+    padding: 12px 0px 8px 0px;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1 0 0;
+    align-self: stretch;
+    cursor: pointer;
+    /* overflow: hidden; */
+}
+
+.campo-img {
+    height: 20px;
+}
+
+.campo img {
+    width: 20px;
+    margin: 0 auto 0 auto;
+}
+
+/* .campo p {
+    margin: 0px 0 0px 0;
+    font-weight: 800;
+    text-wrap: wrap;
+    font-size: calc(1ch - 0.75vw);
+    font-size: 8px;
+    text-transform: uppercase;
+    max-width: 100%;
+    text-align: center;
+    line-break: strict;
+} */
+
+.campo p {
+    text-align: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    color: var(--preto);
+    text-align: center;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    max-width: 100%;
+}
