@@ -11,6 +11,9 @@ const VisaoGeralResponsavel = () => {
     <>
       <NavBarTop titulo={titulo} />
         
+        <CardVisao>
+          
+        </CardVisao>
       <NavBarBot />
     </>
   );

@@ -11,7 +11,7 @@ const CardVisao = () => {
     </div>
     <div className="MedionCard">
         <div className="exitBox">
-            <div className="img-status">
+            <div className="img-status-exit">
                 <img src="" alt="" />
             </div>
             
@@ -21,6 +21,15 @@ const CardVisao = () => {
             </div>
             <div className="returnBox">
                  
+            </div>
+
+            <div className="returnBOX">
+            <div className="img-status-return">
+                <img src="" alt="" />
+            </div>
+            </div>
+            <div className="footer">
+            <p>Ver Dependente</p>
             </div>
             
         
