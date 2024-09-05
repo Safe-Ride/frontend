@@ -1,18 +1,27 @@
-import React from "react";
-import styles from "./Dependentes.module.css";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
-import NavBarBot from "../../../components/NavBar/NavBarBot";
-import CardDependente from "./CardDependente/CardDependente"
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../../api";
+import NavBarBot from "../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
+import CardDependente from "./CardDependente/CardDependente";
+import styles from "./Dependentes.module.css";
 
 const titulo = "dependentes";
 
-const listaDependentes = [
-  {nome: "teste", id: 1, status: "EM CASA",},
-  {nome: "teste2", id: 2, status: "NA ESCOLA",}
-];
+// const listaDependentes = [
+//   {nome: "teste", id: 1, status: "EM CASA",},
+//   {nome: "teste2", id: 2, status: "NA ESCOLA",}
+// ];
 
 const Dependentes = () => {
+  const [listaDependentes, setListaDependentes] = useState([])
+
+  useEffect(() => {
+    api.get(`/usuarios/dependentes-responsavel/${sessionStorage.ID_USUARIO}`).then((res) => {
+      const data = res.data
+      setListaDependentes(data)
+    })
+  })
 
   const navigate = useNavigate();
 

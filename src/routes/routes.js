@@ -28,7 +28,6 @@ import CadastroDependente from "../pages/responsavel/dependentes/cadastroDepende
 import PerfilMotorista from "../pages/responsavel/dependentes/perfilMotorista/PerfilMotorista";
 import EncontrarMotorista from "../pages/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
-import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
 
 function Rotas() {
