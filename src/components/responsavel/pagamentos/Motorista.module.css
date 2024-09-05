@@ -24,11 +24,11 @@
 
 .campos .nome {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .campos .ultimo-pagamento {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  /* font-weight: 600; */
 }
