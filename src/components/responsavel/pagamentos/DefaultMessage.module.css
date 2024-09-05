@@ -12,3 +12,7 @@
   font-weight: 700;
   padding: 1.5vh 5px;
 }
+
+.default-message p {
+  margin: 0;
+}
