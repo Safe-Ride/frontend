@@ -12,14 +12,13 @@
 .card1 .foto {
   width: 12vh;
   border-radius: 50%;
-  padding: 2vh;
+  padding: 1vh;
   margin: 0;
 }
 
 .card1 .campos {
   width: auto;
   height: auto;
-  padding: 2vh;
   display: flex;
   flex-direction: column;
 }

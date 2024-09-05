@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Card3.module.css";
+import styles from "./Historico.module.css";
 
-const Card3 = () => {
+const Historico = () => {
   return (
     <div className={styles["card3"]}>
       <div className={styles["inicio"]}>
@@ -11,4 +11,4 @@ const Card3 = () => {
   );
 };
 
-export default Card3;
+export default Historico;
