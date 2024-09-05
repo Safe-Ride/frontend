@@ -29,7 +29,7 @@ import PerfilMotorista from "../pages/responsavel/dependentes/perfilMotorista/Pe
 import EncontrarMotorista from "../pages/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
-
+import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 function Rotas() {
   return (
     <BrowserRouter>

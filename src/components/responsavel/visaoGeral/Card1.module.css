@@ -1,0 +1,20 @@
+.Card{
+    border: 1px;
+    border-color: black;
+    width: 80vw;
+    height: 30vh;
+   
+}
+
+.Information{
+    display: flex;
+    justify-content: space-around;
+}
+.MedionCard{
+    display: flex;
+    width: 100%;
+}
+.exitBox{
+    display: flex;
+    justify-content: space-between;
+}
