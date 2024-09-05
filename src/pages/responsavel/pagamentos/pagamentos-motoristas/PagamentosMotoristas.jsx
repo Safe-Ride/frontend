@@ -72,7 +72,10 @@ function calcularProximoPagamento(cardContrato) {
       return cardContrato[i];
     }
   }
-  return null;
+  return {
+    dataVencimento: "--",
+    valor: "--",
+  };
 }
 
 export default PagamentosMotoristas;

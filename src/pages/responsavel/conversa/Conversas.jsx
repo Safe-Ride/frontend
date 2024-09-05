@@ -23,6 +23,7 @@ const Conversas = () => {
       <div className={styles["lista-conversas"]}>
         <div onClick={() => navigate(`/responsavel/conversas/${motorista.id}`)}>
           <Motorista motorista={motorista}></Motorista>
+          <Motorista motorista={motorista}></Motorista>
         </div>
       </div>
       <NavBarBot />

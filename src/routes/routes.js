@@ -19,14 +19,15 @@ import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
 import PrivateRoute from "./PrivateRoute";
 
+
+import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
+import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 import MotoristaConversaResponsavel from "../pages/motorista/conversa/mensagem/ConversaResponsavel";
-import CadastroDependente from "../pages/responsavel/dependentes/cadastroDependente/CadastroDependente";
+import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
-import EditarDependente from "../pages/responsavel/dependentes/editarDependente/EditarDependente";
-import EncontrarMotorista from "../pages/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
-import PerfilDependente from "../pages/responsavel/dependentes/perfilDependente/PerfilDependente";
-import PerfilMotorista from "../pages/responsavel/dependentes/perfilMotorista/PerfilMotorista";
+import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
+import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 
 function Rotas() {
@@ -150,53 +151,53 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-        <Route 
-          path="/responsavel/dependentes" 
+        <Route
+          path="/responsavel/dependentes"
           element={
             <PrivateRoute>
               <Dependentes />
             </PrivateRoute>
-          } 
+          }
         />
-        <Route 
-          path="/responsavel/dependentes/:id" 
+        <Route
+          path="/responsavel/dependentes/:id"
           element={
             <PrivateRoute>
               <PerfilDependente />
             </PrivateRoute>
-          } 
+          }
         />
-        <Route 
-          path="/responsavel/dependentes/cadastrar" 
+        <Route
+          path="/responsavel/dependentes/cadastrar"
           element={
             <PrivateRoute>
-              <CadastroDependente /> 
-            </PrivateRoute> 
-          } 
-        />
-        <Route 
-          path="/responsavel/dependentes/:id/editar" 
-          element={
-            <PrivateRoute>
-              <EditarDependente /> 
-            </PrivateRoute> 
-          } 
-        />
-        <Route 
-          path="/responsavel/dependentes/:id/motorista" 
-          element={
-            <PrivateRoute>
-             <PerfilMotorista /> 
+              <CadastroDependente />
             </PrivateRoute>
-          } 
+          }
         />
-        <Route 
-          path="/responsavel/dependentes/:id/encontrar-motorista" 
+        <Route
+          path="/responsavel/dependentes/:id/editar"
+          element={
+            <PrivateRoute>
+              <EditarDependente />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/motorista"
+          element={
+            <PrivateRoute>
+              <PerfilMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/encontrar-motorista"
           element={
             <PrivateRoute>
               <EncontrarMotorista />
             </PrivateRoute>
-          } 
+          }
         />
         <Route path="*" element={<NotFound />} />
         <Route

@@ -1,8 +1,8 @@
 import styles from "./PerfilDependente.module.css";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
-import Box from "../Box/Box";
-import CardInfo from "./CardInfo/CardInfo";
+import Box from "../../../../components/responsavel/dependentes/Box/Box";
+import CardInfo from "../../../../components/responsavel/dependentes/perfilDependente/CardInfo/CardInfo";
 import icoProfile from "../../../../utils/assets/dependentes/profile.png";
 import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
@@ -10,7 +10,7 @@ import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import icoCasa from "../../../../utils/assets/dependentes/casa.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 
-const PerfilDependente = ({}) => {
+const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
 
   const dependente = {
