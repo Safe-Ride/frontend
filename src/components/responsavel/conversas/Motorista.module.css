@@ -3,7 +3,7 @@
   height: auto;
   align-items: center;
   border-top: 1px solid rgba(0, 0, 0, 0.201);
-  padding: 2vh;
+  padding: 1vh 3vh;
   display: grid;
   grid-template-columns: 10vh auto 15vh;
 }
