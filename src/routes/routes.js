@@ -29,6 +29,7 @@ import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/P
 import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
+import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
 
 function Rotas() {
   return (
@@ -188,6 +189,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <EncontrarMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/solicitacoes"
+          element={
+            <PrivateRoute>
+              <RSolicitacoes />
             </PrivateRoute>
           }
         />
