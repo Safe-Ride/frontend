@@ -1,0 +1,155 @@
+.container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    padding: 8px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.foto-perfil {
+    width: 64px;
+    height: 64px;
+}
+
+.nome {
+    color: var(--preto, #2d2a32);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.dependente {
+    color: var(--preto, #2d2a32);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.btn-aceitar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: var(--amarelo, #F2C718);
+    border: none;
+}
+
+.btn-recusar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: var(--preto);
+    border: none;
+    color: var(--branco);
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 40px;
+    border-radius: 24px;
+    background-color: var(--amarelo, #F2C718);
+}
+
+.icone-img {
+    max-height: 16px;
+    /* width: 16px; */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+}
+
+.categoria {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.campo-editar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ipt {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.ipt span {
+    font-size: 12px;
+}
+
+.ipt-contrato {
+    margin-left: 0;
+    width: 80%;
+}
+
+#ipt-valor {
+    margin-left: 0;
+    width: 100%;
+    background: url('../../../utils/assets/dependentes/R$.png') no-repeat;
+    background-size: 16px;
+    background-position: 8px center;
+    padding-left: 30px;
+}
