@@ -16,9 +16,8 @@ import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
 import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
-import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentosMotoristas/PagamentosMotoristas";
+import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
 import PrivateRoute from "./PrivateRoute";
-
 
 import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
 import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
@@ -103,7 +102,7 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-         <Route
+        <Route
           path="/motorista/perfil"
           element={
             <PrivateRoute>
