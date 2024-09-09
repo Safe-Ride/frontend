@@ -1,0 +1,32 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  align-items: center;
+  gap: 16px;
+  flex: 1 0 0;
+  border-radius: 8px;
+  /* background: var(--branco, #F7F7F0); */
+  box-shadow: 1px 1px 8px 0px rgba(45, 42, 50, 0.25);
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.titulo {
+  font-size: 14px;
+  margin: 0;
+}
+
+.link {
+  color: #00e;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+}

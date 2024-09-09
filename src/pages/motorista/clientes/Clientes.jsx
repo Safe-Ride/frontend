@@ -42,9 +42,8 @@ const Clientes = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <div className={styles["container"]}>
-        <Pesquisa></Pesquisa>
-      </div>
+      <Pesquisa></Pesquisa>
+
       <div>
         {cardsCliente &&
           cardsCliente.map((cliente, index) => (

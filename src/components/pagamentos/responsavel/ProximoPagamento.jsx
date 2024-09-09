@@ -3,7 +3,9 @@ import styles from "./ProximoPagamento.module.css";
 import FormatarData from "../../../utils/functions/FormatarData";
 
 const ProximoPagamento = ({ pagamento }) => {
-  console.log(pagamento.dataVencimento);
+  // const dataVencimento = pagamento.dataVencimento || "NULL";
+  // const valor = pagamento.valor || "NULL";
+
   return (
     <div className={styles["proximo-pagamento"]}>
       <div className={styles["titulo"]}>

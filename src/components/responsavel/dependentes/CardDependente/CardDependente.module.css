@@ -1,0 +1,42 @@
+h1,
+h2,
+h3,
+h4,
+p,
+span {
+  color: var(--preto);
+}
+
+.dependente {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 1vh 3vh;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.201);
+}
+
+.foto {
+  width: 8vh;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.info {
+  width: auto;
+  height: auto;
+  padding: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nome {
+  margin: 0;
+  font-size: 14px;
+}
+
+.status {
+  margin: 0;
+  font-size: 12px;
+}
