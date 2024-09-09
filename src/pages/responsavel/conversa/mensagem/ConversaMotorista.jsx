@@ -16,7 +16,16 @@ const ConversaMotorista = () => {
     status: "NÃO VAI",
     horario: "2024-08-27 10:34",
     qtdMensagens: 2,
+    enviada: true
   };
+
+  const mensagem2 = {
+    nome: "Caio",
+    status: "NÃO VAI",
+    horario: "2024-08-27 10:34",
+    qtdMensagens: 2,
+    enviada: false
+  }
 
   return (
     <>
@@ -24,6 +33,7 @@ const ConversaMotorista = () => {
       <div className={styles["conversa"]}>
         <StatusEnviado mensagem={mensagem}></StatusEnviado>
         <StatusRecebido mensagem={mensagem}></StatusRecebido>
+        <StatusEnviado mensagem={mensagem2}></StatusEnviado>
       </div>
       <NavBarBot />
     </>
