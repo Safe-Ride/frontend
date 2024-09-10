@@ -1,10 +1,26 @@
-import React from "react";
-import styles from "./StatusEnviado.module.css";
-import FotoPerfil from "../../../../utils/functions/FotoPerfil";
+import React, { useEffect, useState } from "react";
+import iconeAndamento from "../../../../utils/assets/mensagens/andamento.png";
+import iconeEnviada from "../../../../utils/assets/mensagens/enviada.png";
 import FormatarData from "../../../../utils/functions/FormatarData";
+import FotoPerfil from "../../../../utils/functions/FotoPerfil";
+import styles from "./StatusEnviado.module.css";
 
 const StatusEnviado = ({ mensagem }) => {
+  const [enviada, setEnviada] = useState(false)
+
+  const alterarIconePeloEnvio = () => {
+    if(enviada) return iconeEnviada
+    else return iconeAndamento
+  }
+
+  const handleEnviada = () => {
+    setEnviada(mensagem.enviada)
+  }
+  useEffect(() => {
+    handleEnviada()
+  })
   return (
+    
     <div className={styles["container-enviado"]}>
       <div className={styles["status-enviado"]}>
         <div className={styles["campos"]}>
@@ -20,7 +36,9 @@ const StatusEnviado = ({ mensagem }) => {
           <p className={styles["horario"]}>
             {CalcularHorarioMensagem(mensagem.horario)}
           </p>
+          <img src={alterarIconePeloEnvio()} alt="" />
         </div>
+
       </div>
       <img
         src={FotoPerfil(sessionStorage.FOTO_USUARIO)}
