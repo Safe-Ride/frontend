@@ -8,8 +8,8 @@ import imgExcluir from "../../../utils/assets/perfil/excluir.png";
 const Card2 = ({ nome, email }) => {
   const [editandoCampo, setEditandoCampo] = useState(null);
   const [campos, setCampos] = useState({
-    nome: sessionStorage.NOME_USUARIO || "",
-    email: sessionStorage.EMAIL_USUARIO || "",
+    nome: sessionStorage.NOME_USUARIO || nome,
+    email: sessionStorage.EMAIL_USUARIO || email,
     cpf: sessionStorage.CPF_USUARIO || "",
     telefone: sessionStorage.TELEFONE_USUARIO || "",
     data_nascimento: sessionStorage.DATA_NASCIMENTO_USUARIO || "",

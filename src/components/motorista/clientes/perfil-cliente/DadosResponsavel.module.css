@@ -1,0 +1,57 @@
+.card2 {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2vh;
+}
+
+.inicio {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  padding: 1vh 2vh;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: var(--laranja);
+}
+
+.inicio p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.campo {
+  margin: auto;
+  padding: 1vh;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dados {
+  margin: auto;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.dados p {
+  margin: 1vh;
+  font-weight: 700;
+  font-size: 14px;
+  width: 30%;
+}
+
+.dados span {
+  font-weight: 500;
+  font-size: 14px;
+  width: 60%;
+}
