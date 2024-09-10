@@ -13,3 +13,25 @@ html {
   overflow-y: hidden;
   height: 95vh;
 }
+
+.dependente {
+  background-color: var(--branco);
+  box-shadow: 1px 1px 8px 0px rgba(45, 42, 50, 0.25);
+  color: var(--preto);
+  padding: 8px 16px;
+  /* z-index: 1; */
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 80vw;
+}
+
+.dependente img {
+  height: 32px;
+  width: 32px;
+}
