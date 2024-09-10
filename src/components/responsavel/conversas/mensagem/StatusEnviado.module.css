@@ -4,11 +4,11 @@
   display: flex;
   justify-content: right;
   align-items: end;
-  margin-top: 10%;
+  padding: 1vh 2vh;
 }
 
 .status-enviado {
-  width: 70%;
+  width: 40%;
   height: auto;
   background-color: var(--laranja);
   border-radius: 8px;
@@ -51,6 +51,7 @@
 
 .campo-horario {
   margin: 0;
+  width: calc(100% - 4vh);
   font-size: 12px;
   display: flex;
   justify-content: right;
@@ -62,10 +63,8 @@
   font-size: 10px;
 }
 
-.campo-horario img {
+.horario img {
   width: 10px;
   margin-left: 3%;
   margin-bottom: 2%;
-  margin-right: 0;
-  margin-top: 0;
 }
