@@ -1,7 +1,8 @@
 import React from "react";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
-import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
+import StatusRecebido from "../../../../components/motorista/conversas/mensagem/StatusRecebido";
+import StatusEnviado from "../../../../components/motorista/conversas/mensagem/StatusEnviado";
 import styles from "./ConversaResponsavel.module.css";
 
 const ConversaMotorista = () => {
@@ -22,6 +23,7 @@ const ConversaMotorista = () => {
       <NavBarTop titulo={responsavel.nome} />
       <div className={styles["conversa"]}>
         <StatusRecebido mensagem={mensagem}></StatusRecebido>
+        <StatusEnviado mensagem={mensagem}></StatusEnviado>
       </div>
       <NavBarBot />
     </>

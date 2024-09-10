@@ -47,7 +47,7 @@ const Clientes = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <Pesquisa setTermoPesquisa={setTermoPesquisa} /> {/* Passando a função */}
+      <Pesquisa setTermoPesquisa={setTermoPesquisa} />
       <div>
         {clientesFiltrados.map((cliente, index) => (
           <div

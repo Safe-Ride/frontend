@@ -1,24 +1,24 @@
 .container-enviado {
   width: 100%;
   display: flex;
-  justify-content: left;
-  align-items: start;
-  margin: 3vh 1vh;
+  justify-content: right;
+  align-items: end;
+  /* margin: 3vh 1vh; */
 }
 
 .status-enviado {
   width: 70%;
   height: auto;
-  background-color: var(--branco);
+  background-color: var(--laranja);
   border-radius: 8px;
-  align-items: start;
+  align-items: end;
   border-top: 1px solid rgba(0, 0, 0, 0.201);
   padding: 1vh 2vh;
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
   position: relative;
-  margin-left: 1vh;
+  margin-right: 1vh;
 }
 
 .foto {
@@ -50,7 +50,6 @@
 
 .campo-horario {
   margin: 0;
-  width: calc(100%);
   font-size: 12px;
   display: flex;
   justify-content: right;
