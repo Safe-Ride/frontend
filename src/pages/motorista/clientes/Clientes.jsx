@@ -3,9 +3,9 @@ import axios from "axios";
 import styles from "./Clientes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
-import Pesquisa from "../../../components/Clientes/Pesquisa";
-import OpcaoCliente from "../../../components/Clientes/OpcaoCliente";
-import Solicitacoes from "../../../components/Clientes/Solicitacoes";
+import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente";
+import Solicitacoes from "../../../components/motorista/clientes/Solicitacoes";
+import Pesquisa from "../../../components/motorista/clientes/Pesquisa";
 import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
@@ -16,7 +16,12 @@ const titulo = "clientes";
 
 const Clientes = () => {
   const navigate = useNavigate();
-  const [cardsCliente, setCardCliente] = useState();
+  const [cardsCliente, setCardCliente] = useState([]);
+  const [termoPesquisa, setTermoPesquisa] = useState("");
+
+  const clientesFiltrados = cardsCliente.filter((cliente) =>
+    cliente.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+  );
 
   function recuperarInformacoes() {
     api
@@ -42,18 +47,16 @@ const Clientes = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <Pesquisa></Pesquisa>
-
+      <Pesquisa setTermoPesquisa={setTermoPesquisa} /> {/* Passando a função */}
       <div>
-        {cardsCliente &&
-          cardsCliente.map((cliente, index) => (
-            <div
-              key={index}
-              onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
-            >
-              <OpcaoCliente foto={cliente.foto} nome={cliente.nome} />
-            </div>
-          ))}
+        {clientesFiltrados.map((cliente, index) => (
+          <div
+            key={index}
+            onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
+          >
+            <OpcaoCliente foto={cliente.foto} nome={cliente.nome} />
+          </div>
+        ))}
       </div>
       <Solicitacoes></Solicitacoes>
       <NavBarBot />

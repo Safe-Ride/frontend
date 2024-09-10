@@ -32,9 +32,8 @@
 .nome {
   margin: 0;
   padding: 0;
-
-  font-weight: 700;
-  font-size: 18px;
+  /* font-weight: 700; */
+  font-size: 14px;
 }
 .responsavel {
   margin: 0;

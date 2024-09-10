@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DadosDependentes.module.css";
-import FotoPerfil from "../../../utils/functions/FotoPerfil.jsx";
+import FotoPerfil from "../../../../utils/functions/FotoPerfil.jsx";
 
 const DadosDependentes = ({ dependentes }) => {
   return (
