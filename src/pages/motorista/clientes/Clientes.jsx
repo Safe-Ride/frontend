@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./Clientes.module.css";
+// import styles from "./Clientes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente";
