@@ -5,7 +5,11 @@ html {
   overflow: auto;
 }
 
-.container {
+/* .container {
   height: 100%;
-  margin: 3vh;
+} */
+
+.map-container {
+  overflow-y: hidden;
+  height: 95vh;
 }

@@ -112,7 +112,7 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/trajetos"
+          path="/responsavel/tempo-real"
           element={
             <PrivateRoute>
               <RTempoReal />
