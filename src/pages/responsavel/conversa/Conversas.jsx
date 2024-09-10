@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./Conversas.module.css";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
-import NavBarBot from "../../../components/NavBar/NavBarBot";
-import Motorista from "../../../components/responsavel/conversas/Motorista";
 import { useNavigate } from "react-router-dom";
+import NavBarBot from "../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
+import Motorista from "../../../components/responsavel/conversas/Motorista";
+import styles from "./Conversas.module.css";
 
 const Conversas = () => {
   const navigate = useNavigate();
