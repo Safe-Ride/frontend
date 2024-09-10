@@ -10,14 +10,14 @@ html {
   margin: 3vh;
 }
 
-.dependentes {
-  margin-top: 48px;
-}
-
 .adicionar {
   display: flex;
   flex-direction: row;
-  border-top: solid 1px var(--preto);
+  border-top: 1px solid rgba(0, 0, 0, 0.201);
   padding: 8px 20px;
   gap: 4px;
+}
+
+.adicionar span {
+  padding-right: 1vh;
 }

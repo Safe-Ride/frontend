@@ -1,0 +1,92 @@
+.pesquisa {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  margin: 2vh 3vh;
+}
+
+#ipt_pesquisa {
+  width: 70%;
+  height: 5vh;
+  border: none;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  background-color: #f7f7f0;
+  color: #2d2a32;
+  font-family: "Montserrat";
+  font-weight: 700;
+  padding: 0 2vh;
+  margin: 0;
+  border-radius: 8px;
+}
+
+#btn_filtro {
+  width: 20%;
+  height: 5vh;
+  border: none;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  background-color: #f7f7f0;
+  padding: 0 2vh;
+  border-radius: 8px;
+  color: #6f6f6f;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.pesquisa {
+  position: relative;
+}
+
+/* Estilos do modal */
+.fundo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  width: 60%;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  text-align: start;
+  padding: 3vh;
+}
+
+.modal h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.modal select {
+  margin: 1vh 0;
+  width: 100%;
+  padding: 10px;
+  font-family: "Montserrat";
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
+}

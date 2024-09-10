@@ -3,7 +3,7 @@ import styles from "./Pagamentos.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import DefaultMessage from "../../../components/responsavel/pagamentos/DefaultMessage";
-import ListaResponsaveis from "../../../components/Motorista/pagamentos/ListaResponsaveis";
+import ListaResponsaveis from "../../../components/motorista/pagamentos/ListaResponsaveis";
 
 const titulo = "pagamentos";
 

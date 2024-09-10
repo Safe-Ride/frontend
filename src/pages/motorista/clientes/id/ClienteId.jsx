@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./ClienteId.module.css";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
-import Card1 from "../../../../components/Clientes/ClienteId/Card1";
-import DadosResponsavel from "../../../../components/Clientes/ClienteId/DadosResponsavel";
-import DadosDependentes from "../../../../components/Clientes/ClienteId/DadosDependentes";
-import Historico from "../../../../components/Clientes/ClienteId/Historico";
+import Card1 from "../../../../components/motorista/clientes/perfil-cliente/Card1";
+import DadosResponsavel from "../../../../components/motorista/clientes/perfil-cliente/DadosResponsavel";
+import DadosDependentes from "../../../../components/motorista/clientes/perfil-cliente/DadosDependentes";
+import Historico from "../../../../components/motorista/clientes/perfil-cliente/Historico";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
