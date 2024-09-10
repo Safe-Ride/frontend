@@ -1,14 +1,17 @@
-import { useNavigate } from "react-router-dom"
-import styles from "./Box.module.css"
+import { useNavigate } from "react-router-dom";
+import styles from "./Box.module.css";
 
-const Box = ({ titulo = null, link = null, linkDisplayName = null, children }) => {
+const Box = ({
+  titulo = null,
+  link = null,
+  linkDisplayName = null,
+  children,
+}) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    return (
-git 
-        <div className={styles['box']}>
-            {/* <div className={styles['head']}>
+  return (
+    <div className={styles["box"]}>
+      {/* <div className={styles['head']}>
                 {
                     titulo != null &&
                     <h3 className={styles['titulo']}>{titulo}</h3>
@@ -22,11 +25,9 @@ git
                 }
             </div> */}
 
+      {children}
+    </div>
+  );
+};
 
-            {children}
-        </div>
-
-    )
-}
-
-export default Box
+export default Box;
