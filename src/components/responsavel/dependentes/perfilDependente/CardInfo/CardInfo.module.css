@@ -1,0 +1,73 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 40px;
+    border-radius: 24px;
+    background-color: var(--amarelo, #F2C718);
+}
+
+.icone-img {
+    height: 16px;
+    width: 16px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+}
+
+.categoria {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.info-editar {
+    all: unset;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.info-editar:focus {
+    border-bottom: 1px solid var(--preto);
+}
+
+.info-editar:disabled {
+    background-color: var(--branco);
+}
+
+.campo-editar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img-editar {
+    width: 12px;
+    height: 12px;
+}

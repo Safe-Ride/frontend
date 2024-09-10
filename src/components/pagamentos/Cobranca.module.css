@@ -1,0 +1,86 @@
+.cobranca {
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cobranca .status {
+  width: 10%;
+}
+.cobranca .campos {
+  width: 90%;
+  height: auto;
+  padding: 2vh 0 2vh 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cobranca .campos .data-valor {
+  font-weight: 700;
+}
+
+.cobranca .gerar-boleto {
+  display: flex;
+  align-items: center;
+}
+
+.btn-gerar-boleto {
+  widows: 100%;
+  height: 4vh;
+  padding: 1px 1vh;
+  border-radius: 8px;
+  margin: 0;
+  font-weight: 600;
+  background-color: var(--laranja);
+  border: none;
+  font-size: 14px;
+}
+
+.leg-1,
+.leg-2,
+.leg-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #64adad;
+  width: 3.5vh;
+  height: 3.5vh;
+}
+
+.leg-1 {
+  background: linear-gradient(
+    180deg,
+    #64adad 25%,
+    #018789 25%,
+    #018789 50%,
+    #64adad 50%,
+    #64adad 75%,
+    #018789 75%
+  );
+}
+.leg-2 {
+  background: linear-gradient(
+    320deg,
+    #ff944d 25%,
+    #f60 25%,
+    #f60 50%,
+    #ff944d 50%,
+    #ff944d 75%,
+    #f60 75%
+  );
+}
+.leg-3 {
+  background: linear-gradient(
+    270deg,
+    #ff6363 25%,
+    #e50101 25%,
+    #e50101 50%,
+    #ff6363 50%,
+    #ff6363 75%,
+    #e50101 75%
+  );
+}

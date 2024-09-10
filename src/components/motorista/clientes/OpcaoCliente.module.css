@@ -1,0 +1,54 @@
+.opcao {
+  width: auto;
+  height: 8vh;
+  padding: 1vh 3vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid hsla(263, 9%, 18%, 0.3);
+  align-items: center;
+}
+
+.foto {
+  height: 8vh;
+  width: 8vh;
+  margin: 0;
+  margin-right: 2vh;
+  border-radius: 50%;
+}
+
+.campos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.campo-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.nome {
+  margin: 0;
+  padding: 0;
+  /* font-weight: 700; */
+  font-size: 14px;
+}
+.responsavel {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.notificacao {
+  margin: 0;
+  font-size: 14px;
+  background-color: #f2c718;
+  width: 3vh;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

@@ -98,12 +98,26 @@ function CadastroMotorista() {
   const formularios = [setForm1, setForm2, setForm3];
 
   const atualizarEstagioCadastro = () => {
-    formularios[estagioCadastro - 1](false);
+    formularios[estagioCadastro-1](false);
 
     setEstagioCadastro(estagioCadastro + 1);
     idsEstagios[estagioCadastro](true);
     formularios[estagioCadastro](true);
   };
+
+  const onBack = () => {
+      voltarEstagioCadastro()
+      console.log("voltando")
+  }
+
+  const voltarEstagioCadastro = () => {
+    formularios[estagioCadastro-1](false);
+    idsEstagios[estagioCadastro-1](false);
+
+    setEstagioCadastro(estagioCadastro - 1);
+    idsEstagios[estagioCadastro-2](true);
+    formularios[estagioCadastro-2](true);
+  }
 
   return (
     <>
@@ -115,9 +129,9 @@ function CadastroMotorista() {
         <Bullet titulo={"Veículo"} ativo={bullet3} />
       </ol>
       <div className={styles["grid-container"]} id={"formContainer"}>
-        <DadosPessoais onSubmit={onSubmit} show={form1} />
-        <Endereco onSubmit={onSubmit} show={form2} />
-        <Veiculo onSubmit={onSubmit} show={form3} />
+        <DadosPessoais onBack={onBack} onSubmit={onSubmit} show={form1} />
+        <Endereco onBack={onBack}onSubmit={onSubmit} show={form2} />
+        <Veiculo onBack={onBack}onSubmit={onSubmit} show={form3} />
       </div>
     </>
   );
