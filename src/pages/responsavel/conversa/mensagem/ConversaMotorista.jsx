@@ -1,10 +1,10 @@
 import React from "react";
+import Enviar from "../../../../components/conversas/Enviar/Enviar";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import StatusEnviado from "../../../../components/responsavel/conversas/mensagem/StatusEnviado";
 import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
 import styles from "./ConversaMotorista.module.css";
-
 const ConversaMotorista = () => {
   const motorista = {
     id: 1,
@@ -34,6 +34,7 @@ const ConversaMotorista = () => {
         <StatusEnviado mensagem={mensagem}></StatusEnviado>
         <StatusRecebido mensagem={mensagem}></StatusRecebido>
         <StatusEnviado mensagem={mensagem2}></StatusEnviado>
+        <Enviar />
       </div>
       <NavBarBot />
     </>

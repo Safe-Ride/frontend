@@ -1,0 +1,8 @@
+.seletor {
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+    border-style: none;
+    background-color: var(--branco);
+}
+
