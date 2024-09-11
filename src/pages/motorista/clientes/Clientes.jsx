@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./Clientes.module.css";
+// import styles from "./Clientes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente";
@@ -47,7 +47,7 @@ const Clientes = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <Pesquisa setTermoPesquisa={setTermoPesquisa} /> {/* Passando a função */}
+      <Pesquisa setTermoPesquisa={setTermoPesquisa} />
       <div>
         {clientesFiltrados.map((cliente, index) => (
           <div

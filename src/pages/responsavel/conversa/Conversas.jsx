@@ -1,30 +1,52 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import NavBarBot from "../../../components/NavBar/NavBarBot";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
-import Motorista from "../../../components/responsavel/conversas/Motorista";
+import React, { useEffect, useState } from "react";
+import api from "../../../api";
+import { useNavigate } from "react-router-dom";
 import styles from "./Conversas.module.css";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
+import NavBarBot from "../../../components/NavBar/NavBarBot";
+import Motorista from "../../../components/responsavel/conversas/Motorista";
 
 const Conversas = () => {
+  const titulo = "conversas";
+  const [motoristas, setMotoristas] = useState([]);
+
+  const id = sessionStorage.getItem("ID_USUARIO");
+  const token = sessionStorage.getItem("token");
+
   const navigate = useNavigate();
 
-  const motorista = {
-    id: 1,
-    foto: "profile.png",
-    nome: "teste",
-    mensagem: "teste",
-    horario: "2024/08/28 10:34",
-    qtdMensagens: 2,
-  };
+  useEffect(() => {
+    const requi = async () => {
+      api
+        .get(`/usuarios/motoristas-cliente/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setMotoristas(res.data);
+        })
+        .catch((err) => {
+          console.log("erro:", err);
+        });
+    };
+    requi();
+  }, [id, token]);
 
   return (
     <>
-      <NavBarTop titulo={"conversas"} />
+      <NavBarTop titulo={titulo} />
       <div className={styles["lista-conversas"]}>
-        <div onClick={() => navigate(`/responsavel/conversas/${motorista.id}`)}>
-          <Motorista motorista={motorista}></Motorista>
-          <Motorista motorista={motorista}></Motorista>
-        </div>
+        {motoristas.map((motorista) => {
+          return (
+            <div
+              onClick={() => navigate(`/responsavel/conversas/${motorista.id}`)}
+            >
+              <Motorista motorista={motorista} />
+            </div>
+          );
+        })}
       </div>
       <NavBarBot />
     </>
