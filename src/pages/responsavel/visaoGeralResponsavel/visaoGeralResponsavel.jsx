@@ -7,25 +7,16 @@ import icoEscola from "../../../utils/assets/dependentes/escola.png";
 
 const titulo = "Visão Geral";
 
-function returnIconeStatus(status) {
-  switch (status) {
-    case "escola":
-      return icoEscola;
-    case "casa":
-      return icoCasa;
-    default:
-      return icoCasa; // Adicionando um valor padrão
-  }
-}
+
 
 const VisaoGeralResponsavel = () => {
-  // Simular status para este exemplo
-  const status = "escola"; // Aqui você pode passar dinamicamente o status desejado
+ 
+  const status = "escola"; 
 
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <CardVisao icone={returnIconeStatus(status)} />
+      <CardVisao />
       <NavBarBot />
     </>
   );
