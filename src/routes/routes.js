@@ -22,6 +22,8 @@ import PrivateRoute from "./PrivateRoute";
 import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
 import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
+
+import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
 import MotoristaConversaResponsavel from "../pages/motorista/conversa/mensagem/ConversaResponsavel";
 import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
@@ -195,6 +197,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <EncontrarMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/solicitacoes"
+          element={
+            <PrivateRoute>
+              <RSolicitacoes />
             </PrivateRoute>
           }
         />
