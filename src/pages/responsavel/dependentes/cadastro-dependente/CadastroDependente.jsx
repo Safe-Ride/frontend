@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import { useState } from "react";
 import Formulario from "../../../../components/Formulario/Formulario";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";

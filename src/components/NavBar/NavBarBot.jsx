@@ -5,62 +5,19 @@ import imgUsuarios from "../../utils/assets/navbar/usuarios.png";
 import imgTempoReal from "../../utils/assets/navbar/tempo-real.png";
 import imgConversas from "../../utils/assets/navbar/conversas.png";
 import imgPagamentos from "../../utils/assets/navbar/pagamentos.png";
-import { useNavigate } from "react-router-dom";
+import NavBarItem from "./NavBarItem/NavBarItem";
 
 const NavBarBot = () => {
-  const navigate = useNavigate();
-
   if (sessionStorage.TIPO_USUARIO === "RESPONSAVEL") {
     return (
       <>
         <div className={styles["espaco-fim"]}></div>
         <nav className={styles["navbarbot"]}>
-          <div
-            className={styles["campos"]}
-            onClick={() => navigate("/responsavel/visao-geral")}
-          >
-            <div className={styles["campo-img"]}>
-              <img src={imgVisaoGeral} alt="clientes" />
-            </div>
-            <p>dash</p>
-          </div>
-          <div
-            className={styles["campos"]}
-            onClick={() => navigate("/responsavel/conversas")}
-          >
-            <div className={styles["campo-img"]}>
-              <img src={imgConversas} alt="conversas" />
-            </div>
-            <p>conversas</p>
-          </div>
-          <div
-            className={styles["campos"]}
-            onClick={() => navigate("/responsavel/clientes")}
-          >
-            <div className={styles["campo-img"]}>
-              <img src={imgUsuarios} alt="clientes" />
-            </div>
-            <p>clientes</p>
-          </div>
-          <div
-            className={styles["campos"]}
-            onClick={() => navigate("/responsavel/trajetos")}
-          >
-            <div className={styles["campo-img"]}>
-              <img src={imgTempoReal} alt="trajetos" />
-            </div>
-            <p>tempo real</p>
-          </div>
-
-          <div
-            className={styles["campos"]}
-            onClick={() => navigate("/responsavel/pagamentos")}
-          >
-            <div className={styles["campo-img"]}>
-              <img src={imgPagamentos} alt="pagamentos" />
-            </div>
-            <p>pagamentos</p>
-          </div>
+          <NavBarItem navigateTo={"/responsavel/dependentes"} img={imgUsuarios} titulo={"Dependentes"} />
+          <NavBarItem navigateTo={"/responsavel/tempo-real"} img={imgTempoReal} titulo={"Tempo Real"} />
+          <NavBarItem navigateTo={"/responsavel/visao-geral"} img={imgVisaoGeral} titulo={"Visão Geral"} />
+          <NavBarItem navigateTo={"/responsavel/conversas"} img={imgConversas} titulo={"Conversas"} />
+          <NavBarItem navigateTo={"/responsavel/pagamentos"} img={imgPagamentos} titulo={"Pagamentos"} />
         </nav>
       </>
     );
@@ -70,52 +27,11 @@ const NavBarBot = () => {
     <>
       <div className={styles["espaco-fim"]}></div>
       <nav className={styles["navbarbot"]}>
-        <div
-          className={styles["campos"]}
-          onClick={() => navigate("/motorista/visao-geral")}
-        >
-          <div className={styles["campo-img"]}>
-            <img src={imgVisaoGeral} alt="clientes" />
-          </div>
-          <p>dash</p>
-        </div>
-        <div
-          className={styles["campos"]}
-          onClick={() => navigate("/motorista/conversas")}
-        >
-          <div className={styles["campo-img"]}>
-            <img src={imgConversas} alt="conversas" />
-          </div>
-          <p>conversas</p>
-        </div>
-        <div
-          className={styles["campos"]}
-          onClick={() => navigate("/motorista/clientes")}
-        >
-          <div className={styles["campo-img"]}>
-            <img src={imgUsuarios} alt="clientes" />
-          </div>
-          <p>clientes</p>
-        </div>
-        <div
-          className={styles["campos"]}
-          onClick={() => navigate("/motorista/trajetos")}
-        >
-          <div className={styles["campo-img"]}>
-            <img src={imgTempoReal} alt="trajetos" />
-          </div>
-          <p>tempo real</p>
-        </div>
-
-        <div
-          className={styles["campos"]}
-          onClick={() => navigate("/motorista/pagamentos")}
-        >
-          <div className={styles["campo-img"]}>
-            <img src={imgPagamentos} alt="pagamentos" />
-          </div>
-          <p>pagamentos</p>
-        </div>
+        <NavBarItem navigateTo={"/motorista/clientes"} img={imgUsuarios} titulo={"Clientes"} />
+        <NavBarItem navigateTo={"/motorista/trajetos"} img={imgTempoReal} titulo={"Trajetos"} />
+        <NavBarItem navigateTo={"/motorista/visao-geral"} img={imgVisaoGeral} titulo={"Visão Geral"} />
+        <NavBarItem navigateTo={"/motorista/conversas"} img={imgConversas} titulo={"Conversas"} />
+        <NavBarItem navigateTo={"/motorista/pagamentos"} img={imgPagamentos} titulo={"Pagamentos"} />
       </nav>
     </>
   );

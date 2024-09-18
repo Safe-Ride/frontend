@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card1.module.css";
-import FotoPerfil from "../../../utils/functions/FotoPerfil.jsx";
+import FotoPerfil from "../../../../utils/functions/FotoPerfil.jsx";
 
 const Card1 = ({ foto, nome, status, horario }) => {
   return (
