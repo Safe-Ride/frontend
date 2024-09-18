@@ -24,6 +24,8 @@ import EncontrarMotorista from "../components/responsavel/dependentes/encontrarM
 import Login from "../pages/login/Login";
 
 import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
+import MSolicitacoes from "../pages/motorista/solicitacoes/Solicitacoes";
+import MSolicitacao from "../pages/motorista/solicitacoes/Solicitacao";
 import MotoristaConversaResponsavel from "../pages/motorista/conversa/mensagem/ConversaResponsavel";
 import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
@@ -70,6 +72,22 @@ function Rotas() {
             <PrivateRoute>
               <MClientesClienteId />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/solicitacoes"
+          element={
+            // <PrivateRoute>
+            <MSolicitacoes />
+            // </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/solicitacoes/:id"
+          element={
+            // <PrivateRoute>
+            <MSolicitacao />
+            // </PrivateRoute>
           }
         />
         <Route
