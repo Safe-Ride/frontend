@@ -22,7 +22,10 @@ const Dependentes = () => {
       .then((res) => {
         const data = res.data;
         setListaDependentes(data);
-      });
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   });
 
   const navigate = useNavigate();
@@ -32,7 +35,11 @@ const Dependentes = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
-          return <CardDependente key={dependente.id} dependente={dependente} />;
+          return (
+            <div onClick={() => navigate(`/responsavel/dependentes/${dependente.id}`)}>
+              <CardDependente key={dependente.id} dependente={dependente} />;
+            </div>
+          )
         })}
         <div className={styles["adicionar"]}>
           <div onClick={() => navigate("/responsavel/dependentes/cadastrar")}>

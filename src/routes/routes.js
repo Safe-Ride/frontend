@@ -29,6 +29,7 @@ import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/P
 import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
+import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 
 function Rotas() {
   return (
@@ -116,6 +117,15 @@ function Rotas() {
           element={
             <PrivateRoute>
               <RTempoReal />
+            </PrivateRoute>
+          }
+        />
+                />
+        <Route
+          path="/responsavel/tempo-real/:id"
+          element={
+            <PrivateRoute>
+              <RTempoRealMapa />
             </PrivateRoute>
           }
         />
