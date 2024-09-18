@@ -1,55 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../../api";
+import { useNavigate } from "react-router-dom";
 import styles from "./Conversa.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
-import ImagemUsuario from "../../../components/ImagemUsuario/Imagem"
+import Responsavel from "../../../components/motorista/conversas/Responsavel";
 
-
-const MotoristaConversa = () => {
+const Conversas = () => {
   const titulo = "conversas";
-  const [clientes, setClientes] = useState([])
+  const [responsaveis, setResponsaveis] = useState([]);
 
-  const id = sessionStorage.getItem('ID_USUARIO')
-  const token = sessionStorage.getItem('token')
+  const id = sessionStorage.getItem("ID_USUARIO");
+  const token = sessionStorage.getItem("token");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const requi = async () => {
       api
-        .get(`/usuarios/clientes-motorista/${id}`, {
+        .get(`/usuarios/motoristas-cliente/${1}`, {
           headers: {
-            'Authorization': `Bearer ${token}`,
-          }
+            Authorization: `Bearer ${token}`,
+          },
         })
         .then((res) => {
-          setClientes(res.data);
+          setResponsaveis(res.data);
         })
         .catch((err) => {
-          console.log('erro:', err)
-        })
-    }
-    requi()
-  }, [id, token])
-
+          console.log("erro:", err);
+        });
+    };
+    requi();
+  }, [id, token]);
 
   return (
     <>
       <NavBarTop titulo={titulo} />
-      <div className={styles["container"]}>
-        <div className={styles["trajeto"]}>
-          {clientes.map(cliente => (
-            <div key={cliente.id} className={styles["imagem-container"]}>
-              <ImagemUsuario
-                foto={cliente.foto}
-                idUsuario={cliente.id}
-              />
-            </div>
-          ))}
-        </div>
+      <div className={styles["lista-conversas"]}>
+        {responsaveis.map((responsavel) => {
+          return (
+            <>
+              <div
+                onClick={() =>
+                  navigate(`/motorista/conversas/${responsavel.id}`)
+                }
+              >
+                <Responsavel responsavel={responsavel}></Responsavel>{" "}
+              </div>
+            </>
+          );
+        })}
       </div>
       <NavBarBot />
     </>
   );
 };
 
-export default MotoristaConversa;
+export default Conversas;

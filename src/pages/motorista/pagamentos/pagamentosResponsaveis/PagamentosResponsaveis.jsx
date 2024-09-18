@@ -5,7 +5,7 @@ import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cobranca from "../../../../components/pagamentos/Cobranca";
-import CampoGrafico from "../../../../components/Motorista/pagamentos/pagamentosResponsaveis/CampoGrafico";
+import CampoGrafico from "../../../../components/motorista/pagamentos/pagamentosResponsaveis/CampoGrafico";
 
 const api = axios.create({
   baseURL: `http://localhost:8080/contratos`,

@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./VisaoGeral.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
-import Card1 from "../../../components/Motorista/VisaoGeral/Card1";
-import KPI1 from "../../../components/Motorista/VisaoGeral/KPI1";
-import KPI2 from "../../../components/Motorista/VisaoGeral/KPI2";
-import Card2 from "../../../components/Motorista/VisaoGeral/Card2";
-import Card3 from "../../../components/Motorista/VisaoGeral/Card3";
+import Card1 from "../../../components/motorista/VisaoGeral/Card1";
+import KPI1 from "../../../components/motorista/VisaoGeral/KPI1";
+import KPI2 from "../../../components/motorista/VisaoGeral/KPI2";
+import Card2 from "../../../components/motorista/VisaoGeral/Card2";
+import Card3 from "../../../components/motorista/VisaoGeral/Card3";
 
 const titulo = "visão geral ";
 
