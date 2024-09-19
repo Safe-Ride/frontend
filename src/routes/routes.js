@@ -11,6 +11,7 @@ import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagam
 import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
 import MTrajetos from "../pages/motorista/trajetos/Trajetos";
 import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
+// import VisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "../pages/notFound/NotFound";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
@@ -32,6 +33,7 @@ import CadastroDependente from "../pages/responsavel/dependentes/cadastro-depend
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
+import PerfilMotoristaSolitacao from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotoristaSolicitacao";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 
@@ -60,7 +62,7 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-        
+
         <Route
           path="/motorista/clientes"
           element={
@@ -80,17 +82,17 @@ function Rotas() {
         <Route
           path="/motorista/solicitacoes"
           element={
-            // <PrivateRoute>
-            <MSolicitacoes />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <MSolicitacoes />
+            </PrivateRoute>
           }
         />
         <Route
           path="/motorista/solicitacoes/:id"
           element={
-            // <PrivateRoute>
-            <MSolicitacao />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <MSolicitacao />
+            </PrivateRoute>
           }
         />
         <Route
@@ -130,6 +132,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <MotoristaPerfil />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/visao-geral"
+          element={
+            <PrivateRoute>
+              <MVisaoGeral />
             </PrivateRoute>
           }
         />
@@ -218,6 +228,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <PerfilMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/motorista/:id"
+          element={
+            <PrivateRoute>
+              <PerfilMotoristaSolitacao />
             </PrivateRoute>
           }
         />

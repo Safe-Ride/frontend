@@ -13,13 +13,13 @@ const Solicitacoes = () => {
             <NavBarTop titulo={titulo}/>
             <Pesquisa />
             <div onClick={() => navigate(`/motorista/solicitacoes/1`)}>
-                <OpcaoCliente nome={"TESTE"}/>
+                <OpcaoCliente nome={"Cliente 1"}/>
             </div>
-            <div onClick={() => navigate(`/motorista/clientes/1`)}>
-                <OpcaoCliente nome={"TESTE"}/>
+            <div onClick={() => navigate(`/motorista/solicitacoes/2`)}>
+                <OpcaoCliente nome={"Cliente 2"}/>
             </div>
-            <div onClick={() => navigate(`/motorista/clientes/1`)}>
-                <OpcaoCliente nome={"TESTE"}/>
+            <div onClick={() => navigate(`/motorista/solicitacoes/3`)}>
+                <OpcaoCliente nome={"Cliente 3"}/>
             </div>
             <NavBarBot />
         </>

@@ -34,6 +34,9 @@ const Dependentes = () => {
         {listaDependentes.map((dependente) => {
           return <CardDependente key={dependente.id} dependente={dependente} />;
         })}
+        <div onClick={() => navigate("/responsavel/dependentes/5/encontrar-motorista")}>
+          <CardDependente key={100} dependente={{"id": 100, "nome": "Dependente 32", "foto": null}} />
+        </div>
         <div className={styles["adicionar"]}>
           <div onClick={() => navigate("/responsavel/dependentes/cadastrar")}>
             <span>+</span>

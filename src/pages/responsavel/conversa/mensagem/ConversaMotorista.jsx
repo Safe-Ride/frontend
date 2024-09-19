@@ -5,7 +5,6 @@ import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import StatusEnviado from "../../../../components/responsavel/conversas/mensagem/StatusEnviado";
 import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
 import styles from "./ConversaMotorista.module.css";
-
 const ConversaMotorista = () => {
   const motorista = {
     id: 1,
@@ -17,7 +16,7 @@ const ConversaMotorista = () => {
     status: "NÃO VAI",
     horario: "2024-08-27 10:34",
     qtdMensagens: 2,
-    enviada: true
+    enviada: true,
   };
 
   const mensagem2 = {
@@ -25,8 +24,8 @@ const ConversaMotorista = () => {
     status: "NÃO VAI",
     horario: "2024-08-27 10:34",
     qtdMensagens: 2,
-    enviada: false
-  }
+    enviada: false,
+  };
 
   return (
     <>
