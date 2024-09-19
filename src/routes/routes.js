@@ -31,6 +31,7 @@ import CadastroDependente from "../pages/responsavel/dependentes/cadastro-depend
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
+import PerfilMotoristaSolitacao from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotoristaSolicitacao";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 
@@ -79,17 +80,17 @@ function Rotas() {
         <Route
           path="/motorista/solicitacoes"
           element={
-            // <PrivateRoute>
-            <MSolicitacoes />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <MSolicitacoes />
+            </PrivateRoute>
           }
         />
         <Route
           path="/motorista/solicitacoes/:id"
           element={
-            // <PrivateRoute>
-            <MSolicitacao />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <MSolicitacao />
+            </PrivateRoute>
           }
         />
         <Route
@@ -209,6 +210,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <PerfilMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/motorista/:id"
+          element={
+            <PrivateRoute>
+              <PerfilMotoristaSolitacao />
             </PrivateRoute>
           }
         />

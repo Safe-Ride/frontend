@@ -88,10 +88,10 @@ const Solicitacao = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles['botoes']}>
-                        <button className={styles['btn-aceitar']}>Enviar</button>
-                        <button className={styles['btn-recusar']}>Recusar</button>
+                        <div className={styles['botoes']}>
+                            <button className={styles['btn-aceitar']}>Enviar</button>
+                            <button className={styles['btn-recusar']}>Recusar</button>
+                        </div>
                     </div>
                 </Box>
             </div>

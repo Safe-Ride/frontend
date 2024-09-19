@@ -58,7 +58,9 @@ const Clientes = () => {
           </div>
         ))}
       </div>
-      <Solicitacoes></Solicitacoes>
+      <div onClick={() => navigate(`/motorista/solicitacoes`)}>
+        <Solicitacoes />
+      </div>
       <NavBarBot />
     </>
   );

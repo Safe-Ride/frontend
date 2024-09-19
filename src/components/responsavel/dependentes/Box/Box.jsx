@@ -11,7 +11,7 @@ const Box = ({
 
   return (
     <div className={styles["box"]}>
-      {/* <div className={styles['head']}>
+      <div className={styles['head']}>
                 {
                     titulo != null &&
                     <h3 className={styles['titulo']}>{titulo}</h3>
@@ -23,7 +23,7 @@ const Box = ({
                         onClick={() => navigate(link)}
                     >{linkDisplayName}</span>
                 }
-            </div> */}
+            </div>
 
       {children}
     </div>

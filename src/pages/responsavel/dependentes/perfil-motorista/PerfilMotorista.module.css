@@ -82,3 +82,23 @@ p {
   line-height: normal;
   width: 60px;
 }
+
+.botao {
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+#enviar {
+  background: var(--preto);
+  color: var(--branco);
+}
+
+#enviar-click {
+  border: 1px solid var(--amarelo, #F2C718);
+  background: var(--branco);
+  color: var(--preto);
+}
