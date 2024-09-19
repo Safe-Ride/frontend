@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./TrajetosGerais.module.css";
 import Card from './CardTrajeto'
+import { useNavigate } from "react-router-dom";
 
 
 const TrajetosGerais = ({ res, setAtivo, isAtivo}) => {
-
+    const navigate = useNavigate()
     return (
         <div className={styles["card"]}>
             <div className={styles["header"]}>
@@ -17,7 +18,7 @@ const TrajetosGerais = ({ res, setAtivo, isAtivo}) => {
                 <p>Carregando trajetos...</p>
             )}
 
-            <div className={styles['container']}>
+            <div className={styles['container']} onClick={() => navigate("/motorista/trajetos/cadastro")}>
                 <h3 className={styles['text']}>+ Adicionar novo trajeto</h3>
             </div>
         </div>

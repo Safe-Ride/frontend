@@ -32,6 +32,7 @@ import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
+import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 
 function Rotas() {
   return (
@@ -58,6 +59,7 @@ function Rotas() {
             </PrivateRoute>
           }
         />
+        
         <Route
           path="/motorista/clientes"
           element={
@@ -240,6 +242,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <NotFound />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/trajetos/cadastro"
+          element={
+            <PrivateRoute>
+              <Cad_Trajeto />
             </PrivateRoute>
           }
         />
