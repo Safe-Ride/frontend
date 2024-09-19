@@ -1,0 +1,185 @@
+
+.Card {
+    width: 80%;
+    max-width: 400px; 
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0 auto; 
+  }
+  
+  .Information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:  1px solid #e1e1e1;
+    
+    text-align: left;
+    padding: 0%;
+  }
+  
+  .nameDependent {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .Status {
+    font-size: 14px;
+    color: #333;
+  }
+  
+
+  .exitBox, .returnBox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  }
+  
+  .icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 40px;
+    border-radius: 24px;
+    background-color: var(--amarelo, #F2C718);
+    margin-right: 10px;
+    
+   
+  }
+  
+  .icone-img {
+    height: 16px;
+    width: 16px;
+  }
+  
+  .div-endereco-exit, .div-endereco-return {
+    flex-grow: 1;
+    width: 70%;
+    margin-left: 16px;
+ 
+  }
+  
+  .p-endereco-exit, .p-endereco-return {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+   
+  }
+  
+  .div-time-exit, .div-time-return {
+    margin-left: 8px;
+  }
+  
+  .time-exit {
+    font-size: 14px;
+    color: #666;
+  }
+  .time-return {
+    font-size: 14px;
+    color: #666;
+  }
+  
+ 
+  .BoxArrow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  .Arrow {
+    width: 24px;
+    height: 24px;
+  }
+  
+
+  .footer {
+    border-top: 1px solid #e1e1e1;
+    padding-top: 12px;
+    text-align: left;
+  }
+  
+  .footer p {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .Card {
+      padding: 12px;
+    }
+  
+ 
+  
+    .nameDependent {
+      font-size: 14px;
+    }
+  
+    .Status {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  
+   
+  
+    .time-exit, .time-return {
+      font-size: 13px;
+      margin-top: 4px;
+    }
+  
+    .BoxArrow {
+      margin-bottom: 8px;
+    }
+  
+    .footer p {
+      font-size: 13px;
+    }
+  }
+  
+ 
+  @media (max-width: 480px) {
+    .Card {
+      padding: 10px;
+    }
+  
+    .nameDependent {
+      font-size: 13px;
+    }
+  
+    .Status {
+      font-size: 11px;
+    }
+  
+    .p-endereco-exit, .p-endereco-return {
+      font-size: 12px;
+    }
+
+    .icone {
+      width: 30px;
+      height: 30px;
+    }
+    .div-endereco-exit, .div-endereco-return {
+      margin-left: 12px;
+    }
+  
+    .p-endereco-exit, .p-endereco-return {
+      font-size: 10px;
+    }
+  
+    .time-exit, .time-return {
+      font-size: 12px;
+    }
+  
+    .footer p {
+      font-size: 12px;
+    }
+  }
+  

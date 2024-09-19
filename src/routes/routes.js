@@ -18,6 +18,7 @@ import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem
 import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
+import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 import PrivateRoute from "./PrivateRoute";
 
 import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
@@ -179,6 +180,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <RPagamentos />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes"
+          element={
+            <PrivateRoute>
+              <VisaoGeralResponsavel />
             </PrivateRoute>
           }
         />
