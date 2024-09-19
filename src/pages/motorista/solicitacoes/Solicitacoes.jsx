@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import OpcaoCliente from "../../../components/Clientes/OpcaoCliente"
-import Pesquisa from "../../../components/Clientes/Pesquisa"
+import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente"
+import Pesquisa from "../../../components/motorista/clientes/Pesquisa"
 import NavBarBot from "../../../components/NavBar/NavBarBot"
 import NavBarTop from "../../../components/NavBar/NavBarTop"
 
