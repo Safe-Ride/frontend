@@ -1,31 +1,38 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cadastro from "../pages/cadastro/Cadastro";
 import CadastroMotorista from "../pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "../pages/cadastro/CadastroResponsavel/CadastroResponsavel";
-import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
-import MTrajetos from "../pages/motorista/trajetos/Trajetos";
 import MClientes from "../pages/motorista/clientes/Clientes";
 import MClientesClienteId from "../pages/motorista/clientes/id/ClienteId";
+import MotoristaConversa from "../pages/motorista/conversa/Conversa";
 import MPagamentos from "../pages/motorista/pagamentos/Pagamentos";
+import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
+import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
+import MTrajetos from "../pages/motorista/trajetos/Trajetos";
+import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "../pages/notFound/NotFound";
-import RDependentes from "../pages/responsavel/dependentes/Dependentes";
-import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
+import RDependentes from "../pages/responsavel/dependentes/Dependentes";
+import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
-import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
-import MotoristaConversa from "../pages/motorista/conversa/Conversa";
-import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
+import PrivateRoute from "./PrivateRoute";
 
-import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
-import PGLogin from "../pages/login/Login";
+import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
+import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
+import Login from "../pages/login/Login";
+
+import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
+import MSolicitacoes from "../pages/motorista/solicitacoes/Solicitacoes";
+import MSolicitacao from "../pages/motorista/solicitacoes/Solicitacao";
+import MotoristaConversaResponsavel from "../pages/motorista/conversa/mensagem/ConversaResponsavel";
+import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
-import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
-import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
+import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
+
 import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
@@ -72,6 +79,22 @@ function Rotas() {
           }
         />
         <Route
+          path="/motorista/solicitacoes"
+          element={
+            // <PrivateRoute>
+            <MSolicitacoes />
+            // </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/solicitacoes/:id"
+          element={
+            // <PrivateRoute>
+            <MSolicitacao />
+            // </PrivateRoute>
+          }
+        />
+        <Route
           path="/motorista/pagamentos"
           element={
             <PrivateRoute>
@@ -96,6 +119,14 @@ function Rotas() {
           }
         />
         <Route
+          path="/motorista/conversas/:id"
+          element={
+            <PrivateRoute>
+              <MotoristaConversaResponsavel />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/motorista/perfil"
           element={
             <PrivateRoute>
@@ -112,7 +143,7 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/trajetos"
+          path="/responsavel/tempo-real"
           element={
             <PrivateRoute>
               <RTempoReal />
@@ -188,6 +219,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <EncontrarMotorista />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:id/solicitacoes"
+          element={
+            <PrivateRoute>
+              <RSolicitacoes />
             </PrivateRoute>
           }
         />

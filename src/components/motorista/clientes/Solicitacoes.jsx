@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Solicitacoes.module.css";
-import srcFoto from "../../utils/assets/solicitacoes-dependentes.png";
+import srcFoto from "../../../utils/assets/solicitacoes-dependentes.png";
 
 const Solicitacoes = ({ qtdSolicitacoes }) => {
   return (
