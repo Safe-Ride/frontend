@@ -1,5 +1,5 @@
 import React from "react";
-import Enviar from "../../../../components/conversas/Enviar/Enviar";
+import Enviar from "../../../../components/Conversas/Enviar/Enviar";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import StatusEnviado from "../../../../components/responsavel/conversas/mensagem/StatusEnviado";

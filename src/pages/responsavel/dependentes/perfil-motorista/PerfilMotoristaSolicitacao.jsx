@@ -77,7 +77,11 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
                 info={motorista.idade}
               />
 
-              {encontrarMotorista && <button>Enviar Solicitação</button>}
+              <button
+                className={styles['botao']}
+                id={styles['enviar']}
+                onClick={() => {
+                }}>Enviar Solicitação</button>
             </div>
           </Box>
         </div>

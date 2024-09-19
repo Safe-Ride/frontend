@@ -68,7 +68,7 @@ function ClienteId() {
         ></Card1>
         <DadosResponsavel responsavel={responsavel}></DadosResponsavel>
         <DadosDependentes dependentes={dependentes}></DadosDependentes>
-        <Historico></Historico>
+        {/* <Historico></Historico> */}
       </div>
       <NavBarBot />
     </>

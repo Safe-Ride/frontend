@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import api from "../../../api";
-import { useNavigate } from "react-router-dom";
 import styles from "./Conversas.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
