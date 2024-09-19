@@ -17,6 +17,7 @@ import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem
 import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
+import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 import PrivateRoute from "./PrivateRoute";
 
 import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
@@ -32,11 +33,8 @@ import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
+import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 
-import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
-import Login from "../pages/login/Login";
-import Motorista from "../components/responsavel/pagamentos/Motorista";
-import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 function Rotas() {
   return (
     <BrowserRouter>
@@ -62,6 +60,7 @@ function Rotas() {
             </PrivateRoute>
           }
         />
+        
         <Route
           path="/motorista/clientes"
           element={
@@ -178,6 +177,14 @@ function Rotas() {
           path="/responsavel/dependentes"
           element={
             <PrivateRoute>
+              <VisaoGeralResponsavel />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes"
+          element={
+            <PrivateRoute>
               <Dependentes />
             </PrivateRoute>
           }
@@ -230,16 +237,6 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-         <Route
-          path="/responsavel/visao-geral"
-          element={
-            <PrivateRoute>
-              <VisaoGeralResponsavel/>
-            </PrivateRoute>
-          }
-        />
-        
-
         <Route path="*" element={<NotFound />} />
         <Route
           path="/responsavel/pagamentos/dependente/:id"
@@ -254,6 +251,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <NotFound />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/motorista/trajetos/cadastro"
+          element={
+            <PrivateRoute>
+              <Cad_Trajeto />
             </PrivateRoute>
           }
         />
