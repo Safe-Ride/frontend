@@ -11,7 +11,6 @@ import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagam
 import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
 import MTrajetos from "../pages/motorista/trajetos/Trajetos";
 import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
-// import VisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "../pages/notFound/NotFound";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
@@ -139,15 +138,7 @@ function Rotas() {
           path="/responsavel/visao-geral"
           element={
             <PrivateRoute>
-              <MVisaoGeral />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/responsavel/clientes"
-          element={
-            <PrivateRoute>
-              <RDependentes />
+              <VisaoGeralResponsavel />
             </PrivateRoute>
           }
         />
@@ -187,7 +178,7 @@ function Rotas() {
           path="/responsavel/dependentes"
           element={
             <PrivateRoute>
-              <VisaoGeralResponsavel />
+              <RDependentes />
             </PrivateRoute>
           }
         />

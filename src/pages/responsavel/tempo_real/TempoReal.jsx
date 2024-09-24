@@ -3,7 +3,7 @@ import styles from "./TempoReal.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import mapboxgl from "mapbox-gl";
-// import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaGlkZWtpMTkiLCJhIjoiY2x3cXcwZGx4MDZ0NDJrcTNtODlhZHYzNSJ9.XDo6sDF-eMr7z6_oFtyw8w";
@@ -38,7 +38,7 @@ const TempoReal = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <div className={styles["dependente"]}>
-          <img src="" alt="foto perfil" />
+          <img src={FotoPerfil()} alt="foto perfil" />
           <span>Bruno Henrique</span>
         </div>
         <div ref={mapContainer} className={styles["map-container"]} />

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./DadosResponsavel.module.css";
+import FormatarData from "../../../../utils/functions/FormatarData";
 
 const DadosResponsavel = ({ responsavel }) => {
   return (
@@ -26,7 +27,7 @@ const DadosResponsavel = ({ responsavel }) => {
         </div>
         <div className={styles["dados"]}>
           <p>Nascimento:</p>
-          {responsavel.dataNascimento}
+          {FormatarData(responsavel.dataNascimento)}
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ function ClienteId() {
   const [foto, setFoto] = useState("");
   const [status, setStatus] = useState("");
   const [horario, setHorario] = useState("");
+  const [responsavel, setResponsavel] = useState("");
 
   useEffect(() => {
     api
@@ -27,23 +28,27 @@ function ClienteId() {
         const { data } = response;
         const { nome, foto, status, horario } = data;
 
+        setResponsavel(data);
+
         setNome(nome);
         setFoto(foto);
         setStatus(status);
         setHorario(horario);
+
+        console.log(response);
       })
       .catch((error) => {
         console.log("Erro ao buscar os detalhes da música: ", error);
       });
   }, [id]);
 
-  const responsavel = {
-    nome: "teste",
-    email: "teste",
-    cpf: "teste",
-    telefone: "teste",
-    dataNascimento: "teste",
-  };
+  // const responsavel = {
+  //   nome: "teste",
+  //   email: "teste",
+  //   cpf: "teste",
+  //   telefone: "teste",
+  //   dataNascimento: "teste",
+  // };
 
   const dependentes = [
     {
@@ -67,7 +72,9 @@ function ClienteId() {
           horario={horario}
         ></Card1>
         <DadosResponsavel responsavel={responsavel}></DadosResponsavel>
-        <DadosDependentes dependentes={dependentes}></DadosDependentes>
+        <DadosDependentes
+          dependentes={responsavel.dependentes}
+        ></DadosDependentes>
         {/* <Historico></Historico> */}
       </div>
       <NavBarBot />
