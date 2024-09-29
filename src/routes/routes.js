@@ -37,6 +37,7 @@ import PerfilMotoristaSolitacao from "../pages/responsavel/dependentes/perfil-mo
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
+import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 
 function Rotas() {
   return (
