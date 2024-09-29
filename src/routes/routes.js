@@ -35,6 +35,7 @@ import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/P
 import PerfilMotoristaSolitacao from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotoristaSolicitacao";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
+import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 import Motorista from "../components/responsavel/pagamentos/Motorista";
 import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 
