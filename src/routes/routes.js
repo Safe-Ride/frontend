@@ -161,14 +161,6 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/tempo-real/:id"
-          element={
-            <PrivateRoute>
-              <RTempoRealMapa />
-            </PrivateRoute>
-          }
-        />
-        <Route
           path="/responsavel/conversas"
           element={
             <PrivateRoute>
