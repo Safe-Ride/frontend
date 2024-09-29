@@ -120,7 +120,6 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-                />
         <Route
           path="/responsavel/tempo-real/:id"
           element={

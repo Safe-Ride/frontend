@@ -3,7 +3,6 @@ import styles from "./TempoRealMapa.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import mapboxgl from 'mapbox-gl';
-import FotoPerfil from "../../../utils/functions/FotoPerfil";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGlkZWtpMTkiLCJhIjoiY2x3cXcwZGx4MDZ0NDJrcTNtODlhZHYzNSJ9.XDo6sDF-eMr7z6_oFtyw8w';
 
@@ -32,9 +31,6 @@ const TempoRealMapa = () => {
       setZoom(map.current.getZoom().toFixed(2));
     });
 
-    // new mapboxgl.Marker()
-    //   .setLngLat([lng, lat])
-    //   .addTo(map);
   });
 
   return (
