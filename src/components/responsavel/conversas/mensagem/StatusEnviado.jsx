@@ -69,7 +69,7 @@ function CalcularHorarioMensagem(horario) {
 }
 
 function AlterarCorPeloStatus(status) {
-  if (status === "NÃO VAI") {
+  if (status === "Não vai!") {
     return "red";
   }
 }

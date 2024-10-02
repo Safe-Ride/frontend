@@ -36,7 +36,7 @@ const ConversaMotorista = () => {
 
   const loadMessages = () => {
     api
-      .get(`/conversas?responsavelId=${sessionStorage.getItem("ID_USUARIO")}&motoristaId=${params.id}`, {
+      .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${params.id}`, {
         headers: { Authorization: `Bearer ${sessionStorage.token}` }
       })
       .then((res) => {
@@ -54,9 +54,6 @@ const ConversaMotorista = () => {
     <>
       <NavBarTop titulo={motorista.nome} />
       <div className={styles["conversa"]}>
-        <StatusEnviado mensagem={mensagem}></StatusEnviado>
-        <StatusRecebido mensagem={mensagem}></StatusRecebido>
-        <StatusEnviado mensagem={mensagem2}></StatusEnviado>
         {mensagens && mensagens.map((m) => {
           if(m.tipoUsuario === "RESPONSAVEL") {
             return <StatusEnviado mensagem={m}></StatusEnviado>
@@ -64,8 +61,9 @@ const ConversaMotorista = () => {
             return <StatusRecebido mensagem={m}></StatusRecebido>
           }
         })}
-        <Enviar />
+        <div style={{paddingTop: "10%"}}></div>
       </div>
+      <Enviar />
       <NavBarBot />
     </>
   );
