@@ -8,10 +8,6 @@ import StatusEnviado from "../../../../components/responsavel/conversas/mensagem
 import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
 import styles from "./ConversaMotorista.module.css";
 const ConversaMotorista = () => {
-  // const motorista = {
-  //   id: 1,
-  //   nome: "Rogerio"
-  // };
   const [motorista, setMotorista] = useState({})
   const [mensagens, setMensagens] = useState([])
   const idUsuario = sessionStorage.getItem("ID_USUARIO")
