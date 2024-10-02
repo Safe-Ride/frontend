@@ -11,11 +11,14 @@ const Conversas = () => {
   const [motoristas, setMotoristas] = useState([]);
 
   const buscarMotoristas = () => {
-    api.get(`/conversas/motoristas-responsavel/${sessionStorage.ID_USUARIO}`, {headers: { Authorization: `Bearer ${sessionStorage.token}` }})
-      .then((res) => {
-          setMotoristas(res.data)
+    api
+      .get(`/conversas/motoristas-responsavel/${sessionStorage.ID_USUARIO}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.token}` }
       })
-  }
+      .then((res) => {
+        setMotoristas(res.data);
+      });
+  };
 
   const motorista = {
     id: 1,
@@ -24,11 +27,11 @@ const Conversas = () => {
     mensagem: "teste",
     horario: "2024/08/28 10:34",
     qtdMensagens: 2
-  }; 
+  };
 
   useEffect(() => {
-    buscarMotoristas()
-  })
+    buscarMotoristas();
+  });
 
   return (
     <>
@@ -38,9 +41,18 @@ const Conversas = () => {
           <Motorista motorista={motorista}></Motorista>
           <Motorista motorista={motorista}></Motorista>
         </div>
-        {motoristas && motoristas.map((m) => {
-          return <Motorista motorista={m}></Motorista>
-        })}
+        {motoristas &&
+          motoristas.map((m) => {
+            return (
+              <div
+                onClick={() =>
+                  navigate(`/responsavel/conversas/${m.id}`)
+                }
+              >
+                <Motorista motorista={m}></Motorista>
+              </div>
+            );
+          })}
       </div>
       <NavBarBot />
     </>
