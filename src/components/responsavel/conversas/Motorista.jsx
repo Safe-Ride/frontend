@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Motorista.module.css";
 import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import styles from "./Motorista.module.css";
 
 const Motorista = ({ motorista }) => {
   return (
