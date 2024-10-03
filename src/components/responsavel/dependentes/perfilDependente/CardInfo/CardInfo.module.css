@@ -72,3 +72,8 @@
     width: 12px;
     height: 12px;
 }
+
+.confirmar-cancelar {
+    display: flex;
+    gap: 8px;
+}
