@@ -3,9 +3,9 @@ import styles from "./TrajetosGerais.module.css";
 import Card from "./CardTrajeto";
 import { useNavigate } from "react-router-dom";
 
-const TrajetosGerais = ({ trajetos, onAtivoChange }) => {
+const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo}) => {
   const navigate = useNavigate();
-
+  
   return (
     <div className={styles["card"]}>
       <div className={styles["header"]}>
@@ -17,7 +17,10 @@ const TrajetosGerais = ({ trajetos, onAtivoChange }) => {
         />
       </div>
       {Array.isArray(trajetos) ? (
-        trajetos.map((trajeto) => (
+        (trajetoAtivo != null
+          ? trajetos.filter((trajeto) => trajeto.id === trajetoAtivo.id)
+          : trajetos
+        ).map((trajeto) => (
           <Card
             key={trajeto.id}
             trajeto={trajeto}

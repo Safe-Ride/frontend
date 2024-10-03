@@ -12,16 +12,18 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
 
       await api.patch(
         `/trajetos/alterarAtivo/${trajetoId}?ativo=${novoAtivo}`,
-        {},
+        {
+          
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-
       setAtivo(novoAtivo);
       onAtivoChange(trajetoId, novoAtivo); // Notifica o componente pai
+
     } catch (e) {
       console.error("Erro ao fazer o PATCH:", e.response?.data || e.message);
     }
