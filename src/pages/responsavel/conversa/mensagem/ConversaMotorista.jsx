@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../api";
 import Enviar from "../../../../components/conversas/Enviar/Enviar";
@@ -12,39 +12,28 @@ const ConversaMotorista = () => {
   const [mensagens, setMensagens] = useState([])
   const idUsuario = sessionStorage.getItem("ID_USUARIO")
 
-  const mensagem = {
-    nome: "Caio",
-    status: "NÃO VAI",
-    horario: "2024-08-27 10:34",
-    qtdMensagens: 2,
-    enviada: true
-  };
-
-  const mensagem2 = {
-    nome: "Caio",
-    status: "NÃO VAI",
-    horario: "2024-08-27 10:34",
-    qtdMensagens: 2,
-    enviada: false
-  };
+  const handleSubmit = () => {
+      loadMensagens()
+  }
 
   const params = useParams();
 
-  const loadMessages = () => {
+
+  const loadMensagens = useCallback(() => {
     api
       .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${params.id}`, {
         headers: { Authorization: `Bearer ${sessionStorage.token}` }
       })
       .then((res) => {
         const data = res.data
-        setMensagens(data.mensagems)
         setMotorista(data.motorista)
+        setMensagens(data.mensagems)
       });
-  };
+  }, [])
 
   useEffect(() => {
-    loadMessages();
-  });
+    loadMensagens()
+  }, [loadMensagens]);
 
   return (
     <>
@@ -59,7 +48,7 @@ const ConversaMotorista = () => {
         })}
         <div style={{paddingTop: "10%"}}></div>
       </div>
-      <Enviar />
+      <Enviar submit={handleSubmit} />
       <NavBarBot />
     </>
   );
