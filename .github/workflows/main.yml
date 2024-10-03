@@ -1,4 +1,5 @@
 name: Send Email on Commit
+
 on:
   push:
 
@@ -13,12 +14,12 @@ jobs:
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.gmail.com 
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }} 
-          password: ${{ secrets.EMAIL_PASSWORD }}  
+          server_address: in-v3.mailjet.com  # Servidor SMTP do Mailjet
+          server_port: 587  
+          username: ${{ secrets.MAILJET_API_KEY }}  # API Key do Mailjet
+          password: ${{ secrets.MAILJET_SECRET_KEY }}  # Secret Key do Mailjet
           subject: '⚠️ Lembrete de Relatório de produtividade ⚠️'
-          body: >
+          body: |
             Olá, ${{ github.event.pusher.email }}.
 
             Você acabou de fazer um commit no repositório.
@@ -26,6 +27,5 @@ jobs:
             e acumular faltas em PI.
 
             🚨 Atenção 🚨
-          to: ${{ github.event.pusher.email }} 
-          from: ${{ secrets.EMAIL_USERNAME }} 
-
+          to: ${{ github.event.pusher.email }}  # Enviar e-mail para o autor do commit
+          from: ${{ secrets.EMAIL_USERNAME }}  # Defina o remetente como um e-mail válido
