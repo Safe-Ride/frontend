@@ -1,21 +1,14 @@
 import React from "react";
 import styles from "./Card1.module.css";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
 
 const Card1 = ({ nome, foto, dataNascimento }) => {
-  // const imgPerfil = sessionStorage.getItem("FOTO_USUARIO");
-
   return (
     <div className={styles["card1"]}>
-      <img
-        src={`../../../utils/assets/perfil/${foto}`}
-        alt=""
-        className={styles["foto"]}
-      />
+      <img src={FotoPerfil(foto)} alt="" className={styles["foto"]} />
       <div className={styles["campos"]}>
         <h2 className={styles["nome"]}>{nome}</h2>
-        <p className={styles["idade"]}>
-          {calcularIdade(dataNascimento)} anos
-        </p>
+        <p className={styles["idade"]}>{calcularIdade(dataNascimento)} anos</p>
       </div>
     </div>
   );
