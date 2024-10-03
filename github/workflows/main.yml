@@ -1,0 +1,31 @@
+name: Send Email on Commit
+
+on:
+  push:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.outlook.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: '⚠️ Lembrete de Relatório de produtividade ⚠️'
+          body: |
+            Olá, ${{ github.event.pusher.email }}.\n
+          
+            Você acabou de fazer um commit no repositório.  
+            Não se esqueça de fazer o relatório de produtividade para não ter problemas com apontamentos
+            e acumular faltas em PI.
+            \n \n
+            🚨 Atenção 🚨
+          to: ${{ github.event.pusher.email }}
+          from: 'no-reply@example.com'
