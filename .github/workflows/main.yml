@@ -14,8 +14,8 @@ jobs:
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: in-v3.mailjet.com  # Servidor SMTP do Mailjet
-          server_port: 587  # Usar a porta 587 para TLS/STARTTLS
+          server_address: in-v3.mailjet.com
+          server_port: 465 
           username: ${{ secrets.MAILJET_API_KEY }}  # API Key do Mailjet
           password: ${{ secrets.MAILJET_SECRET_KEY }}  # Secret Key do Mailjet
           subject: '⚠️ Lembrete de Relatório de produtividade ⚠️'
