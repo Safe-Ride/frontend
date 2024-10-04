@@ -27,5 +27,5 @@ jobs:
             e acumular faltas em PI.
 
             🚨 Atenção 🚨
-          to: ${{ github.event.pusher.email }}  # Enviar e-mail para o autor do commit
-          from: ${{ secrets.EMAIL_USERNAME }}  # Defina o remetente como um e-mail válido
+          to: 'lucas.rocha@sptech.school'
+          from: ${{ secrets.EMAIL_USERNAME }} 
