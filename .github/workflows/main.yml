@@ -9,24 +9,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Versão correta do checkout
+        uses: actions/checkout@v3
 
-      - name: Send email notification
-        uses: dawidd6/action-send-mail@v3  # Última versão disponível é a v3
+      - name: Send email notification via SendGrid
+        uses: benc-uk/sendgrid-action@v2
         with:
-          server_address: in-v3.mailjet.com
-          server_port: 587  # Use TLS
-          username: ${{ secrets.MAILJET_API_KEY }}
-          password: ${{ secrets.MAILJET_SECRET_KEY }}
+          sendgrid_api_key: ${{ secrets.SENDGRID_API_KEY }}
+          from: 'safe20.ride24@gmail.com'
+          to: ${{ github.event.head_commit.author.email }}
           subject: '⚠️ Lembrete de Relatório de produtividade ⚠️'
-          body: |
+          content: |
             Olá, ${{ github.event.head_commit.author.name }}.
 
             Você acabou de fazer um commit no repositório.
-            Não se esqueça de fazer o relatório de produtividade para não ter problemas com apontamentos
-            e acumular faltas em PI.
+            Não se esqueça de fazer o relatório de produtividade para não ter problemas com apontamentos e acumular faltas em PI.
 
             🚨 Atenção 🚨
-          to: ${{ github.event.head_commit.author.email }}
-          from: ${{ secrets.EMAIL_USERNAME }}
 
