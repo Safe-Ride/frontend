@@ -15,17 +15,17 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: in-v3.mailjet.com  # Servidor SMTP do Mailjet
-          server_port: 587  
+          server_port: 587  # Usar a porta 587 para TLS/STARTTLS
           username: ${{ secrets.MAILJET_API_KEY }}  # API Key do Mailjet
           password: ${{ secrets.MAILJET_SECRET_KEY }}  # Secret Key do Mailjet
           subject: '⚠️ Lembrete de Relatório de produtividade ⚠️'
           body: |
-            Olá, ${{ github.event.pusher.email }}.
+            Olá, ${{ github.event.head_commit.author.name }}.
 
             Você acabou de fazer um commit no repositório.
             Não se esqueça de fazer o relatório de produtividade para não ter problemas com apontamentos
             e acumular faltas em PI.
 
             🚨 Atenção 🚨
-          to: 'lucas.rocha@sptech.school'
+          to: ${{ github.event.head_commit.author.email }}
           from: ${{ secrets.EMAIL_USERNAME }} 
