@@ -13,7 +13,7 @@ jobs:
 
       - name: Send email notification via SendGrid using curl
         env:
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}  # Defina a chave API do SendGrid como segredo no GitHub
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }} 
           COMMIT_AUTHOR_EMAIL: ${{ github.event.head_commit.author.email }}
           COMMIT_AUTHOR_NAME: ${{ github.event.head_commit.author.name }}
 
