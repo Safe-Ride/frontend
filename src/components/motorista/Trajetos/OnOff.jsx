@@ -16,9 +16,9 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
 
   const fecharModal = () => {
     setModalAberto(false);
-    setNovoAtivo(ativo); // não alterar, garante a sincronia com o proximoAtivo
-  }
-  
+    setNovoAtivo(ativo); // Restaurar o valor de novoAtivo ao fechar o modal sem confirmar
+  };
+
   const handleConfirmar = async () => {
     if (novoAtivo !== null) {
       try {
@@ -45,9 +45,9 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
 
   const alterarAtivo = () => {
     const proximoAtivo = !ativo;
-    setNovoAtivo(proximoAtivo)
-    
-    if (ativo && !novoAtivo) {
+    setNovoAtivo(proximoAtivo);
+
+    if (ativo && !proximoAtivo) {
       abrirModal();
     } else {
       handleConfirmar();
