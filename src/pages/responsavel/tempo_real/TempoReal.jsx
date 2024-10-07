@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import api from "../../../api";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
+import mapboxgl from "mapbox-gl";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
+
+const titulo = "tempo real";
 
 const TempoReal = () => {
 
@@ -24,6 +28,7 @@ const TempoReal = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
+
       <div>
         {listaDependentes.map((dependente) => {
           return (

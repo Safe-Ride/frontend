@@ -13,12 +13,10 @@ const BarChart = () => {
     const recuperarInformacoesCliente = async () => {
       try {
         const response = await apiBar.get();
-        const data = response.data; // Ajuste conforme a estrutura do JSON da API
+        const data = response.data;
         const mes = data.map((item) => nomeMes(item.data));
         const total = data.map((item) => item.total);
         const efetuados = data.map((item) => item.efetuados);
-
-        console.log(data);
 
         setChartData({
           mes,
@@ -45,7 +43,7 @@ const BarChart = () => {
         type: "category",
         data: chartData.mes,
         axisLabel: {
-          rotate: 45, // 0 graus para manter os nomes deitados (horizontalmente)
+          rotate: 45,
         },
       },
       yAxis: {

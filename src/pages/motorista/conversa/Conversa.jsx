@@ -18,13 +18,14 @@ const Conversas = () => {
   useEffect(() => {
     const requi = async () => {
       api
-        .get(`/usuarios/motoristas-cliente/${1}`, {
+        .get(`/usuarios/clientes-motorista/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
           setResponsaveis(res.data);
+          console.log(res);
         })
         .catch((err) => {
           console.log("erro:", err);
