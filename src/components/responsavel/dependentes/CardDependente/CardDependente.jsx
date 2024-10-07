@@ -8,7 +8,6 @@ const CardDependente = ({ dependente }) => {
   return (
     <div
       className={styles.dependente}
-      onClick={() => navigate(`/responsavel/dependentes/${dependente.id}`)}
     >
       <img
         className={styles["foto"]}
