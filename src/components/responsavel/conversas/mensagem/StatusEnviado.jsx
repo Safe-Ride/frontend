@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import iconeAndamento from "../../../../utils/assets/mensagens/andamento.png";
 import iconeEnviada from "../../../../utils/assets/mensagens/enviada.png";
 import FormatarData from "../../../../utils/functions/FormatarData";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import styles from "./StatusEnviado.module.css";
 
-const StatusEnviado = ({ mensagem }) => {
-  const [enviada, setEnviada] = useState(false)
+const StatusEnviado = ({ mensagem, enviada }) => {
 
   const alterarIconePeloEnvio = () => {
     if(enviada) return iconeEnviada
     else return iconeAndamento
   }
 
-  const handleEnviada = () => {
-    setEnviada(mensagem.enviada)
-  }
   useEffect(() => {
-    handleEnviada()
+    alterarIconePeloEnvio()
   })
   return (
     
@@ -69,7 +65,7 @@ function CalcularHorarioMensagem(horario) {
 }
 
 function AlterarCorPeloStatus(status) {
-  if (status === "NÃO VAI") {
+  if (status === "Não vai!") {
     return "red";
   }
 }
