@@ -32,7 +32,11 @@ const Dependentes = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
-          return <CardDependente key={dependente.id} dependente={dependente} />;
+          return ( 
+            <div onClick={() => navigate(`/responsavel/dependentes/${dependente.id}`)}>
+              <CardDependente key={dependente.id} dependente={dependente} />
+            </div>
+          )
         })}
         <div onClick={() => navigate("/responsavel/dependentes/5/encontrar-motorista")}>
           <CardDependente key={100} dependente={{"id": 100, "nome": "Dependente 32", "foto": null}} />
