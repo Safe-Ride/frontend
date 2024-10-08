@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../api";
 import Enviar from "../../../../components/conversas/Enviar/Enviar";
@@ -10,11 +10,14 @@ import styles from "./ConversaMotorista.module.css";
 const ConversaMotorista = () => {
   const [motorista, setMotorista] = useState({});
   const [mensagens, setMensagens] = useState([]);
+  const [ultimaMensagem, setUltimaMensagem] = useState({})
   const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
   const handleSubmit = () => {
     loadMensagens();
   };
+
+  const messagesEndRef = useRef(null);
 
   const params = useParams();
   const conversaId = sessionStorage.getItem("conversaId")
@@ -26,8 +29,11 @@ const ConversaMotorista = () => {
         { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
       );
       const data = response.data;
+      let mensagens = data.mensagens
       setMotorista(data.motorista);
-      setMensagens(data.mensagens);
+      setMensagens(mensagens);
+      let ultimaMensagem = mensagens.length > 0 ? mensagens[mensagens.length - 1] : null;
+      setUltimaMensagem(ultimaMensagem)
       await marcarMensagensComoLidas(data.mensagens);
     } catch (error) {
       console.error(error);
@@ -50,6 +56,18 @@ const ConversaMotorista = () => {
     loadMensagens();
   }, [loadMensagens]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [mensagens]);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn("messagesEndRef is null");
+    }
+  };
+
   return (
     <>
       <NavBarTop titulo={motorista.nome} />
@@ -57,12 +75,12 @@ const ConversaMotorista = () => {
         {mensagens &&
           mensagens.map((m) => {
             if (m.tipoUsuario === "RESPONSAVEL") {
-              return <StatusEnviado mensagem={m}></StatusEnviado>;
+              return <StatusEnviado mensagem={m} key={m.id}></StatusEnviado>;
             } else {
-              return <StatusRecebido mensagem={m}></StatusRecebido>;
+              return <StatusRecebido mensagem={m} key={m.id}></StatusRecebido>;
             }
           })}
-        <div style={{ paddingTop: "10%" }}></div>
+        <div ref={messagesEndRef} style={{ paddingTop: "10%" }}></div>
       </div>
       <Enviar submit={handleSubmit} conversaId={conversaId} />
       <NavBarBot />
