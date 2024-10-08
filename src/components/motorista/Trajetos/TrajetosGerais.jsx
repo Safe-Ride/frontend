@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./TrajetosGerais.module.css";
 import Card from "./CardTrajeto";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api";
 
-const TrajetosGerais = ({ trajetos, onAtivoChange }) => {
+const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
   const navigate = useNavigate();
+  const [termoPesquisa, setTermoPesquisa] = useState("");
 
   const baixarTrajetosTxt = async () => {
     try {
@@ -41,6 +42,13 @@ const TrajetosGerais = ({ trajetos, onAtivoChange }) => {
     }
   };
 
+  const trajetosFiltrados = Array.isArray(trajetos)
+    ? trajetos.filter((trajeto) =>
+      trajeto.escola.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+    )
+    : [];
+
+
   return (
     <div className={styles["card"]}>
       <div className={styles["header"]}>
@@ -50,9 +58,19 @@ const TrajetosGerais = ({ trajetos, onAtivoChange }) => {
           onClick={baixarTrajetosTxt}
         ></button>
       </div>
-      <input className={styles["search"]} type="text" placeholder="Pesquisar" />
+      <input
+        className={styles["search"]}
+        type="text"
+        placeholder="Pesquisar"
+        value={termoPesquisa} // O valor do input é ligado ao estado termoPesquisa
+        onChange={(e) => setTermoPesquisa(e.target.value)} // Atualiza o estado conforme o usuário digita
+      />
+
       {Array.isArray(trajetos) ? (
-        trajetos.map((trajeto) => (
+        (trajetoAtivo != null
+          ? trajetosFiltrados.filter((trajeto) => trajeto.id === trajetoAtivo.id)
+          : trajetosFiltrados
+        ).map((trajeto) => (
           <Card
             key={trajeto.id}
             trajeto={trajeto}
