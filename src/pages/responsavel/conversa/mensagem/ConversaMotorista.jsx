@@ -13,8 +13,11 @@ const ConversaMotorista = () => {
   const [ultimaMensagem, setUltimaMensagem] = useState({})
   const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-  const handleSubmit = () => {
-    loadMensagens();
+  const handleSubmit = async () => {
+    let status = await loadMensagens();
+    if(status === 200) {
+      atualizarStatus()
+    }
   };
 
   const messagesEndRef = useRef(null);
@@ -35,6 +38,7 @@ const ConversaMotorista = () => {
       let ultimaMensagem = mensagens.length > 0 ? mensagens[mensagens.length - 1] : null;
       setUltimaMensagem(ultimaMensagem)
       await marcarMensagensComoLidas(data.mensagens);
+      return response.status
     } catch (error) {
       console.error(error);
     }
@@ -51,6 +55,10 @@ const ConversaMotorista = () => {
           )
         });
       }
+
+  const atualizarStatus = () => {
+    return true;
+  }
 
   useEffect(() => {
     loadMensagens();
@@ -75,7 +83,7 @@ const ConversaMotorista = () => {
         {mensagens &&
           mensagens.map((m) => {
             if (m.tipoUsuario === "RESPONSAVEL") {
-              return <StatusEnviado mensagem={m} key={m.id}></StatusEnviado>;
+              return <StatusEnviado mensagem={m} key={m.id} enviada={atualizarStatus}></StatusEnviado>;
             } else {
               return <StatusRecebido mensagem={m} key={m.id}></StatusRecebido>;
             }
