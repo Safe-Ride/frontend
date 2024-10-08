@@ -8,16 +8,15 @@ import StatusEnviado from "../../../../components/responsavel/conversas/mensagem
 import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
 import styles from "./ConversaMotorista.module.css";
 const ConversaMotorista = () => {
-  const [motorista, setMotorista] = useState({})
-  const [mensagens, setMensagens] = useState([])
-  const idUsuario = sessionStorage.getItem("ID_USUARIO")
+  const [motorista, setMotorista] = useState({});
+  const [mensagens, setMensagens] = useState([]);
+  const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
   const handleSubmit = () => {
-      loadMensagens()
-  }
+    loadMensagens();
+  };
 
   const params = useParams();
-
 
   const loadMensagens = useCallback(() => {
     api
@@ -25,28 +24,38 @@ const ConversaMotorista = () => {
         headers: { Authorization: `Bearer ${sessionStorage.token}` }
       })
       .then((res) => {
-        const data = res.data
-        setMotorista(data.motorista)
-        setMensagens(data.mensagems)
+        const data = res.data;
+        let mensagens = data.mensagens;
+        setMotorista(data.motorista);
+        setMensagens(mensagens);
+        let mensagensNaoLidas = mensagens.filter((m) => !m.lida);
+        mensagensNaoLidas.forEach((m) => {
+          api.patch(
+            `/mensagens/marcar-lida/${m.id}`,
+            {},
+            { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
+          )
+        });
       });
-  }, [])
+  }, []);
 
   useEffect(() => {
-    loadMensagens()
+    loadMensagens();
   }, [loadMensagens]);
 
   return (
     <>
       <NavBarTop titulo={motorista.nome} />
       <div className={styles["conversa"]}>
-        {mensagens && mensagens.map((m) => {
-          if(m.tipoUsuario === "RESPONSAVEL") {
-            return <StatusEnviado mensagem={m}></StatusEnviado>
-          } else {
-            return <StatusRecebido mensagem={m}></StatusRecebido>
-          }
-        })}
-        <div style={{paddingTop: "10%"}}></div>
+        {mensagens &&
+          mensagens.map((m) => {
+            if (m.tipoUsuario === "RESPONSAVEL") {
+              return <StatusEnviado mensagem={m}></StatusEnviado>;
+            } else {
+              return <StatusRecebido mensagem={m}></StatusRecebido>;
+            }
+          })}
+        <div style={{ paddingTop: "10%" }}></div>
       </div>
       <Enviar submit={handleSubmit} />
       <NavBarBot />
