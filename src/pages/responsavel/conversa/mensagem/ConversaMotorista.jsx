@@ -19,21 +19,24 @@ const ConversaMotorista = () => {
   const params = useParams();
   const conversaId = sessionStorage.getItem("conversaId")
 
-  const loadMensagens = useCallback(() => {
-    api
-      .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${params.id}`, {
-        headers: { Authorization: `Bearer ${sessionStorage.token}` }
-      })
-      .then((res) => {
-        const data = res.data;
-        let mensagens = data.mensagens;
-        setMotorista(data.motorista);
-        setMensagens(mensagens);
-      });
+  const loadMensagens = useCallback(async () => {
+    try {
+      const response = await api.get(
+        `/conversas?responsavelId=${idUsuario}&motoristaId=${params.id}`,
+        { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
+      );
+      const data = response.data;
+      setMotorista(data.motorista);
+      setMensagens(data.mensagens);
+      await marcarMensagensComoLidas(data.mensagens);
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
-  const marcarMensagensComoLidas = () => {
-    let mensagensNaoLidas = mensagens.filter((m) => !m.lida);
+  const marcarMensagensComoLidas = async (mensagens) => {
+    let mensagensNaoLidas = mensagens.filter((m) => !m.lida && m.tipoUsuario === "MOTORISTA");
+        console.log(mensagensNaoLidas)
         mensagensNaoLidas.forEach((m) => {
           api.patch(
             `/mensagens/marcar-lida/${m.id}`,
@@ -41,11 +44,10 @@ const ConversaMotorista = () => {
             { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
           )
         });
-  }
+      }
 
   useEffect(() => {
     loadMensagens();
-    marcarMensagensComoLidas()
   }, [loadMensagens]);
 
   return (
