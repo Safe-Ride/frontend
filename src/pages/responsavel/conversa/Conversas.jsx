@@ -31,7 +31,12 @@ const Conversas = () => {
         {motoristas &&
           motoristas.map((m) => {
             return (
-              <div onClick={() => navigate(`/responsavel/conversas/${m.id}`)}>
+              <div
+                onClick={() => {
+                  sessionStorage.setItem("conversaId", m.conversaId);
+                  navigate(`/responsavel/conversas/${m.id}`);
+                }}
+              >
                 <Motorista motorista={m}></Motorista>
               </div>
             );

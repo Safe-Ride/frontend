@@ -4,7 +4,7 @@ import arrow from "../../../utils/assets/play-button.png";
 import Seletor from "../Seletor/Seletor";
 import styles from "./Enviar.module.css";
 
-function Enviar({submit}) {
+function Enviar({submit, conversaId}) {
   const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
   const opcoesMensagem = [{ name: "Não vai!", value: "NAO_IRA" }];
@@ -35,7 +35,7 @@ function Enviar({submit}) {
     api.post(
       `/mensagens`,
       {
-        conversaId: 1,
+        conversaId: conversaId,
         usuarioId: idUsuario,
         dependenteId: dependenteEscolhido,
         status: mensagemEscolhida
@@ -43,8 +43,9 @@ function Enviar({submit}) {
       {
         headers: { Authorization: `Bearer ${sessionStorage.token}` }
       }
-    );
-    submit()
+    ).then(() => {
+      submit()
+    });
   };
 
   const onChangeMensagem = (data) => {

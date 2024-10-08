@@ -17,6 +17,7 @@ const ConversaMotorista = () => {
   };
 
   const params = useParams();
+  const conversaId = sessionStorage.getItem("conversaId")
 
   const loadMensagens = useCallback(() => {
     api
@@ -28,7 +29,11 @@ const ConversaMotorista = () => {
         let mensagens = data.mensagens;
         setMotorista(data.motorista);
         setMensagens(mensagens);
-        let mensagensNaoLidas = mensagens.filter((m) => !m.lida);
+      });
+  }, []);
+
+  const marcarMensagensComoLidas = () => {
+    let mensagensNaoLidas = mensagens.filter((m) => !m.lida);
         mensagensNaoLidas.forEach((m) => {
           api.patch(
             `/mensagens/marcar-lida/${m.id}`,
@@ -36,11 +41,11 @@ const ConversaMotorista = () => {
             { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
           )
         });
-      });
-  }, []);
+  }
 
   useEffect(() => {
     loadMensagens();
+    marcarMensagensComoLidas()
   }, [loadMensagens]);
 
   return (
@@ -57,7 +62,7 @@ const ConversaMotorista = () => {
           })}
         <div style={{ paddingTop: "10%" }}></div>
       </div>
-      <Enviar submit={handleSubmit} />
+      <Enviar submit={handleSubmit} conversaId={conversaId} />
       <NavBarBot />
     </>
   );
