@@ -4,7 +4,7 @@ import arrow from "../../../utils/assets/play-button.png";
 import Seletor from "../Seletor/Seletor";
 import styles from "./Enviar.module.css";
 
-function Enviar({submit, conversaId}) {
+function Enviar({ submit, conversaId }) {
   const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
   const opcoesMensagem = [{ name: "Não vai!", value: "NAO_IRA" }];
@@ -32,20 +32,24 @@ function Enviar({submit, conversaId}) {
   };
 
   const handleSubmit = () => {
-    api.post(
-      `/mensagens`,
-      {
-        conversaId: conversaId,
-        usuarioId: idUsuario,
-        dependenteId: dependenteEscolhido,
-        status: mensagemEscolhida
-      },
-      {
-        headers: { Authorization: `Bearer ${sessionStorage.token}` }
-      }
-    ).then(() => {
-      submit()
-    });
+    if (mensagemEscolhida !== "" && dependenteEscolhido !== 0) {
+      api
+        .post(
+          `/mensagens`,
+          {
+            conversaId: conversaId,
+            usuarioId: idUsuario,
+            dependenteId: dependenteEscolhido,
+            status: mensagemEscolhida
+          },
+          {
+            headers: { Authorization: `Bearer ${sessionStorage.token}` }
+          }
+        )
+        .then(() => {
+          submit();
+        });
+    }
   };
 
   const onChangeMensagem = (data) => {

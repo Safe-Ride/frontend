@@ -12,7 +12,7 @@ function Seletor({ opcoes, campo, change }) {
   return (
     <>
       <select name="" id="" className={styles["seletor"]} onChange={onChange}>
-        <option value="">{campo}</option>
+        <option disabled selected value>{campo}</option>
         {opcoes.map((opc) => {
           return (
             <option value={opc.value} name={opc.name}>

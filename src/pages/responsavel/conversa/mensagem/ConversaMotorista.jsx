@@ -13,10 +13,7 @@ const ConversaMotorista = () => {
   const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
   const handleSubmit = async () => {
-    let status = await loadMensagens();
-    if(status === 200) {
-      atualizarStatus()
-    }
+    await loadMensagens();
   };
 
   const messagesEndRef = useRef(null);
@@ -33,7 +30,8 @@ const ConversaMotorista = () => {
       const data = response.data;
       let mensagens = data.mensagens
       setMotorista(data.motorista);
-      setMensagens(mensagens);
+      let mensagensFiltradas = mensagens.filter(m => m.status !== "")
+      setMensagens(mensagensFiltradas);
       await marcarMensagensComoLidas(data.mensagens);
       return response.status
     } catch (error) {

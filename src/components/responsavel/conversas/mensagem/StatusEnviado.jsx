@@ -1,20 +1,9 @@
-import React, { useEffect } from "react";
-import iconeAndamento from "../../../../utils/assets/mensagens/andamento.png";
-import iconeEnviada from "../../../../utils/assets/mensagens/enviada.png";
+import React from "react";
 import FormatarData from "../../../../utils/functions/FormatarData";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import styles from "./StatusEnviado.module.css";
 
-const StatusEnviado = ({ mensagem, enviada }) => {
-
-  const alterarIconePeloEnvio = () => {
-    if(enviada) return iconeEnviada
-    else return iconeAndamento
-  }
-
-  useEffect(() => {
-    alterarIconePeloEnvio()
-  })
+const StatusEnviado = ({ mensagem }) => {
   return (
     
     <div className={styles["container-enviado"]}>
@@ -32,7 +21,6 @@ const StatusEnviado = ({ mensagem, enviada }) => {
           <p className={styles["horario"]}>
             {CalcularHorarioMensagem(mensagem.horario)}
           </p>
-          <img src={alterarIconePeloEnvio()} alt="" />
         </div>
 
       </div>
@@ -56,9 +44,9 @@ function CalcularHorarioMensagem(horario) {
   ontem.setDate(hoje.getDate() - 1);
 
   if (FormatarData(data) === FormatarData(hoje)) {
-    return `${data.getHours()}:${data.getMinutes()}`;
+    return `${data.getHours()}:${String(data.getMinutes()).padStart(2, "0")}`;
   } else if (FormatarData(data) === FormatarData(ontem)) {
-    return `ontem ${data.getHours()}:${data.getMinutes()}`;
+    return `ontem ${data.getHours()}:${String(data.getMinutes()).padStart(2, "0")}`;
   } else {
     return `${FormatarData(data)}`;
   }
