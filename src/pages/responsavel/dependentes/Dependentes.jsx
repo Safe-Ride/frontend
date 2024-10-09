@@ -32,11 +32,12 @@ const Dependentes = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
-          return <CardDependente key={dependente.id} dependente={dependente} />;
+          if (dependente.motorista_id != null) {
+            return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}`} />;            
+          } else {
+            return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`} />;            
+          }
         })}
-        <div onClick={() => navigate("/responsavel/dependentes/5/encontrar-motorista")}>
-          <CardDependente key={100} dependente={{"id": 100, "nome": "Dependente 32", "foto": null}} />
-        </div>
         <div className={styles["adicionar"]}>
           <div onClick={() => navigate("/responsavel/dependentes/cadastrar")}>
             <span>+</span>
