@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../api";
 import Enviar from "../../../../components/conversas/Enviar/Enviar";
+import StatusEnviado from "../../../../components/conversas/mensagens/StatusEnviado";
+import StatusRecebido from "../../../../components/conversas/mensagens/StatusRecebido";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
-import StatusEnviado from "../../../../components/responsavel/conversas/mensagem/StatusEnviado";
-import StatusRecebido from "../../../../components/responsavel/conversas/mensagem/StatusRecebido";
 import styles from "./ConversaMotorista.module.css";
 const ConversaMotorista = () => {
   const [motorista, setMotorista] = useState({});

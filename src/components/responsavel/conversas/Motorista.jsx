@@ -8,7 +8,7 @@ const Motorista = ({ motorista }) => {
       <div className={styles["motorista"]}>
         <img
           src={FotoPerfil(motorista.foto)}
-          alt="Foto do motorista"
+          alt="Foto do usuario"
           className={styles["foto"]}
         />
         <div className={styles["campos"]}>
@@ -26,7 +26,7 @@ const Motorista = ({ motorista }) => {
       <div className={styles["motorista"]}>
         <img
           src={FotoPerfil(motorista.foto)}
-          alt="Foto do motorista"
+          alt="Foto do usuario"
           className={styles["foto"]}
         />
         <div className={styles["campos"]}>
