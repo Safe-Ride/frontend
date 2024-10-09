@@ -1,52 +1,51 @@
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../../api";
-
-import styles from "./Conversas.module.css";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
 import Motorista from "../../../components/responsavel/conversas/Motorista";
+import styles from "./Conversas.module.css";
 
 const Conversas = () => {
   const titulo = "conversas";
-  const [motoristas, setMotoristas] = useState([]);
 
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
   const navigate = useNavigate();
+  const [motoristas, setMotoristas] = useState([]);
+
+  const buscarMotoristas = () => {
+    api
+      .get(`/conversas/motoristas-responsavel/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then((res) => {
+        setMotoristas(res.data);
+      });
+  };
 
   useEffect(() => {
-    const requi = async () => {
-      api
-        .get(`/usuarios/motoristas-cliente/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setMotoristas(res.data);
-        })
-        .catch((err) => {
-          console.log("erro:", err);
-        });
-    };
-    requi();
-  }, [id, token]);
+    buscarMotoristas();
+  }, []);
 
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["lista-conversas"]}>
-        {motoristas.map((motorista) => {
-          return (
-            <div
-              onClick={() => navigate(`/responsavel/conversas/${motorista.id}`)}
-            >
-              <Motorista motorista={motorista} />
-            </div>
-          );
-        })}
+        {motoristas &&
+          motoristas.map((m) => {
+            return (
+              <div
+                onClick={() => {
+                  sessionStorage.setItem("conversaId", m.conversaId);
+                  navigate(`/responsavel/conversas/${m.id}`);
+                }}
+              >
+                <Motorista motorista={m}></Motorista>
+              </div>
+            );
+          })}
       </div>
       <NavBarBot />
     </>
@@ -54,3 +53,4 @@ const Conversas = () => {
 };
 
 export default Conversas;
+
