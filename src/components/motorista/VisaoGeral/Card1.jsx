@@ -3,12 +3,12 @@ import styles from "./Card1.module.css";
 import DonutChart from "../Graficos/DonutChart";
 
 const Card1 = () => {
-  const mes = "Junho";
+  // const mes = "Junho";
 
   return (
     <div className={styles["card1"]}>
       <p className={styles["texto"]}>
-        Quantidade de boletos por situação de pagamento no mês de {mes}
+        Quantidade de boletos por situação de pagamento
       </p>
       <div className={styles["campo-grafico"]}>
         <div className={styles["campo-legendas"]}>
