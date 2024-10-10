@@ -6,6 +6,7 @@ import styles from "./PerfilMotorista.module.css";
 import icoProfile from "../../../../utils/assets/dependentes/profile.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
+import { useNavigate, useParams } from "react-router-dom";
 
 const titulo = "PERFIL MOTORISTA";
 
@@ -23,6 +24,11 @@ const motorista = {
 };
 
 const PerfilMotorista = ({ encontrarMotorista = false }) => {
+
+  const navigate = useNavigate();
+  const { idDependente } = useParams("idDependente");
+  const { idMotorista } = useParams("idMotorista");
+
   return (
     <>
       <div className={styles["container"]}>
@@ -77,7 +83,12 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
                 info={motorista.idade}
               />
 
-              {encontrarMotorista && <button>Enviar Solicitação</button>}
+              {encontrarMotorista && <button
+                className={styles['botao']}
+                id={styles['enviar']}
+                onClick={() => navigate(`/responsavel/dependentes/${idDependente}/motorista/${idMotorista}/solicitacao`)}
+              >Enviar Solicitação</button>
+              }
             </div>
           </Box>
         </div>

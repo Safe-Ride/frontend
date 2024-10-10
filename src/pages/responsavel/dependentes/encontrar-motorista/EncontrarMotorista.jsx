@@ -1,6 +1,6 @@
-import NavBarBot from "../../../NavBar/NavBarBot";
-import NavBarTop from "../../../NavBar/NavBarTop";
-import CardMotorista from "./CardMotorista/CardMotorista";
+import NavBarBot from "../../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../../components/NavBar/NavBarTop";
+import CardMotorista from "../../../../components/responsavel/dependentes/encontrarMotorista/CardMotorista/CardMotorista";
 import styles from "./EncontrarMotorista.module.css";
 
 const titulo = "ENCONTRAR MOTORISTA";
