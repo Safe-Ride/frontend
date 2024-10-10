@@ -32,7 +32,7 @@ const Dependentes = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
-          if (dependente.motorista_id != null) {
+          if (dependente.motorista != null) {
             return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}`} />;            
           } else {
             return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`} />;            
