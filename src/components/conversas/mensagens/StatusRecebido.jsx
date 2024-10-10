@@ -1,6 +1,6 @@
 import React from "react";
-import FormatarData from "../../../../utils/functions/FormatarData";
-import FotoPerfil from "../../../../utils/functions/FotoPerfil";
+import FormatarData from "../../../utils/functions/FormatarData";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
 import styles from "./StatusRecebido.module.css";
 
 const StatusRecebido = ({ mensagem }) => {
