@@ -66,7 +66,6 @@ const CardInfo = ({ idDependente = null, icone, categoria, info, editar = false,
                     value={inputValue}
                     onChange={handleInputChange}
                     disabled
-                    defaultValue={inputValue}
                 >
                     {opcoes.map((opcao) => (
                         <option key={opcao.id} value={opcao.value}>

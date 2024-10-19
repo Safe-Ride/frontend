@@ -169,7 +169,7 @@ const PerfilDependente = () => {
             key={"dataNascimento"}
             icone={icoProfile}
             categoria={"Data de Nascimento:"}
-            info={FormatarData(dependenteInfo.dataNascimento)}
+            info={dependenteInfo.dataNascimento}
             tipo="date"
           />
           <CardInfo
@@ -196,7 +196,7 @@ const PerfilDependente = () => {
       <div className={styles["wrapper"]}>
         <Box
           titulo={"Dados do Motorista"}
-          link={`/responsavel/dependentes/${id}/motorista`}
+          link={`/responsavel/dependentes/${id}/motorista/${dependenteInfo.idMotorista}`}
           linkDisplayName={"ver perfil"}
         >
           {/* Info Mot */}

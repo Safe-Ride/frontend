@@ -26,96 +26,97 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
   const [motorista, setMotorista] = useState({ imagem: { caminho: '' } });
 
   useEffect(() => {
-    api.get(`/usuarios/perfil-motorista/${idDependente}`)
+    api.get(`/usuarios/perfil-motorista/${idMotorista}`)
       .then((res) => {
         const data = res.data;
         setMotorista(data);
         console.log(motorista)
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }, [idDependente])
 
   return (
     <>
-      <div className={styles["container"]}>
-        <NavBarTop titulo={titulo} />
+      <NavBarTop titulo={titulo} />
 
-        <div className={styles["wrapper"]}>
-          <Box>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 16 + "px",
-                width: 100 + "%"
-              }}
-            >
-              <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="" />
-              <h2 className={styles["nome"]}>{motorista.nome}</h2>
-              <div className={styles["container-info"]}>
-                <div className={styles["info"]}>
-                  <span className={styles["info-nro"]}>
-                    {/* {motorista.veiculo.qtdLugares} */}
-                  </span>
-                  {/* <span className={styles["info-sub"]}>Lugares Disponíveis</span> */}
-                </div>
-
-                <div className={styles["info"]}>
-                  <span className={styles["info-nro"]}>
-                    {/* {motorista.avaliacao} &#9733; */}
-                  </span>
-                  {/* <span className={styles["info-sub"]}>Avaliação</span> */}
-                </div>
-
-                <div className={styles["info"]}>
-                  <span className={styles["info-nro"]}>
-                    {/* {motorista.experiencia} Anos */}
-                  </span>
-                  {/* <span className={styles["info-sub"]}>Experiência</span> */}
-                </div>
+      <div className={styles["wrapper"]}>
+        <Box>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 16 + "px",
+              width: 100 + "%"
+            }}
+          >
+            <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="" />
+            <h2 className={styles["nome"]}>{motorista.nome}</h2>
+            <div className={styles["container-info"]}>
+              <div className={styles["info"]}>
+                <span className={styles["info-nro"]}>
+                  {/* {motorista.veiculo.qtdLugares} */}
+                </span>
+                {/* <span className={styles["info-sub"]}>Lugares Disponíveis</span> */}
               </div>
 
-              <CardInfo
-                icone={icoTelefone}
-                categoria={"Telefone:"}
-                info={FormatarTelefone(motorista.telefone)}
-              />
+              <div className={styles["info"]}>
+                <span className={styles["info-nro"]}>
+                  {/* {motorista.avaliacao} &#9733; */}
+                </span>
+                {/* <span className={styles["info-sub"]}>Avaliação</span> */}
+              </div>
 
-              <CardInfo
-                icone={icoEmail}
-                categoria={"Email:"}
-                info={motorista.email}
-              />
-
-              <CardInfo
-                icone={icoProfile}
-                categoria={"Data de Nascimento:"}
-                info={FormatarData(motorista.dataNascimento)}
-              />
-
-              <CardInfo
-                icone={icoVeiculo}
-                categoria={"Placa:"}
-                info={motorista.placa}
-              />
-
-              <CardInfo
-                icone={icoProfile}
-                categoria={"CNPJ:"}
-                info={FormatarCnpj(motorista.cnpj)}
-              />
-
-              {encontrarMotorista && <button
-                className={styles['botao']}
-                id={styles['enviar']}
-                onClick={() => navigate(`/responsavel/dependentes/${idDependente}/motorista/${idMotorista}/solicitacao`)}
-              >Enviar Solicitação</button>
-              }
+              <div className={styles["info"]}>
+                <span className={styles["info-nro"]}>
+                  {/* {motorista.experiencia} Anos */}
+                </span>
+                {/* <span className={styles["info-sub"]}>Experiência</span> */}
+              </div>
             </div>
-          </Box>
-        </div>
-        <NavBarBot />
+
+            <CardInfo
+              icone={icoTelefone}
+              categoria={"Telefone:"}
+              info={FormatarTelefone(motorista.telefone)}
+            />
+
+            <CardInfo
+              icone={icoEmail}
+              categoria={"Email:"}
+              info={motorista.email}
+            />
+
+            <CardInfo
+              icone={icoProfile}
+              categoria={"Data de Nascimento:"}
+              info={FormatarData(motorista.dataNascimento)}
+            />
+
+            <CardInfo
+              icone={icoVeiculo}
+              categoria={"Placa:"}
+              info={motorista.placa}
+            />
+
+            <CardInfo
+              icone={icoProfile}
+              categoria={"CNPJ:"}
+              info={FormatarCnpj(motorista.cnpj)}
+            />
+
+            {encontrarMotorista && <button
+              className={styles['botao']}
+              id={styles['enviar']}
+              onClick={() => navigate(`/responsavel/dependentes/${idDependente}/motorista/${idMotorista}/solicitacao`)}
+            >Enviar Solicitação</button>
+            }
+          </div>
+        </Box>
       </div>
+      <NavBarBot />
     </>
   );
 };
