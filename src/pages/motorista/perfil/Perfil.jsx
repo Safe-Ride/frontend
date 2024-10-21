@@ -4,7 +4,7 @@ import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import Card1 from "../../../components/motorista/Perfil/Card1";
 import Card2 from "../../../components/motorista/Perfil/Card2";
-import apiPerfil from "../../../apiPerfil";
+import api from "../../../api";
 import { useLocation } from "react-router-dom";
 
 function Perfil() {
@@ -12,19 +12,18 @@ function Perfil() {
   const idUsuario =
     location.state?.idUsuario || sessionStorage.getItem("ID_USUARIO");
   const [nome, setNome] = useState("");
-  const [imagem, setImagem] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [email, setEmail] = useState("");
+  const [imagem, setImagem] = useState("");
 
   useEffect(() => {
-    apiPerfil
-      .get(`/${idUsuario}`)
+    api
+      .get(`/usuarios/${idUsuario}`)
       .then((response) => {
         const { data } = response;
         const { nome, imagem, dataNascimento } = data;
-
         setNome(nome);
-        setImagem(imagem);
+        setImagem(imagem.caminho);
         setDataNascimento(dataNascimento);
         setEmail(sessionStorage.EMAIL_USUARIO);
       })
@@ -39,7 +38,7 @@ function Perfil() {
       <div className={styles["container"]}>
         <Card1
           nome={nome}
-          foto={imagem.caminho}
+          foto={imagem}
           dataNascimento={dataNascimento}
         ></Card1>
         {sessionStorage.getItem("ID_USUARIO") === idUsuario && (

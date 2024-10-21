@@ -33,9 +33,21 @@ const Dependentes = () => {
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
           if (dependente.motorista != null) {
-            return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}`} />;            
+            return (
+              <CardDependente
+                key={dependente.id}
+                dependente={dependente}
+                navigateTo={`/responsavel/dependentes/${dependente.id}`}
+              />
+            );
           } else {
-            return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`} />;            
+            return (
+              <CardDependente
+                key={dependente.id}
+                dependente={dependente}
+                navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`}
+              />
+            );
           }
         })}
         <div className={styles["adicionar"]}>

@@ -6,10 +6,7 @@ const CardDependente = ({ dependente, navigateTo = null }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className={styles.dependente}
-      onClick={() => navigate(navigateTo)}
-    >
+    <div className={styles.dependente} onClick={() => navigate(navigateTo)}>
       <img
         className={styles["foto"]}
         src={FotoPerfil(dependente.foto)}
