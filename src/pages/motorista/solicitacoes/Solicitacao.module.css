@@ -111,6 +111,10 @@
     line-height: normal;
 }
 
+#categoria-valor {
+    margin-bottom: 4px;
+}
+
 .info {
     font-size: 12px;
     font-style: normal;
@@ -126,6 +130,12 @@
     align-items: center;
 }
 
+.container-horario {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .ipt {
     box-sizing: border-box;
     display: flex;
@@ -138,6 +148,21 @@
 
 .ipt span {
     font-size: 12px;
+}
+
+.ipt-horario {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: min-content;
+    margin-top: 0.5rem;
+}
+
+.ipt-horario span {
+    font-size: 12px;
+    margin-right: 4px;
 }
 
 .ipt-contrato {
