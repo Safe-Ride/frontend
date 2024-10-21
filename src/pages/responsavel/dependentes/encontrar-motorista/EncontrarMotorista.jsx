@@ -1,21 +1,34 @@
+import { useParams } from "react-router-dom";
+import api from "../../../../api";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import CardMotorista from "../../../../components/responsavel/dependentes/encontrarMotorista/CardMotorista/CardMotorista";
 import styles from "./EncontrarMotorista.module.css";
+import { useState, useEffect } from "react"; 
 
 const titulo = "ENCONTRAR MOTORISTA";
 
-const EncontrarMotorista = ({ idDependente }) => {
-  const listaMotorista = [
-    { nome: "teste", id: 1, avaliacao: 4.3 },
-    { nome: "teste2", id: 2, avaliacao: 4.5 },
-  ];
+const EncontrarMotorista = () => {
+  
+  const { idDependente } = useParams();
+  const [motoristas, setMotoristas] = useState([]);
+
+  useEffect(() => {
+    api.get(`/usuarios/motorista/escola/${idDependente}`)
+      .then((res) => {
+        const data = res.data;
+        console.info(data);
+        setMotoristas(data);
+      })
+      .catch(err => console.error(err));
+
+  }, [idDependente]);
 
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["motoristas"]}>
-        {listaMotorista.map((motorista) => {
+        {motoristas.map((motorista) => {
           return (
             <CardMotorista
               idDependente={idDependente}

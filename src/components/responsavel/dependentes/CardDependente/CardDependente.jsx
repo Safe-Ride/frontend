@@ -2,13 +2,11 @@ import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import styles from "./CardDependente.module.css";
 import { useNavigate } from "react-router-dom";
 
-const CardDependente = ({ dependente }) => {
+const CardDependente = ({ dependente, navigateTo = null }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className={styles.dependente}
-    >
+    <div className={styles.dependente} onClick={() => navigate(navigateTo)}>
       <img
         className={styles["foto"]}
         src={FotoPerfil(dependente.foto)}

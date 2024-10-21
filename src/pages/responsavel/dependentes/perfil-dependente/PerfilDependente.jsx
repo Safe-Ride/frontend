@@ -12,6 +12,7 @@ import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FormatarData from "../../../../utils/functions/FormatarData";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
@@ -168,7 +169,7 @@ const PerfilDependente = () => {
             key={"dataNascimento"}
             icone={icoProfile}
             categoria={"Data de Nascimento:"}
-            info={dependenteInfo.dataNascimento}
+            info={FormatarData(dependenteInfo.dataNascimento)}
             tipo="date"
           />
           <CardInfo

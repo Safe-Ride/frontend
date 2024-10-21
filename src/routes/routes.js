@@ -224,7 +224,7 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/dependentes/:id/motorista"
+          path="/responsavel/dependentes/:idDependente/motorista"
           element={
             <PrivateRoute>
               <PerfilMotorista />
@@ -248,7 +248,7 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/dependentes/:id/encontrar-motorista"
+          path="/responsavel/dependentes/:idDependente/encontrar-motorista"
           element={
             <PrivateRoute>
               <EncontrarMotorista />

@@ -5,29 +5,34 @@ import CardInfo from "../../../../components/responsavel/dependentes/perfilDepen
 import styles from "./PerfilMotorista.module.css";
 import icoProfile from "../../../../utils/assets/dependentes/profile.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
+import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
+import icoEmail from "../../../../utils/assets/dependentes/email.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from "../../../../api";
+import FormatarData from "../../../../utils/functions/FormatarData";
+import FormatarTelefone from "../../../../utils/functions/FormatarTelefone";
+import FormatarCnpj from "../../../../utils/functions/FormatarCnpj";
 
 const titulo = "PERFIL MOTORISTA";
-
-const motorista = {
-  nome: "Bruno Henrique",
-  veiculo: {
-    modelo: "Mercedes-Benz 413 Van 19+1",
-    placa: "ABC1D23",
-    qtdLugares: 10,
-  },
-  telefone: "11 987654321",
-  idade: 40,
-  avaliacao: 4.5,
-  experiencia: 4,
-};
 
 const PerfilMotorista = ({ encontrarMotorista = false }) => {
 
   const navigate = useNavigate();
   const { idDependente } = useParams("idDependente");
-  const { idMotorista } = useParams("idMotorista");
+  var { idMotorista } = useParams("idMotorista");
+
+  const [motorista, setMotorista] = useState({ imagem: { caminho: '' } });
+
+  useEffect(() => {
+    api.get(`/usuarios/perfil-motorista/${idDependente}`)
+      .then((res) => {
+        const data = res.data;
+        setMotorista(data);
+        console.log(motorista)
+      });
+  }, [idDependente])
 
   return (
     <>
@@ -42,45 +47,62 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 gap: 16 + "px",
+                width: 100 + "%"
               }}
             >
-              <img className={styles["foto-perfil"]} src={FotoPerfil()} alt="" />
+              <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="" />
               <h2 className={styles["nome"]}>{motorista.nome}</h2>
-              <p className={styles["veiculo-info"]}>
-                {motorista.veiculo.modelo} · {motorista.veiculo.placa}
-              </p>
               <div className={styles["container-info"]}>
                 <div className={styles["info"]}>
                   <span className={styles["info-nro"]}>
-                    {motorista.veiculo.qtdLugares}
+                    {/* {motorista.veiculo.qtdLugares} */}
                   </span>
-                  <span className={styles["info-sub"]}>Lugares Disponíveis</span>
+                  {/* <span className={styles["info-sub"]}>Lugares Disponíveis</span> */}
                 </div>
 
                 <div className={styles["info"]}>
                   <span className={styles["info-nro"]}>
-                    {motorista.avaliacao} &#9733;
+                    {/* {motorista.avaliacao} &#9733; */}
                   </span>
-                  <span className={styles["info-sub"]}>Avaliação</span>
+                  {/* <span className={styles["info-sub"]}>Avaliação</span> */}
                 </div>
 
                 <div className={styles["info"]}>
                   <span className={styles["info-nro"]}>
-                    {motorista.experiencia} Anos
+                    {/* {motorista.experiencia} Anos */}
                   </span>
-                  <span className={styles["info-sub"]}>Experiência</span>
+                  {/* <span className={styles["info-sub"]}>Experiência</span> */}
                 </div>
               </div>
 
               <CardInfo
                 icone={icoTelefone}
                 categoria={"Telefone:"}
-                info={motorista.telefone}
+                info={FormatarTelefone(motorista.telefone)}
               />
+
+              <CardInfo
+                icone={icoEmail}
+                categoria={"Email:"}
+                info={motorista.email}
+              />
+
               <CardInfo
                 icone={icoProfile}
-                categoria={"Idade:"}
-                info={motorista.idade}
+                categoria={"Data de Nascimento:"}
+                info={FormatarData(motorista.dataNascimento)}
+              />
+
+              <CardInfo
+                icone={icoVeiculo}
+                categoria={"Placa:"}
+                info={motorista.placa}
+              />
+
+              <CardInfo
+                icone={icoProfile}
+                categoria={"CNPJ:"}
+                info={FormatarCnpj(motorista.cnpj)}
               />
 
               {encontrarMotorista && <button
