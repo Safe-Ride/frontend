@@ -54,17 +54,9 @@ const ListaResponsaveis = ({anoSelecionado}) => {
 };
 
 function ultimoPagamento(pagamentos) {
-  const dataAtual = new Date();
-
+  pagamentos.sort((a, b) => new Date(b.dataVencimento) - new Date(a.dataVencimento));
   for (let i = 0; i < pagamentos.length; i++) {
-    const dataVencimento = new Date(pagamentos[i].dataVencimento);
-
-    if (
-      dataAtual.getMonth() === dataVencimento.getMonth() &&
-      dataAtual.getFullYear() === dataVencimento.getFullYear()
-    ) {
       return pagamentos[i];
-    }
   }
 
   return null;
