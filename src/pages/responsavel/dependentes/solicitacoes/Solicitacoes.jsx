@@ -13,34 +13,45 @@ import icoDinheiro from "../../../../utils/assets/dependentes/dinheiro.png";
 import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import { useEffect, useState } from "react"
 import api from "../../../../api"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import Loader from "../../../../components/Loader/Loader"
+import FormatarData from "../../../../utils/functions/FormatarData"
+import ModalConfirmar from "../../../../components/ModalConfirmar/ModalConfirmar"
 
 const Solicitacoes = () => {
 
     const titulo = "SOLICITAÇÕES"
+    const navigate = useNavigate();
     const { idDependente } = useParams("idDependente");
     const { idMotorista } = useParams("idMotorista");
-    const [dependente, setDependente] = useState({});
-    const [motorista, setMotorista] = useState({});
-    const [enderecos, setEnderecos] = useState([]);
+    const [dependente, setDependente] = useState(null);
+    const [motorista, setMotorista] = useState(null);
+    const [enderecos, setEnderecos] = useState(null);
     const [loading, setLoading] =
         useState({
-            "dependente": false,
-            "motorista": false,
-            "enderecos": false
+            "dependente": true,
+            "motorista": true,
+            "enderecos": true
         });
-    const [solicitacao, setSolicitacao] = useState(
-        {
-            responsavelId: '', 
-            motoristaId: '',
-            dependenteId: '',
-            periodo: '',
-            tipo: '',
-            diaSemana: '',
-            enderecoId: '',
-            status: ''
-        }
-    );
+    const [solicitacao, setSolicitacao] = useState({ status: null });
+    const [showModal, setShowModal] = useState(false);
+    const [respostaModal, setRespostaModal] = useState(null);
+
+    const handleConfirm = (response) => {
+        setRespostaModal(response);
+    };
+
+    // Solicitação
+    useEffect(() => {
+        api
+            .get(`/solicitacoes/dependente/${idDependente}`)
+            .then((res) => {
+                const data = res.data;
+                console.log(data);
+                setSolicitacao(data);
+            })
+            .catch((err) => console.error(err))
+    }, []);
 
     // Motorista
     useEffect(() => {
@@ -53,7 +64,7 @@ const Solicitacoes = () => {
                     setMotorista(data);
                 })
                 .catch((err) => console.error(err))
-                .finally(() => setLoading((prev) => ({ ...prev, "motorista": true })));
+                .finally(() => setLoading((prev) => ({ ...prev, "motorista": false })));
         }
         getData();
     }, [idMotorista]);
@@ -69,7 +80,7 @@ const Solicitacoes = () => {
                     setDependente(data);
                 })
                 .catch((err) => console.error(err))
-                .finally(() => setLoading((prev) => ({ ...prev, "dependente": true })));
+                .finally(() => setLoading((prev) => ({ ...prev, "dependente": false })));
         }
         getData();
     }, [idDependente])
@@ -85,10 +96,49 @@ const Solicitacoes = () => {
                     setEnderecos(data);
                 })
                 .catch((err) => console.error(err))
-                .finally(() => setLoading((prev) => ({ ...prev, "enderecos": true })));
+                .finally(() => setLoading((prev) => ({ ...prev, "enderecos": false })));
         }
         getData();
     }, [])
+
+    function aceitarSolicitacao() {
+        api.patch(`/solicitacoes/aprovar/${solicitacao.id}`)
+            .then((res) => {
+                const data = res.data;
+                setSolicitacao(data);
+                console.log(solicitacao)
+            })
+            .catch((err) => console.error(err))
+            .finally(() => {
+                if (solicitacao?.id) {
+                    navigate(`/responsavel/dependentes`);
+                } else {
+                    console.error('Navegação abortada: solicitação inválida');
+                }
+            });
+    }
+
+    useEffect(() => {
+        if (respostaModal) {
+            setSolicitacao(prev => {
+
+                api.patch(`/solicitacoes/${prev.id}`)
+                    .then((res) => {
+                        const data = res.data;
+                        setSolicitacao(data);
+                        console.log(solicitacao)
+                    })
+                    .catch((err) => console.error(err))
+                    .finally(() => {
+                        if (solicitacao?.id) {
+                            navigate(`/responsavel/dependentes`);
+                        } else {
+                            console.error('Navegação abortada: solicitação inválida');
+                        }
+                    });
+            })
+        }
+    }, respostaModal)
 
     function enviarSolicitacao() {
 
@@ -100,7 +150,7 @@ const Solicitacoes = () => {
             tipo: enviarTipoTrajetoNum(),
             diaSemana: enviarDiaSemana().trim(),
             enderecoId: Number(document.getElementById("select-endereco").value),
-            status: "PENDENTE"
+            status: "PENDENTE_MOTORISTA"
         });
 
         console.log(solicitacao);
@@ -113,7 +163,7 @@ const Solicitacoes = () => {
         })
             .then((res) => {
                 const data = res.data;
-                console.log(data);
+                // console.log(data);
             })
             .catch((err) => console.error(err));
     }
@@ -162,19 +212,100 @@ const Solicitacoes = () => {
         return document.getElementById('select-periodo').value;
     }
 
-    function tipoTrajetoTexto(tipoTrajetoNum) {
-        switch (tipoTrajetoNum) {
-            case 0: return 'Ida'
-            case 1: return 'Volta'
-            case 2: return 'Ida e Volta'
-            default: return null
-        }
+    function capitalize(str) {
+        return String(str)
+            .split(' ')
+            .map(word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+    function formatarDiaSemana(diaSemana) {
+        return capitalize(String(diaSemana)).trim().replaceAll(' ', ', ');
+    }
+
+    function formatarTipoTrajeto(tipoTrajeto) {
+        return capitalize(String(tipoTrajeto)).replaceAll(' ', ' e ');
+    }
+
+    function formatarPeriodo(periodo) {
+        let str = capitalize(String(periodo));
+        return (str == "Manha") ? "Manhã" : str;
     }
 
     const exibirSolicitacao = (status) => {
-        if (status == 0) {
+        if (status == "PENDENTE_RESPONSAVEL") {
+            return <>
+                {/* Enviar solicitação final */}
+                <CardInfo
+                    icone={icoEscola}
+                    categoria={"Escola"}
+                    info={dependente.escola.nome}
+                />
+                <CardInfo
+                    icone={icoCasa}
+                    categoria={"Endereço"}
+                    info={solicitacao.endereco.nome}
+                />
+                <CardInfo
+                    icone={icoRua}
+                    categoria={'Ida e/ou Volta'}
+                    info={formatarTipoTrajeto(solicitacao.tipo)}
+                />
+                <CardInfo
+                    icone={icoCalendario}
+                    categoria={'Dias da Semana'}
+                    info={formatarDiaSemana(solicitacao.diaSemana)}
+                />
+                <CardInfo
+                    icone={icoRelogio}
+                    categoria={'Período'}
+                    info={formatarPeriodo(solicitacao.periodo)}
+                />
+                <div className={styles['card']}>
+                    <div className={styles['icone']}>
+                        <img className={styles['icone-img']} src={icoRelogio} alt="ico" />
+                    </div>
+                    <div className={styles['content']}>
+                        <span className={styles['categoria']}>Horário</span>
+                        <div className={styles['content-horario']}>
+                            <div>
+                                <span className={styles['categoria']}>Ida: </span>
+                                <span className={styles['info']}>{solicitacao.horarioIda}</span>
+                            </div>
+                            <div>
+                                <span className={styles['categoria']}>Volta: </span>
+                                <span className={styles['info']}>{solicitacao.horarioVolta}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <CardInfo
+                    icone={icoContrato}
+                    categoria={'Vigência do Contrato'}
+                    info={FormatarData(solicitacao.contratoInicio) + " - " + FormatarData(solicitacao.contratoFim)}
+                />
+                <CardInfo
+                    icone={icoDinheiro}
+                    categoria={'Valor'}
+                    info={'R$' + solicitacao.valor.toFixed(2).replace('.', ',')}
+                />
+
+                <div className={styles['botoes']}>
+                    <button onClick={aceitarSolicitacao} className={styles['btn-amarelo']}>Aceitar</button>
+                    <button onClick={() => { setShowModal(true) }} className={styles['btn-preto']}>Recusar</button>
+                </div>
+            </>
+        } else if (solicitacao.status == "PENDENTE_MOTORISTA") {
+            return <div>Aguardando motorista...</div>
+        } else {
             return <>
                 {/* Enviar solicitação inicial */}
+                <CardInfo
+                    icone={icoEscola}
+                    categoria={"Escola"}
+                    info={dependente.escola.nome}
+                />
                 <div className={styles['card']}> { /* Select de endereço */}
                     <div className={styles['icone']}>
                         <img className={styles['icone-img']} src={icoCasa} alt="ico" />
@@ -184,7 +315,7 @@ const Solicitacoes = () => {
                         <div className={styles['container-checkbox']}>
                             <select name="" className={styles['ipt-select']} id="select-endereco">
                                 {enderecos.map((endereco) => {
-                                    return <option value={endereco.id}>{endereco.nome}</option>
+                                    return <option key={"endereco" + endereco.id} value={endereco.id}>{endereco.nome}</option>
                                 })}
                             </select>
                         </div>
@@ -241,8 +372,8 @@ const Solicitacoes = () => {
                         <span className={styles['categoria']}>Período</span>
                         <div className={styles['container-checkbox']}>
                             <select name="" className={styles['ipt-select']} id="select-periodo">
-                                <option value="MANHA">Manhã</option>
-                                <option value="TARDE">Tarde</option>
+                                <option key={"MANHA"} value="MANHA">Manhã</option>
+                                <option key={"TARDE"} value="TARDE">Tarde</option>
                             </select>
                         </div>
                     </div>
@@ -252,97 +383,43 @@ const Solicitacoes = () => {
                     <button onClick={enviarSolicitacao} className={styles['btn-preto']}>Enviar Socitação</button>
                 </div>
             </>
-        } else {
-            return <>
-                {/* Enviar solicitação final */}
-                <CardInfo
-                    icone={icoCasa}
-                    categoria={"Endereço"}
-                    info={solicitacao.endereco}
-                />
-                <CardInfo
-                    icone={icoRua}
-                    categoria={'Ida e/ou Volta'}
-                    info={tipoTrajetoTexto(solicitacao.tipoTrajeto)}
-                />
-                <CardInfo
-                    icone={icoCalendario}
-                    categoria={'Dias da Semana'}
-                    info={solicitacao.diaSemana.toString().replace(' ', ', ')}
-                />
-                <CardInfo
-                    icone={icoRelogio}
-                    categoria={'Período'}
-                    info={solicitacao.periodo}
-                />
-                <div className={styles['card']}>
-                    <div className={styles['icone']}>
-                        <img className={styles['icone-img']} src={icoRelogio} alt="ico" />
-                    </div>
-                    <div className={styles['content']}>
-                        <span className={styles['categoria']}>Horário</span>
-                        <div className={styles['content-horario']}>
-                            <div>
-                                <span className={styles['categoria']}>Ida: </span>
-                                <span className={styles['info']}>{solicitacao.horario[0]}</span>
-                            </div>
-                            <div>
-                                <span className={styles['categoria']}>Volta: </span>
-                                <span className={styles['info']}>{solicitacao.horario[1]}</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <CardInfo
-                    icone={icoContrato}
-                    categoria={'Vigência do Contrato'}
-                    info={solicitacao.dataInicio + " - " + solicitacao.dataFim}
-                />
-                <CardInfo
-                    icone={icoDinheiro}
-                    categoria={'Valor'}
-                    info={'R$' + solicitacao.valor.toFixed(2).replace('.', ',')}
-                />
-
-                <div className={styles['botoes']}>
-                    <button className={styles['btn-amarelo']}>Aceitar</button>
-                    <button className={styles['btn-preto']}>Recusar</button>
-                </div>
-            </>
         }
-    }
-
-    if (!loading.dependente || !loading.motorista || !loading.enderecos) {
-        return (<div className={styles['loading']}>Loading...</div>)
     }
 
     return (
         <div>
             <NavBarTop titulo={titulo} />
+            {
+                showModal &&
+                <ModalConfirmar
+                    mensagem={"Deseja recusar o contrato?"}
+                    onConfirm={handleConfirm}
+                    onCancel={() => setShowModal(false)}
+                />
+            }
 
-            <div className={styles["wrapper"]}>
-                <Box>
-                    <div className={styles['container']}>
-                        <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="Foto de Perfil" />
-                        <div>
-                            <h2 className={styles["nome"]}>{motorista.nome}</h2>
-                            <p className={styles["dependente"]}>
-                                Dependente: {dependente.nome}
-                            </p>
-                        </div>
+            <Loader loading={loading.dependente || loading.motorista || loading.enderecos}>
+                {motorista && dependente && enderecos &&
 
-                        <CardInfo
-                            icone={icoEscola}
-                            categoria={"Escola"}
-                            info={dependente.escola.nome}
-                        />
+                    <div className={styles["wrapper"]}>
+                        <Box>
+                            <div className={styles['container']}>
+                                <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="Foto de Perfil" />
+                                <div>
+                                    <h2 className={styles["nome"]}>{motorista.nome}</h2>
+                                    <p className={styles["dependente"]}>
+                                        Dependente: {dependente.nome}
+                                    </p>
+                                </div>
 
-                        {exibirSolicitacao(solicitacao.status)}
+                                {solicitacao?.status != null &&
+                                    exibirSolicitacao(solicitacao?.status)
+                                }
+                            </div>
+                        </Box>
                     </div>
-                </Box>
-            </div>
-
+                }
+            </Loader>
             <NavBarBot />
         </div>
     )
