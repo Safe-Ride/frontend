@@ -7,7 +7,7 @@ const CardMotorista = ( { idDependente, motorista } ) => {
     const navigate = useNavigate();
 
     return (
-        <div className={styles.dependente} onClick={() => navigate(`/responsavel/dependentes/${idDependente}/motorista/${motorista.id}`)}>
+        <div className={styles.dependente} onClick={() => navigate(`/responsavel/dependentes/${idDependente}/encontrar-motorista/${motorista.id}`)}>
             <img className={styles['foto']} src={FotoPerfil(motorista.foto)} alt="foto motorista" />
             <div className={styles['info']}>
                 <h2 className={styles['nome']}>{motorista.nome}</h2>

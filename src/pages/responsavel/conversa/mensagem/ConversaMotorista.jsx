@@ -19,7 +19,7 @@ const ConversaMotorista = () => {
   const messagesEndRef = useRef(null);
 
   const params = useParams();
-  const conversaId = sessionStorage.getItem("conversaId")
+  const conversaId = sessionStorage.getItem("conversaId");
 
   const loadMensagens = useCallback(async () => {
     try {
@@ -28,32 +28,34 @@ const ConversaMotorista = () => {
         { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
       );
       const data = response.data;
-      let mensagens = data.mensagens
+      let mensagens = data.mensagens;
       setMotorista(data.motorista);
-      let mensagensFiltradas = mensagens.filter(m => m.status !== "")
+      let mensagensFiltradas = mensagens.filter((m) => m.status !== "");
       setMensagens(mensagensFiltradas);
       await marcarMensagensComoLidas(data.mensagens);
-      return response.status
+      return response.status;
     } catch (error) {
       console.error(error);
     }
   }, []);
 
   const marcarMensagensComoLidas = async (mensagens) => {
-    let mensagensNaoLidas = mensagens.filter((m) => !m.lida && m.tipoUsuario === "MOTORISTA");
-        console.log(mensagensNaoLidas)
-        mensagensNaoLidas.forEach((m) => {
-          api.patch(
-            `/mensagens/marcar-lida/${m.id}`,
-            {},
-            { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
-          )
-        });
-      }
+    let mensagensNaoLidas = mensagens.filter(
+      (m) => !m.lida && m.tipoUsuario === "MOTORISTA"
+    );
+    console.log(mensagensNaoLidas);
+    mensagensNaoLidas.forEach((m) => {
+      api.patch(
+        `/mensagens/marcar-lida/${m.id}`,
+        {},
+        { headers: { Authorization: `Bearer ${sessionStorage.token}` } }
+      );
+    });
+  };
 
   const atualizarStatus = () => {
     return true;
-  }
+  };
 
   useEffect(() => {
     loadMensagens();
@@ -65,7 +67,7 @@ const ConversaMotorista = () => {
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     } else {
       console.warn("messagesEndRef is null");
     }
@@ -78,7 +80,13 @@ const ConversaMotorista = () => {
         {mensagens &&
           mensagens.map((m) => {
             if (m.tipoUsuario === "RESPONSAVEL") {
-              return <StatusEnviado mensagem={m} key={m.id} enviada={atualizarStatus}></StatusEnviado>;
+              return (
+                <StatusEnviado
+                  mensagem={m}
+                  key={m.id}
+                  enviada={atualizarStatus}
+                ></StatusEnviado>
+              );
             } else {
               return <StatusRecebido mensagem={m} key={m.id}></StatusRecebido>;
             }

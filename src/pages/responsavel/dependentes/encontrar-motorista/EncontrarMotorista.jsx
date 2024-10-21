@@ -11,10 +11,11 @@ const titulo = "ENCONTRAR MOTORISTA";
 const EncontrarMotorista = () => {
   
   const { idDependente } = useParams();
+  const idResponsavel = sessionStorage.ID_USUARIO;
   const [motoristas, setMotoristas] = useState([]);
 
   useEffect(() => {
-    api.get(`/usuarios/motorista/escola/${idDependente}`)
+    api.get(`/usuarios/motoristas/${idResponsavel}`)
       .then((res) => {
         const data = res.data;
         console.info(data);
