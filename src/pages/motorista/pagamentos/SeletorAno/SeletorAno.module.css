@@ -1,0 +1,11 @@
+.seletor {
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--laranja);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.container {
+    padding-left: 10%;
+}
