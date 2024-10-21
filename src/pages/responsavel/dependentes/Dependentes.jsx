@@ -23,17 +23,16 @@ const Dependentes = () => {
       .then((res) => {
         const data = res.data;
         setListaDependentes(data);
-        console.log(listaDependentes)
+        console.log(listaDependentes);
       });
 
-    api.get(`/solicitacoes/responsavel/${sessionStorage.ID_USUARIO}`)
+    api
+      .get(`/solicitacoes/responsavel/${sessionStorage.ID_USUARIO}`)
       .then((res) => {
         const data = res.data;
         setSolicitacoes(data);
-      })
+      });
   }, []);
-
-
 
   const navigate = useNavigate();
 
@@ -42,14 +41,35 @@ const Dependentes = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles.dependentes}>
         {listaDependentes.map((dependente) => {
-
           if (dependente.motorista != null) {
-            return <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}`} />;
+            return (
+              <CardDependente
+                key={dependente.id}
+                dependente={dependente}
+                navigateTo={`/responsavel/dependentes/${dependente.id}`}
+              />
+            );
           } else {
-            let retorno = <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`} />;
+            let retorno = (
+              <CardDependente
+                key={dependente.id}
+                dependente={dependente}
+                navigateTo={`/responsavel/dependentes/${dependente.id}/encontrar-motorista`}
+              />
+            );
             solicitacoes.forEach((solicitacao) => {
-              if (solicitacao.dependente.id == dependente.id && (solicitacao.status == "PENDENTE_MOTORISTA" || solicitacao.status == "PENDENTE_RESPONSAVEL")) {
-                retorno = <CardDependente key={dependente.id} dependente={dependente} navigateTo={`/responsavel/dependentes/${solicitacao.dependente.id}/motorista/${solicitacao.motorista.id}/solicitacao`} />;
+              if (
+                solicitacao.dependente.id == dependente.id &&
+                (solicitacao.status == "PENDENTE_MOTORISTA" ||
+                  solicitacao.status == "PENDENTE_RESPONSAVEL")
+              ) {
+                retorno = (
+                  <CardDependente
+                    key={dependente.id}
+                    dependente={dependente}
+                    navigateTo={`/responsavel/dependentes/${solicitacao.dependente.id}/motorista/${solicitacao.motorista.id}/solicitacao`}
+                  />
+                );
               }
             });
 

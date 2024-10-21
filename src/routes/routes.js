@@ -33,6 +33,8 @@ import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
+import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
+
 import Cad_Trajeto from "../pages/motorista/trajetos/Cad_Trajeto";
 
 function Rotas() {
@@ -146,6 +148,14 @@ function Rotas() {
           element={
             <PrivateRoute>
               <RTempoReal />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/tempo-real/:id"
+          element={
+            <PrivateRoute>
+              <RTempoRealMapa />
             </PrivateRoute>
           }
         />

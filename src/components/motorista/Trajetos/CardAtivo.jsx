@@ -12,7 +12,8 @@ const CardAtivo = ({
   dependenteId,
   enderecoId,
 }) => {
-  const [novoStatus, setAtivo] = useState("NAO_INICIADO");
+  const [novoStatus, setAtivo] = useState(status);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const atualizaTrajeto = async () => {
     const dados = {
@@ -26,15 +27,13 @@ const CardAtivo = ({
           Authorization: `Bearer ${token}`,
         },
       });
-      setAtivo(novoStatus);
+      setAtivo(res.data.status);
       closeModal();
-      console.log(res.data);
+      // console.log(res.data);
     } catch (e) {
       console.error("Erro ao fazer o PATCH:", e);
     }
   };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -42,7 +41,6 @@ const CardAtivo = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
-    window.location.reload();
   };
 
   return (

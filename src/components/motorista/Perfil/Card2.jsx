@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Card2.module.css";
-import apiPerfil from "../../../apiPerfil";
+import api from "../../../api";
 import imgEditar from "../../../utils/assets/perfil/editar.png";
 import imgSalvar from "../../../utils/assets/perfil/done.png";
 import imgExcluir from "../../../utils/assets/perfil/excluir.png";
 
 const Card2 = ({ nome, email }) => {
+  const [imagem, setImagem] = useState(null); // Estado para a imagem
   const [editandoCampo, setEditandoCampo] = useState(null);
   const [campos, setCampos] = useState({
     nome: sessionStorage.NOME_USUARIO || nome,
@@ -86,6 +87,39 @@ const Card2 = ({ nome, email }) => {
     }
   };
 
+  const selecionarImagem = (event) => {
+    setImagem(event.target.files[0]); // Salva a imagem no estado
+  };
+
+  const subirImagem = () => {
+    const id = sessionStorage.getItem("ID_USUARIO");
+    const token = sessionStorage.getItem("token");
+
+    if (imagem) {
+      const reader = new FileReader();
+      reader.readAsArrayBuffer(imagem); // Lê o arquivo como um ArrayBuffer
+
+      reader.onloadend = () => {
+        const arrayBuffer = reader.result;
+        api
+          .patch(`/usuarios/atualizar-foto-perfil/${id}`, arrayBuffer, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": imagem.type,
+            },
+          })
+          .then((response) => {
+            console.log("Imagem enviada com sucesso:", response.data);
+          })
+          .catch((error) => {
+            console.log("Erro ao enviar a imagem:", error);
+          });
+      };
+    } else {
+      console.log("Nenhuma imagem selecionada");
+    }
+  };
+
   return (
     <div className={styles["card2"]}>
       <div className={styles["inicio"]}>
@@ -115,6 +149,14 @@ const Card2 = ({ nome, email }) => {
             sessionStorage.DATA_NASCIMENTO_USUARIO || ""
           )}
         </div>
+        <div className={styles["dados"]}>
+          <p>Foto:</p>
+          <input type="file" accept="image/*" onChange={selecionarImagem} />
+          <button
+            className={styles["btn-upload"]}
+            onClick={subirImagem}
+          ></button>
+        </div>
       </div>
     </div>
   );
@@ -127,8 +169,8 @@ function salvarBanco(campo, info) {
     alteracao: info,
   };
   console.log(data);
-  apiPerfil
-    .post(`/atualizar-${campo}`, data)
+  api
+    .post(`/usuarios/atualizar-${campo}`, data)
     .then((response) => {
       console.log(response);
     })

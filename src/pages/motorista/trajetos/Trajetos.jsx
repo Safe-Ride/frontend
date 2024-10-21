@@ -34,17 +34,19 @@ const Trajetos = () => {
         });
     };
     requi();
-  }, [id, token]);
+  }, [id, token, trajetoAtivo]);
 
-  const handleAtivoChange = (trajetoId, novoAtivo) => {
-    if (novoAtivo) {
-      const novoTrajetoAtivo = dados.find(
-        (trajeto) => trajeto.id === trajetoId
-      );
-      setTrajetoAtivo(novoTrajetoAtivo); // Define o trajeto como ativo
+  // console.log(dados)
+  const handleAtivoChange = (trajetoId) => {
+    if (trajetoAtivo && trajetoAtivo.id === trajetoId) {
+      setTrajetoAtivo(null);
     } else {
-      setTrajetoAtivo(null); // Remove o trajeto ativo
+      const novoTrajetoAtivo = dados.find((trajeto) => trajeto.id === trajetoId);
+      if (novoTrajetoAtivo) {
+        setTrajetoAtivo(novoTrajetoAtivo);
+      }
     }
+    // location.reload()
   };
 
   return (
@@ -53,7 +55,7 @@ const Trajetos = () => {
       <div className={styles["container"]}>
         <div className={styles["trajeto"]}></div>
         <TrajetosAtivos trajetoAtivo={trajetoAtivo} />
-        <TrajetosGerais trajetos={dados} onAtivoChange={handleAtivoChange} />
+        <TrajetosGerais trajetos={dados} onAtivoChange={handleAtivoChange} trajetoAtivo={trajetoAtivo} />
       </div>
       <NavBarBot />
     </>
