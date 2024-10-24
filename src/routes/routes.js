@@ -21,7 +21,7 @@ import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/vi
 import PrivateRoute from "./PrivateRoute";
 
 import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
-import EncontrarMotorista from "../components/responsavel/dependentes/encontrarMotorista/EncontrarMotorista";
+import EncontrarMotorista from "../pages/responsavel/dependentes/encontrar-motorista/EncontrarMotorista";
 import Login from "../pages/login/Login";
 
 import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
@@ -32,7 +32,6 @@ import CadastroDependente from "../pages/responsavel/dependentes/cadastro-depend
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
-import PerfilMotoristaSolitacao from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotoristaSolicitacao";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 
@@ -225,7 +224,7 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/dependentes/:id/motorista"
+          path="/responsavel/dependentes/:idDependente/motorista/:idMotorista"
           element={
             <PrivateRoute>
               <PerfilMotorista />
@@ -233,26 +232,26 @@ function Rotas() {
           }
         />
         <Route
-          path="/responsavel/dependentes/:id/motorista/:id"
+          path="/responsavel/dependentes/:idDependente/encontrar-motorista/:idMotorista"
           element={
             <PrivateRoute>
-              <PerfilMotoristaSolitacao />
+              <PerfilMotorista encontrarMotorista />
             </PrivateRoute>
           }
         />
         <Route
-          path="/responsavel/dependentes/:id/encontrar-motorista"
+          path="/responsavel/dependentes/:idDependente/motorista/:idMotorista/solicitacao"
+          element={ 
+            <PrivateRoute>
+              <RSolicitacoes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/responsavel/dependentes/:idDependente/encontrar-motorista"
           element={
             <PrivateRoute>
               <EncontrarMotorista />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/responsavel/dependentes/:id/solicitacoes"
-          element={
-            <PrivateRoute>
-              <RSolicitacoes />
             </PrivateRoute>
           }
         />

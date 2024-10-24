@@ -16,6 +16,8 @@ p {
 
 .wrapper {
   padding: 8px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .foto-perfil {

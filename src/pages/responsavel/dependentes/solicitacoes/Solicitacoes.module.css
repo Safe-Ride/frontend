@@ -1,16 +1,10 @@
 .container {
-    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
     width: 100%;
+    gap: 16px;
 }
-
-/* .container div p,h2 {
-    margin: 0;
-} */
 
 .wrapper {
     padding: 8px 20px;
@@ -56,7 +50,7 @@
     justify-content: space-evenly;
 }
 
-.btn-aceitar {
+.btn-amarelo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +60,7 @@
     border: none;
 }
 
-.btn-recusar {
+.btn-preto {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,3 +70,149 @@
     border: none;
     color: var(--branco);
 }
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 40px;
+    margin: 1% 0%;
+    border-radius: 24px;
+    background-color: var(--amarelo, #F2C718);
+}
+
+.icone-img {
+    max-height: 16px;
+    /* width: 16px; */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+}
+
+.categoria {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container-checkbox {
+    width: 100%;
+    display: flex;
+}
+
+.checkbox {
+    width: min-content;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+}
+
+.checkbox input {
+    margin-left: 0;
+}
+
+.checkbox label {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 8px;
+}
+
+.chk-dia-semana {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 1.5px solid light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    background-color: white;
+    cursor: pointer;
+    margin-right: 0;
+}
+
+.chk-dia-semana:checked {
+    background-color: var(--amarelo, #F2C718);
+    border: 1px solid var(--preto);
+    position: relative;
+}
+
+#chk-segunda::before {
+    content: "S";
+    font-size: 12px;
+    color: var(--preto);
+    position: absolute;
+}
+
+#chk-terca::before {
+    content: "T";
+    font-size: 12px;
+    color: var(--preto);
+    position: absolute;
+}
+
+#chk-quarta::before {
+    content: "Q";
+    font-size: 12px;
+    color: var(--preto);
+    position: absolute;
+}
+
+#chk-quinta::before {
+    content: "Q";
+    font-size: 12px;
+    color: var(--preto);
+    position: absolute;
+}
+
+#chk-sexta::before {
+    content: "S";
+    font-size: 12px;
+    color: var(--preto);
+    position: absolute;
+}
+
+.ipt-select {
+    display: flex;
+    width: min-content;
+    width: 100%;
+    padding: 4px;
+    font-size: 12px;
+    margin-top: 4px;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.content-horario {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+

@@ -10,10 +10,6 @@ html {
   margin: 3vh;
 }
 
-.motoristas {
-  margin-top: 48px;
-}
-
 .adicionar {
   display: flex;
   flex-direction: row;

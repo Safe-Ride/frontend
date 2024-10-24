@@ -12,6 +12,7 @@ import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FormatarData from "../../../../utils/functions/FormatarData";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
@@ -195,7 +196,7 @@ const PerfilDependente = () => {
       <div className={styles["wrapper"]}>
         <Box
           titulo={"Dados do Motorista"}
-          link={`/responsavel/dependentes/${id}/motorista`}
+          link={`/responsavel/dependentes/${id}/motorista/${dependenteInfo.idMotorista}`}
           linkDisplayName={"ver perfil"}
         >
           {/* Info Mot */}
