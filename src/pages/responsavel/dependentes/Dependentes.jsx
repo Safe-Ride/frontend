@@ -19,7 +19,11 @@ const Dependentes = () => {
 
   useEffect(() => {
     api
-      .get(`/usuarios/dependentes-responsavel/${sessionStorage.ID_USUARIO}`)
+      .get(`/usuarios/dependentes-responsavel/${sessionStorage.ID_USUARIO}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      })
       .then((res) => {
         const data = res.data;
         setListaDependentes(data);
@@ -27,7 +31,11 @@ const Dependentes = () => {
       });
 
     api
-      .get(`/solicitacoes/responsavel/${sessionStorage.ID_USUARIO}`)
+      .get(`/solicitacoes/responsavel/${sessionStorage.ID_USUARIO}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      })
       .then((res) => {
         const data = res.data;
         setSolicitacoes(data);
