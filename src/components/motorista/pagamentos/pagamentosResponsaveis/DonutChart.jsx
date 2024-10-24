@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
@@ -8,29 +8,33 @@ const api = axios.create({
 });
 
 const DonutChart = () => {
-  let statusContrato = "";
   const { id } = useParams();
-
-  function recuperarInformacoes() {
-    api
-      .get(`/${id}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        const { data } = response;
-        statusContrato = calcularStatusContrato(data.pagamentos);
-      })
-      .catch((error) => {
-        console.log(`Erro ao buscar o contrato de id ${id}: `, error);
-      });
-  }
+  
+  const [statusContrato, setStatusContrato] = useState({
+    pago: 0,
+    pendente: 0,
+    atrasado: 0,
+  });
 
   useEffect(() => {
+    function recuperarInformacoes() {
+      api
+        .get(`/${id}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+          },
+        })
+        .then((response) => {
+          const { data } = response;
+          setStatusContrato(calcularStatusContrato(data.pagamentos));
+        })
+        .catch((error) => {
+          console.log(`Erro ao buscar o contrato de id ${id}: `, error);
+        });
+    }
+
     recuperarInformacoes();
-  }, []);
+  }, [id]); // Inclui o 'id' como dependência
 
   const qtdPago = statusContrato.pago;
   const qtdPendente = statusContrato.pendente;
@@ -52,13 +56,19 @@ const DonutChart = () => {
           radius: ["40%", "80%"],
           avoidLabelOverlap: false,
           label: {
-            show: false, // Esconde rótulos padrão
-            position: "center",
+            show: true, // Esconde rótulos padrão
+            position: "inside",
+            formatter: function (params) {
+              return params.value > 0 ? params.value : ''; // Exibe valor apenas se for maior que 0
+            },
+            fontSize: 20,
+            color: "#ffffff",
+            fontWeight: "bold"
           },
           emphasis: {
             label: {
-              show: false, // Mostra rótulos ao passar o mouse
-              fontSize: "20",
+              show: true, // Mostra rótulos ao passar o mouse
+              fontSize: 20,
               fontWeight: "bold",
             },
           },
@@ -154,7 +164,6 @@ const DonutChart = () => {
       ],
     };
   };
-
   return (
     <ReactEcharts
       option={getOption()}
@@ -164,7 +173,6 @@ const DonutChart = () => {
 };
 
 function calcularStatusContrato(contrato) {
-  console.log();
   let data = {
     pago: 0,
     pendente: 0,

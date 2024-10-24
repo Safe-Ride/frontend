@@ -54,7 +54,7 @@ const Clientes = () => {
             key={index}
             onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
           >
-            <OpcaoCliente foto={cliente.foto} nome={cliente.nome} />
+            <OpcaoCliente foto={cliente.foto} nome={cliente.nome}/>
           </div>
         ))}
       </div>
