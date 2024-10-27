@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../../api";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
-import StatusRecebido from "../../../../components/conversas/mensagens//StatusRecebido";
+import StatusRecebido from "../../../../components/conversas/mensagens/StatusRecebido";
 import StatusEnviado from "../../../../components/conversas/mensagens/StatusEnviado";
 import styles from "./ConversaResponsavel.module.css";
 

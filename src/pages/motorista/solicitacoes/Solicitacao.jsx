@@ -9,6 +9,7 @@ import icoContrato from "../../../utils/assets/dependentes/contrato.png";
 import icoRua from "../../../utils/assets/dependentes/road.png";
 import icoRelogio from "../../../utils/assets/dependentes/relogio.png";
 import icoCalendario from "../../../utils/assets/dependentes/calendario.png";
+import Imagem from "../../../utils/assets/perfil/usuario.png"
 import { useEffect, useState } from "react";
 import api from "../../../api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,18 +24,23 @@ const Solicitacao = () => {
   const [inputValue, setInputValue] = useState();
   const [solicitacao, setSolicitacao] = useState(null);
   const { id } = useParams("id");
+  const dataContratoInicio = new Date();
+  const dataContratoFim = new Date(dataContratoInicio.getFullYear(), 11, 31);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  }
+
   useEffect(() => {
-    api
-      .get(`/solicitacoes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.token}`,
-        },
-      })
+    api.get(`/solicitacoes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.token}`,
+      },
+    })
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -53,8 +59,7 @@ const Solicitacao = () => {
   }
 
   function atualizarSolicitacao() {
-    var horarioIda,
-      horarioVolta = null;
+    var horarioIda, horarioVolta = null;
 
     if (String(solicitacao.tipo).includes("IDA")) {
       horarioIda = document.getElementById("ipt-horario-ida").value;
@@ -69,7 +74,7 @@ const Solicitacao = () => {
     const valor = Number(document.getElementById("ipt-valor").value);
 
     if (!verificarHorario(horarioIda, horarioVolta)) return null;
-    if (!verificarContrato(contratoInicio, contratoFim)) return null;
+    // if (!verificarContrato(contratoInicio, contratoFim)) return null;
     if (valor == 0) {
       mostrarErro();
       setErro((prevErro) => ({
@@ -90,8 +95,11 @@ const Solicitacao = () => {
         status: "PENDENTE_RESPONSAVEL",
       };
 
-      api
-        .put(`/solicitacoes`, updateSolicitacao)
+      api.put(`/solicitacoes`, updateSolicitacao, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        }
+      })
         .then((res) => {
           const data = res.data;
           setSolicitacao(data);
@@ -182,40 +190,40 @@ const Solicitacao = () => {
     return true;
   }
 
-  function verificarContrato(contratoInicio, contratoFim) {
-    if (contratoInicio >= contratoFim) {
-      mostrarErro();
-      setErro((prevErro) => ({
-        ...prevErro,
-        mensagem:
-          "Data início do contrato não pode ser após o a data fim do contrato.",
-      }));
+  // function verificarContrato(contratoInicio, contratoFim) {
+  //   if (contratoInicio >= contratoFim) {
+  //     mostrarErro();
+  //     setErro((prevErro) => ({
+  //       ...prevErro,
+  //       mensagem:
+  //         "Data início do contrato não pode ser após o a data fim do contrato.",
+  //     }));
 
-      return false;
-    }
+  //     return false;
+  //   }
 
-    if (contratoInicio == "") {
-      mostrarErro();
-      setErro((prevErro) => ({
-        ...prevErro,
-        mensagem: "Preencha a data de início do contrato.",
-      }));
+  //   if (contratoInicio == "") {
+  //     mostrarErro();
+  //     setErro((prevErro) => ({
+  //       ...prevErro,
+  //       mensagem: "Preencha a data de início do contrato.",
+  //     }));
 
-      return false;
-    }
+  //     return false;
+  //   }
 
-    if (contratoFim == "") {
-      mostrarErro();
-      setErro((prevErro) => ({
-        ...prevErro,
-        mensagem: "Preencha a data de fim do contrato.",
-      }));
+  //   if (contratoFim == "") {
+  //     mostrarErro();
+  //     setErro((prevErro) => ({
+  //       ...prevErro,
+  //       mensagem: "Preencha a data de fim do contrato.",
+  //     }));
 
-      return false;
-    }
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
   function capitalize(str) {
     return String(str)
@@ -250,6 +258,7 @@ const Solicitacao = () => {
                   className={styles["foto-perfil"]}
                   src={FotoPerfil(solicitacao.responsavel.imagem.caminho)}
                   alt="Foto de perfil"
+                  onError={handleImageError}
                 />
                 <div>
                   <h2 className={styles["nome"]}>
@@ -322,7 +331,6 @@ const Solicitacao = () => {
                   </div>
                 </div>
                 <div className={styles["card"]}>
-                  {" "}
                   {/* Contrato */}
                   <div className={styles["icone"]}>
                     <img
@@ -344,6 +352,8 @@ const Solicitacao = () => {
                           id="ipt-contrato-inicio"
                           onChange={handleInputChange}
                           type="date"
+                          disabled
+                          value={dataContratoInicio.toISOString().slice(0, 10)}
                         />
                       </div>
                       <div className={styles["ipt"]}>
@@ -354,6 +364,8 @@ const Solicitacao = () => {
                           id="ipt-contrato-fim"
                           onChange={handleInputChange}
                           type="date"
+                          disabled
+                          value={dataContratoFim.toISOString().slice(0, 10)}
                         />
                       </div>
                     </div>
@@ -374,7 +386,7 @@ const Solicitacao = () => {
                       className={styles["categoria"]}
                       id={styles["categoria-valor"]}
                     >
-                      Valor:
+                      Valor (por mês):
                     </span>
                     <div style={{ width: 100 + "%" }}>
                       <div className={styles["campo-editar"]}>
