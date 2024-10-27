@@ -44,13 +44,19 @@ const DonutChart = () => {
           radius: ["40%", "80%"],
           avoidLabelOverlap: false,
           label: {
-            show: false, // Esconde rótulos padrão
-            position: "center",
+            show: true, // Esconde rótulos padrão
+            position: "inside",
+            formatter: function (params) {
+              return params.value > 0 ? params.value : ''; // Exibe valor apenas se for maior que 0
+            },
+            fontSize: 20,
+            color: "#ffffff",
+            fontWeight: "bold"
           },
           emphasis: {
             label: {
-              show: false, // Mostra rótulos ao passar o mouse
-              fontSize: "20",
+              show: true, // Mostra rótulos ao passar o mouse
+              fontSize: 20,
               fontWeight: "bold",
             },
           },
