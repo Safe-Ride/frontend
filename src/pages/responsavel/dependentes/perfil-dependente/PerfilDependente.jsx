@@ -13,6 +13,7 @@ import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FormatarData from "../../../../utils/functions/FormatarData";
+import Imagem from "../../../../utils/assets/perfil/usuario.png"
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
@@ -132,6 +133,10 @@ const PerfilDependente = () => {
         return icoVeiculo;
     }
   }
+  
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  }
 
   return (
     <>
@@ -144,6 +149,7 @@ const PerfilDependente = () => {
               className={styles["foto"]}
               src={FotoPerfil(dependenteInfo.foto)}
               alt="foto dependente"
+              onError={handleImageError}
             />
             <div className={styles["info"]}>
               <h2 className={styles["nome"]}>{dependenteInfo.nome}</h2>
