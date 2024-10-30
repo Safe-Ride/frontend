@@ -144,29 +144,30 @@ const Solicitacoes = () => {
             });
     }
 
+    function cancelarSolicitacao() {
+        api.patch(`/solicitacoes/${solicitacao.id}`, {}, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.token}`,
+            }
+        })
+            .then((res) => {
+                const data = res.data;
+                setSolicitacao(data);
+                // console.log(solicitacao)
+            })
+            .catch((err) => console.error(err))
+            .finally(() => {
+                if (solicitacao?.id) {
+                    navigate(`/responsavel/dependentes`);
+                }
+            });
+    }
+
     useEffect(() => {
         if (respostaModal) {
-            setSolicitacao(prev => {
-
-                api.patch(`/solicitacoes/${prev.id}`, {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.token}`,
-                    }
-                })
-                    .then((res) => {
-                        const data = res.data;
-                        setSolicitacao(data);
-                        // console.log(solicitacao)
-                    })
-                    .catch((err) => console.error(err))
-                    .finally(() => {
-                        if (solicitacao?.id) {
-                            navigate(`/responsavel/dependentes`);
-                        }
-                    });
-            })
+            setSolicitacao(cancelarSolicitacao)
         }
-    }, respostaModal)
+    }, [respostaModal])
 
     function enviarSolicitacao() {
 

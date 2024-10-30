@@ -15,7 +15,11 @@ const EncontrarMotorista = () => {
   const [motoristas, setMotoristas] = useState([]);
 
   useEffect(() => {
-    api.get(`/usuarios/motoristas/${idResponsavel}`)
+    api.get(`/usuarios/motorista/escola/${idDependente}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.token}` 
+      }
+    })
       .then((res) => {
         const data = res.data;
         console.info(data);

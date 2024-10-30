@@ -36,10 +36,8 @@ const Solicitacoes = () => {
           if (solicitacao.status == "PENDENTE_MOTORISTA") {
             return (
               <div
-              key={"solicitacao-"+solicitacao.id}
-                onClick={() =>
-                  navigate(`/motorista/solicitacoes/${solicitacao.id}`)
-                }
+                key={"solicitacao-"+solicitacao.id}
+                onClick={() =>navigate(`/motorista/solicitacoes/${solicitacao.id}`)}
               >
                 <OpcaoCliente
                   foto={FotoPerfil(solicitacao.responsavel.imagem.caminho)}
