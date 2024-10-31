@@ -4,6 +4,7 @@ import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import mapboxgl from "mapbox-gl";
 import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import Imagem from "../../../utils/assets/perfil/usuario.png"
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaGlkZWtpMTkiLCJhIjoiY2x3cXcwZGx4MDZ0NDJrcTNtODlhZHYzNSJ9.XDo6sDF-eMr7z6_oFtyw8w";
@@ -33,12 +34,16 @@ const TempoReal = () => {
     });
   });
 
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  }
+
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <div className={styles["dependente"]}>
-          <img src={FotoPerfil()} alt="foto perfil" />
+          <img src={FotoPerfil()} alt="foto perfil" onError={handleImageError}/>
           <span>Bruno Henrique</span>
         </div>
         <div ref={mapContainer} className={styles["map-container"]} />

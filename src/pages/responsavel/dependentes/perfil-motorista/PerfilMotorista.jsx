@@ -15,6 +15,7 @@ import api from "../../../../api";
 import FormatarData from "../../../../utils/functions/FormatarData";
 import FormatarTelefone from "../../../../utils/functions/FormatarTelefone";
 import FormatarCnpj from "../../../../utils/functions/FormatarCnpj";
+import Imagem from "../../../../utils/assets/dependentes/profile.png";
 
 const titulo = "PERFIL MOTORISTA";
 
