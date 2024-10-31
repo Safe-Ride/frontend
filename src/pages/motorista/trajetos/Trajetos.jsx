@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../../api";
-import styles from "./Trajetos.module.css";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
 import TrajetosAtivos from "../../../components/motorista/Trajetos/TrajetosAtivos";
 import TrajetosGerais from "../../../components/motorista/Trajetos/TrajetosGerais";
+import styles from "./Trajetos.module.css";
 
 const Trajetos = () => {
   const titulo = "trajetos";
-  const [dados, setDados] = useState(null);
-  const [trajetoAtivo, setTrajetoAtivo] = useState(null);
+  const [dados, setDados] = useState({});
+  const [trajetoAtivo, setTrajetoAtivo] = useState(false);
+  const [statusTrajeto, setStatusTrajeto] = useState(false);
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
-  useEffect(() => {
-    const requi = async () => {
-      api
+  useEffect(() =>{
+    api
         .get(`/trajetos/motorista/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,11 +32,8 @@ const Trajetos = () => {
         .catch((err) => {
           console.log("erro:", err);
         });
-    };
-    requi();
-  }, [id, token, trajetoAtivo]);
+  }, [id, token, statusTrajeto]);
 
-  // console.log(dados)
   const handleAtivoChange = (trajetoId) => {
     if (trajetoAtivo && trajetoAtivo.id === trajetoId) {
       setTrajetoAtivo(null);
@@ -46,7 +43,6 @@ const Trajetos = () => {
         setTrajetoAtivo(novoTrajetoAtivo);
       }
     }
-    // location.reload()
   };
 
   return (
@@ -54,7 +50,7 @@ const Trajetos = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <div className={styles["trajeto"]}></div>
-        <TrajetosAtivos trajetoAtivo={trajetoAtivo} />
+        <TrajetosAtivos trajetoAtivo={trajetoAtivo} statusTrajeto={setStatusTrajeto} />
         <TrajetosGerais trajetos={dados} onAtivoChange={handleAtivoChange} trajetoAtivo={trajetoAtivo} />
       </div>
       <NavBarBot />

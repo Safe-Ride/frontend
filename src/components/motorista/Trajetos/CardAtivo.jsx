@@ -1,8 +1,8 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import React, { useState } from "react";
+import api from "../../../api";
 import styles from "./CardAtivo.module.css";
 import Modal from "./Modal";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import api from "../../../api";
 
 const CardAtivo = ({
   nome,
@@ -11,6 +11,7 @@ const CardAtivo = ({
   rotaId,
   dependenteId,
   enderecoId,
+  statusTrajeto
 }) => {
   const [novoStatus, setAtivo] = useState(status);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +30,7 @@ const CardAtivo = ({
       });
       setAtivo(res.data.status);
       closeModal();
+      statusTrajeto(true)
       // console.log(res.data);
     } catch (e) {
       console.error("Erro ao fazer o PATCH:", e);

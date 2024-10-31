@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./TrajetosAtivos.module.css";
 import CardAtivo from "./CardAtivo";
+import styles from "./TrajetosAtivos.module.css";
 
-const TrajetosAtivos = ({ trajetoAtivo }) => {
+const TrajetosAtivos = ({ trajetoAtivo, statusTrajeto }) => {
   const statusMap = {
     NAO_INICIADO: 0,
     INICIADO: 1,
@@ -28,6 +28,7 @@ const TrajetosAtivos = ({ trajetoAtivo }) => {
             rotaId={rota.id}
             dependenteId={rota.dependente.id}
             enderecoId={rota.endereco.id}
+            statusTrajeto={statusTrajeto}
           />
         ))
       ) : (

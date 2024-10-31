@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./TrajetosGerais.module.css";
-import Card from "./CardTrajeto";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api";
+import Card from "./CardTrajeto";
+import styles from "./TrajetosGerais.module.css";
 
 const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
   const navigate = useNavigate();
@@ -71,8 +71,10 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
           ? trajetosFiltrados.filter((trajeto) => trajeto.id === trajetoAtivo.id)
           : trajetosFiltrados
         ).map((trajeto) => (
+          
           <Card
             key={trajeto.id}
+            id={trajeto.id} 
             trajeto={trajeto}
             onAtivoChange={onAtivoChange}
           />
@@ -80,7 +82,6 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
       ) : (
         <p>Nenhum trajeto encontrado</p>
       )}
-
       <div
         className={styles["container"]}
         onClick={() => navigate("/motorista/trajetos/cadastro")}
