@@ -5,11 +5,15 @@ import CampoPesquisa from "../../../components/motorista/Trajetos/Pesquisa";
 import Card_Dependente from "../../../components/motorista/Trajetos/Card_Dependente";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
+import api from "../../../api";
 
 const Cad_Trajeto = () => {
   const titulo = "trajetos";
   const [diaSelecionado, setDiaSelecionado] = useState("Segunda-feira"); // Estado para o dia selecionado
   const [escolaSelecionada, setEscolaSelecionada] = useState(""); // Estado para a escola selecionada
+  const [imagem, setImagem] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState("");
 
   const handleSearch = (termo) => {
     setEscolaSelecionada(termo); // Atualiza o estado com o termo selecionado
@@ -20,13 +24,67 @@ const Cad_Trajeto = () => {
     setDiaSelecionado(event.target.value); // Atualiza o estado com o dia selecionado
   };
 
+  const selecionarTxt = (event) => {
+    setImagem(event.target.files[0]);
+  };
+
+  const enviarTxt = async () => {
+    if (!imagem) {
+      setUploadMessage("Nenhum arquivo selecionado.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", imagem);
+
+    try {
+      setIsUploading(true);
+      setUploadMessage(""); // Limpa a mensagem antes de novo envio
+      const token = sessionStorage.getItem("token");
+      const motoristaId = sessionStorage.getItem("ID_USUARIO");
+
+      const response = await api.post(
+        `/trajetos/ler-trajeto-motorista/${motoristaId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setUploadMessage("Arquivo enviado com sucesso!");
+      }
+    } catch (error) {
+      setUploadMessage("Erro ao enviar o arquivo. Tente novamente.");
+      console.error("Erro ao enviar o arquivo:", error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
-        <div className={styles["title"]}>
-          <h2>Adicionar novo trajeto</h2>
-        </div>
+        <h2>Adicionar novo trajeto</h2>
+        <input
+          type="file"
+          accept=".txt"
+          onChange={selecionarTxt}
+          className={styles["input-file"]}
+        />
+        <button
+          className={styles["btn-upload"]}
+          onClick={enviarTxt}
+          disabled={isUploading}
+        ></button>
+        {uploadMessage && (
+          <p className={styles["upload-message"]}>{uploadMessage}</p>
+        )}
+
         <div className={styles["escolha-escola"]}>
           <h1 className={styles["text"]}>Escola do Trajeto:</h1>
           <CampoPesquisa onSearch={handleSearch} />

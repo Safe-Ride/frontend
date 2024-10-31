@@ -13,7 +13,7 @@ import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FormatarData from "../../../../utils/functions/FormatarData";
-import Imagem from "../../../../utils/assets/perfil/usuario.png"
+import Imagem from "../../../../utils/assets/perfil/usuario.png";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
@@ -74,6 +74,10 @@ const PerfilDependente = () => {
     }
   ]
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
+
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  } 
 
   function getEscolas() {
     api.get(`/escolas`)
