@@ -9,3 +9,11 @@ html {
   height: 100%;
   margin: 3vh;
 }
+
+.div-year-and-download {
+  display: flex;
+  justify-content: space-between;
+  width : 90%;
+  margin-bottom: 2vh;
+  align-items: center;
+}

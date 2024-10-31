@@ -152,6 +152,7 @@ const Solicitacoes = () => {
         })
             .then((res) => {
                 const data = res.data;
+                // console.log(data)
                 setSolicitacao(data);
                 // console.log(solicitacao)
             })
