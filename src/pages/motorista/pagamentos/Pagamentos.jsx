@@ -16,7 +16,10 @@ const Pagamentos = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
+      <div className={styles["div-year-and-download"]}>
       <SeletorAno handler={anoHandler} />
+      
+      </div>
       <DefaultMessage tipo="responsável"></DefaultMessage>
       <ListaResponsaveis anoSelecionado={anoSelecionado}></ListaResponsaveis>
       <NavBarBot />

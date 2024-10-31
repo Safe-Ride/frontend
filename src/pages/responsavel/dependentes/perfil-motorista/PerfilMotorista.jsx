@@ -14,6 +14,7 @@ import api from "../../../../api";
 import FormatarData from "../../../../utils/functions/FormatarData";
 import FormatarTelefone from "../../../../utils/functions/FormatarTelefone";
 import FormatarCnpj from "../../../../utils/functions/FormatarCnpj";
+import Imagem from "../../../../utils/assets/dependentes/profile.png";
 
 const titulo = "PERFIL MOTORISTA";
 
@@ -22,6 +23,10 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
   const navigate = useNavigate();
   const { idDependente } = useParams("idDependente");
   var { idMotorista } = useParams("idMotorista");
+
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  } 
 
   const [motorista, setMotorista] = useState({ imagem: { caminho: '' } });
 
@@ -52,7 +57,7 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
               width: 100 + "%"
             }}
           >
-            <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="" />
+            <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} onError={handleImageError} />
             <h2 className={styles["nome"]}>{motorista.nome}</h2>
             <div className={styles["container-info"]}>
               <div className={styles["info"]}>

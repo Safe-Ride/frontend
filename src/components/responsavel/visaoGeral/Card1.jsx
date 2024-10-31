@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, enderecoRetorno, horarioRetorno }) => {
   const navigate = useNavigate();
 
-  // Definindo a ordem dos ícones e endereços com base no status
+ 
   const statusConfig = {
     "Voltando para Casa": {
       firstIcon: icoEscola,
@@ -18,7 +18,7 @@ const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, end
       secondAddress: enderecoRetorno,
       secondTime: horarioRetorno,
     },
-    "Indo para Escola": {
+    "Indo para escola": {
       firstIcon: icoCasa,
       firstAddress: enderecoSaida,
       firstTime: horarioSaida,
@@ -36,7 +36,7 @@ const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, end
     },
   };
 
-  const { firstIcon, firstAddress, firstTime, secondIcon, secondAddress, secondTime } = statusConfig[status];
+const { firstIcon, firstAddress, firstTime, secondIcon, secondAddress, secondTime } = statusConfig[status];
 
   return (
     <div className={styles["Card"]}>
