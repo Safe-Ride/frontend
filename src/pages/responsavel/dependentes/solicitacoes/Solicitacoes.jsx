@@ -11,6 +11,7 @@ import icoCalendario from "../../../../utils/assets/dependentes/calendario.png";
 import icoRelogio from "../../../../utils/assets/dependentes/relogio.png";
 import icoDinheiro from "../../../../utils/assets/dependentes/dinheiro.png";
 import icoEscola from "../../../../utils/assets/dependentes/escola.png";
+import Imagem from "../../../../utils/assets/perfil/usuario.png"
 import { useEffect, useState } from "react"
 import api from "../../../../api"
 import { useNavigate, useParams } from "react-router-dom"
@@ -31,7 +32,8 @@ const Solicitacoes = () => {
         useState({
             "dependente": true,
             "motorista": true,
-            "enderecos": true
+            "enderecos": true,
+            "solicitacao": true
         });
     const [solicitacao, setSolicitacao] = useState({ status: null });
     const [showModal, setShowModal] = useState(false);
@@ -41,29 +43,42 @@ const Solicitacoes = () => {
         setRespostaModal(response);
     };
 
+    const handleImageError = (e) => {
+        e.target.src = Imagem;
+    }
+
     // Solicitação
     useEffect(() => {
         api
-            .get(`/solicitacoes/dependente/${idDependente}`)
+            .get(`/solicitacoes/dependente/${idDependente}`, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.token}`,
+                }
+            })
             .then((res) => {
                 const data = res.data;
-                console.log(data);
+                // console.log(data);
                 setSolicitacao(data);
             })
-            .catch((err) => console.error(err))
+            .catch((err) => console.error("Solicitação: ", err))
+            .finally(() => setLoading((prev) => ({ ...prev, "solicitacao": false })));
     }, []);
 
     // Motorista
     useEffect(() => {
         async function getData() {
             await api
-                .get(`/usuarios/${idMotorista}`)
+                .get(`/usuarios/${idMotorista}`, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.token}`,
+                    }
+                })
                 .then((res) => {
                     const data = res.data;
-                    console.log(data);
+                    // console.log(data);
                     setMotorista(data);
                 })
-                .catch((err) => console.error(err))
+                .catch((err) => console.error("Motorista: ", err))
                 .finally(() => setLoading((prev) => ({ ...prev, "motorista": false })));
         }
         getData();
@@ -73,13 +88,17 @@ const Solicitacoes = () => {
     useEffect(() => {
         async function getData() {
             await api
-                .get(`/dependentes/${idDependente}`)
+                .get(`/dependentes/${idDependente}`, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.token}`,
+                    }
+                })
                 .then((res) => {
                     const data = res.data;
-                    console.log(data);
+                    // console.log(data);
                     setDependente(data);
                 })
-                .catch((err) => console.error(err))
+                .catch((err) => console.error("Dependente: ", err))
                 .finally(() => setLoading((prev) => ({ ...prev, "dependente": false })));
         }
         getData();
@@ -89,31 +108,38 @@ const Solicitacoes = () => {
     useEffect(() => {
         async function getData() {
             await api
-                .get(`/enderecos/usuario/${sessionStorage.ID_USUARIO}`)
+                .get(`/enderecos/usuario/${sessionStorage.ID_USUARIO}`, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.token}`,
+                    }
+                })
                 .then((res) => {
                     const data = res.data;
-                    console.log(data);
+                    // console.log(data);
                     setEnderecos(data);
                 })
-                .catch((err) => console.error(err))
+                .catch((err) => console.error("Endereços: ", err))
                 .finally(() => setLoading((prev) => ({ ...prev, "enderecos": false })));
         }
         getData();
     }, [])
 
     function aceitarSolicitacao() {
-        api.patch(`/solicitacoes/aprovar/${solicitacao.id}`)
+        api.patch(`/solicitacoes/aprovar/${solicitacao.id}`, {}, {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.token}`,
+                'Content-Type': 'application/json'
+            }
+        })
             .then((res) => {
                 const data = res.data;
+                // console.log(data)
                 setSolicitacao(data);
-                console.log(solicitacao)
             })
             .catch((err) => console.error(err))
             .finally(() => {
                 if (solicitacao?.id) {
                     navigate(`/responsavel/dependentes`);
-                } else {
-                    console.error('Navegação abortada: solicitação inválida');
                 }
             });
     }
@@ -122,18 +148,20 @@ const Solicitacoes = () => {
         if (respostaModal) {
             setSolicitacao(prev => {
 
-                api.patch(`/solicitacoes/${prev.id}`)
+                api.patch(`/solicitacoes/${prev.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.token}`,
+                    }
+                })
                     .then((res) => {
                         const data = res.data;
                         setSolicitacao(data);
-                        console.log(solicitacao)
+                        // console.log(solicitacao)
                     })
                     .catch((err) => console.error(err))
                     .finally(() => {
                         if (solicitacao?.id) {
                             navigate(`/responsavel/dependentes`);
-                        } else {
-                            console.error('Navegação abortada: solicitação inválida');
                         }
                     });
             })
@@ -142,7 +170,7 @@ const Solicitacoes = () => {
 
     function enviarSolicitacao() {
 
-        setSolicitacao({
+        const novaSolicitacao = {
             responsavelId: Number(sessionStorage.ID_USUARIO),
             motoristaId: Number(idMotorista),
             dependenteId: Number(idDependente),
@@ -151,11 +179,11 @@ const Solicitacoes = () => {
             diaSemana: enviarDiaSemana().trim(),
             enderecoId: Number(document.getElementById("select-endereco").value),
             status: "PENDENTE_MOTORISTA"
-        });
+        };
 
-        console.log(solicitacao);
+        console.log("Enviar Solicitação: ", novaSolicitacao);
 
-        api.post(`/solicitacoes`, solicitacao, {
+        api.post(`/solicitacoes`, novaSolicitacao, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.token}`,
                 'Content-Type': 'application/json'
@@ -163,9 +191,14 @@ const Solicitacoes = () => {
         })
             .then((res) => {
                 const data = res.data;
-                // console.log(data);
+                console.log(data);
+                setSolicitacao(data);
+                navigate("/responsavel/dependentes")
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+                setSolicitacao({ status: null })
+            });
     }
 
     function enviarTipoTrajetoNum() {
@@ -268,14 +301,18 @@ const Solicitacoes = () => {
                     <div className={styles['content']}>
                         <span className={styles['categoria']}>Horário</span>
                         <div className={styles['content-horario']}>
-                            <div>
-                                <span className={styles['categoria']}>Ida: </span>
-                                <span className={styles['info']}>{solicitacao.horarioIda}</span>
-                            </div>
-                            <div>
-                                <span className={styles['categoria']}>Volta: </span>
-                                <span className={styles['info']}>{solicitacao.horarioVolta}</span>
-                            </div>
+                            {String(solicitacao.tipo).includes("IDA") && (
+                                <div>
+                                    <span className={styles['categoria']}>Ida: </span>
+                                    <span className={styles['info']}>{solicitacao.horarioIda}</span>
+                                </div>
+                            )}
+                            {String(solicitacao.tipo).includes("VOLTA") && (
+                                <div>
+                                    <span className={styles['categoria']}>Volta: </span>
+                                    <span className={styles['info']}>{solicitacao.horarioVolta}</span>
+                                </div>
+                            )}
                         </div>
 
                     </div>
@@ -287,7 +324,7 @@ const Solicitacoes = () => {
                 />
                 <CardInfo
                     icone={icoDinheiro}
-                    categoria={'Valor'}
+                    categoria={'Valor (por mês)'}
                     info={'R$' + solicitacao.valor.toFixed(2).replace('.', ',')}
                 />
 
@@ -398,13 +435,18 @@ const Solicitacoes = () => {
                 />
             }
 
-            <Loader loading={loading.dependente || loading.motorista || loading.enderecos}>
-                {motorista && dependente && enderecos &&
+            <Loader loading={loading.dependente || loading.motorista || loading.enderecos || loading.solicitacao}>
+                {motorista && dependente && enderecos && solicitacao &&
 
                     <div className={styles["wrapper"]}>
                         <Box>
                             <div className={styles['container']}>
-                                <img className={styles["foto-perfil"]} src={FotoPerfil(motorista.imagem.caminho)} alt="Foto de Perfil" />
+                                <img
+                                    className={styles["foto-perfil"]}
+                                    src={FotoPerfil(motorista.imagem.caminho)}
+                                    alt="Foto de Perfil"
+                                    onError={handleImageError}
+                                />
                                 <div>
                                     <h2 className={styles["nome"]}>{motorista.nome}</h2>
                                     <p className={styles["dependente"]}>
@@ -412,9 +454,7 @@ const Solicitacoes = () => {
                                     </p>
                                 </div>
 
-                                {solicitacao?.status != null &&
-                                    exibirSolicitacao(solicitacao?.status)
-                                }
+                                {exibirSolicitacao(solicitacao?.status)}
                             </div>
                         </Box>
                     </div>

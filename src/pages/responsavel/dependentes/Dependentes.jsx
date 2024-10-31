@@ -27,7 +27,7 @@ const Dependentes = () => {
       .then((res) => {
         const data = res.data;
         setListaDependentes(data);
-        console.log(listaDependentes);
+        // console.log(listaDependentes);
       });
 
     api
