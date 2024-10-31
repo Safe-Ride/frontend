@@ -15,10 +15,10 @@ const Clientes = () => {
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
-        <div className={styles["kpis"]}>
+        {/* <div className={styles["kpis"]}>
           <KPI1></KPI1>
           <KPI2></KPI2>
-        </div>
+        </div> */}
         <Card1></Card1>
         <Card2></Card2>
         <Card3></Card3>

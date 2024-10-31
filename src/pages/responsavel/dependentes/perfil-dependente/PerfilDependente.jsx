@@ -8,13 +8,11 @@ import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import icoCasa from "../../../../utils/assets/dependentes/casa.png";
-import Imagem from "../../../../utils/assets/perfil/usuario.png"
+import Imagem from "../../../../utils/assets/perfil/usuario.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import FormatarData from "../../../../utils/functions/FormatarData";
-import Imagem from "../../../../utils/assets/perfil/usuario.png";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
@@ -72,33 +70,31 @@ const PerfilDependente = () => {
     {
       id: 12,
       value: "3° Ano Ensino Médio",
-    }
-  ]
+    },
+  ];
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
 
-  const handleImageError = (e) => {
-    e.target.src = Imagem;
-  }
-
   function getEscolas() {
-    api.get(`/escolas`)
+    api
+      .get(`/escolas`)
       .then((res) => {
         const data = res.data;
-        const nomesEscolas = data.map(e => ({ "id": e.id, "value": e.nome }));
+        const nomesEscolas = data.map((e) => ({ id: e.id, value: e.nome }));
         console.log(nomesEscolas); // Verifica o resultado
         setOpcoesEscolas(nomesEscolas); // Agora setOpcoesEscolas terá apenas os nomes
       })
-      .catch(err => console.error("erro escola: " + err));
-  };
+      .catch((err) => console.error("erro escola: " + err));
+  }
 
   useEffect(() => {
-    api.get(`/dependentes/${id}/perfil`)
+    api
+      .get(`/dependentes/${id}/perfil`)
       .then((res) => {
         const data = res.data;
         console.info(data);
         setDependenteInfo(data);
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
 
     getEscolas();
   }, [id]);
@@ -138,10 +134,10 @@ const PerfilDependente = () => {
         return icoVeiculo;
     }
   }
-  
+
   const handleImageError = (e) => {
     e.target.src = Imagem;
-  }
+  };
 
   return (
     <>
