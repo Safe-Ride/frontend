@@ -4,6 +4,8 @@ import NavBarBot from "../../../components/NavBar/NavBarBot";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import DefaultMessage from "../../../components/responsavel/pagamentos/DefaultMessage";
 import SeletorAno from "./SeletorAno/SeletorAno";
+import styles from "./Pagamentos.module.css";
+import ButtomDownloadCsv from "../../../components/motorista/pagamentos/ButtomDownloadCsv";
 
 const titulo = "pagamentos";
 
@@ -16,7 +18,10 @@ const Pagamentos = () => {
   return (
     <>
       <NavBarTop titulo={titulo} />
+      <div className={styles["div-year-and-download"]}>
       <SeletorAno handler={anoHandler} />
+      < ButtomDownloadCsv/>
+      </div>
       <DefaultMessage tipo="responsável"></DefaultMessage>
       <ListaResponsaveis anoSelecionado={anoSelecionado}></ListaResponsaveis>
       <NavBarBot />
