@@ -137,6 +137,10 @@ const PerfilDependente = () => {
         return icoVeiculo;
     }
   }
+  
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  }
 
   return (
     <>
