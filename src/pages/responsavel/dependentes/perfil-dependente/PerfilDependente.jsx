@@ -8,6 +8,7 @@ import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import icoCasa from "../../../../utils/assets/dependentes/casa.png";
+import Imagem from "../../../../utils/assets/perfil/usuario.png"
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
@@ -77,7 +78,7 @@ const PerfilDependente = () => {
 
   const handleImageError = (e) => {
     e.target.src = Imagem;
-  } 
+  }
 
   function getEscolas() {
     api.get(`/escolas`)

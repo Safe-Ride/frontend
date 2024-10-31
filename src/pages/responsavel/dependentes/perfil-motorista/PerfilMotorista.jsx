@@ -29,7 +29,7 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
 
 	const handleImageError = (e) => {
 		e.target.src = Imagem;
-	  } 
+	}
 
 	useEffect(() => {
 		api.get(`/usuarios/perfil-motorista/${idMotorista}`)
@@ -65,7 +65,7 @@ const PerfilMotorista = ({ encontrarMotorista = false }) => {
 							onError={handleImageError}
 						/>
 						<h2 className={styles["nome"]}>{motorista.nome}</h2>
-						
+
 						{/* <div className={styles["container-info"]}>
 							<div className={styles["info"]}>
 								<span className={styles["info-nro"]}>

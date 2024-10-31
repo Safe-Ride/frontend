@@ -7,8 +7,9 @@ import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente";
 import Solicitacoes from "../../../components/motorista/clientes/Solicitacoes";
 import Pesquisa from "../../../components/motorista/clientes/Pesquisa";
 import { useNavigate } from "react-router-dom";
+import api from "../../../api"
 
-const api = axios.create({
+const apiClientes = axios.create({
   baseURL: `http://localhost:8080/usuarios/clientes-motorista`,
 });
 
@@ -18,13 +19,14 @@ const Clientes = () => {
   const navigate = useNavigate();
   const [cardsCliente, setCardCliente] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState("");
+  const [qtdSolicitacao, setQtdSolicitacao] = useState(0);
 
   const clientesFiltrados = cardsCliente.filter((cliente) =>
     cliente.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
   );
 
   function recuperarInformacoes() {
-    api
+    apiClientes
       .get(`/${sessionStorage.ID_USUARIO}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.token}`,
@@ -40,8 +42,23 @@ const Clientes = () => {
       });
   }
 
+  function recuperarQtdSolicitacoes() {
+    api.get(`/solicitacoes/motorista/${sessionStorage.ID_USUARIO}/qtdSolicitacao`, {
+      headers: {
+       Authorization: `Bearer ${sessionStorage.token}`,
+      }
+    })
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      setQtdSolicitacao(data);
+    })
+    .catch((err) => console.error(err));
+  }
+
   useEffect(() => {
     recuperarInformacoes();
+    recuperarQtdSolicitacoes();
   }, []);
 
   return (
@@ -59,7 +76,7 @@ const Clientes = () => {
         ))}
       </div>
       <div onClick={() => navigate(`/motorista/solicitacoes`)}>
-        <Solicitacoes />
+        <Solicitacoes qtdSolicitacoes={qtdSolicitacao}/>
       </div>
       <NavBarBot />
     </>

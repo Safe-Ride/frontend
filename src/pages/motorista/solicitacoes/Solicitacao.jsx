@@ -108,7 +108,7 @@ const Solicitacao = () => {
         .catch((err) => console.error(err))
         .finally(() => {
           setLoading(false);
-          navigate(`/motorista/solicitacoes`);
+          navigate(`/motorista/clientes`);
         });
     });
   }
