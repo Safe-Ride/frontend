@@ -1,11 +1,17 @@
 .seletor {
-    border-radius: 5px;
-    border-style: none;
-    background-color: var(--laranja);
-    font-size: medium;
-    font-weight: bold;
+  width: 20%;
+  height: auto;
+  box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+  border-radius: 8px;
+  border: none;
+  background-color: var(--branco);
+  margin-bottom: 2vh;
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 12px;
+  padding-left: 1vh;
 }
 
 .container {
-    padding-left: 10%;
+  padding-left: 10%;
 }

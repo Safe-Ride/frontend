@@ -10,19 +10,19 @@ import ButtomDownloadCsv from "../../../components/motorista/pagamentos/ButtomDo
 const titulo = "pagamentos";
 
 const Pagamentos = () => {
-  const anoAtual = new Date(Date.now()).getFullYear()
-  const [anoSelecionado, setAnoSelecionado] = useState(anoAtual)
+  const anoAtual = new Date(Date.now()).getFullYear();
+  const [anoSelecionado, setAnoSelecionado] = useState(anoAtual);
   const anoHandler = (ano) => {
-    setAnoSelecionado(ano)
-  } 
+    setAnoSelecionado(ano);
+  };
   return (
     <>
       <NavBarTop titulo={titulo} />
       <div className={styles["div-year-and-download"]}>
-      <SeletorAno handler={anoHandler} />
-      < ButtomDownloadCsv/>
+        <DefaultMessage tipo="responsável"></DefaultMessage>
+        <SeletorAno handler={anoHandler} />
+        <ButtomDownloadCsv />
       </div>
-      <DefaultMessage tipo="responsável"></DefaultMessage>
       <ListaResponsaveis anoSelecionado={anoSelecionado}></ListaResponsaveis>
       <NavBarBot />
     </>

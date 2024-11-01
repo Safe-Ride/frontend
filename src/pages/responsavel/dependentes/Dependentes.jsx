@@ -37,8 +37,8 @@ const Dependentes = () => {
         },
       })
       .then((res) => {
-        const data = res.data;
-        setSolicitacoes(data);
+        const data = res.data || []; // Garante que `solicitacoes` será um array
+        setSolicitacoes(data || null);
       });
   }, []);
 
@@ -67,9 +67,11 @@ const Dependentes = () => {
             );
             solicitacoes.forEach((solicitacao) => {
               if (
-                solicitacao.dependente.id == dependente.id &&
-                (solicitacao.status == "PENDENTE_MOTORISTA" ||
-                  solicitacao.status == "PENDENTE_RESPONSAVEL")
+                solicitacao.dependente &&
+                solicitacao.motorista &&
+                solicitacao.dependente.id === dependente.id &&
+                (solicitacao.status === "PENDENTE_MOTORISTA" ||
+                  solicitacao.status === "PENDENTE_RESPONSAVEL")
               ) {
                 retorno = (
                   <CardDependente

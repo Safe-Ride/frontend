@@ -6,9 +6,12 @@ const TrajetosAtivos = ({ trajetoAtivo, statusTrajeto }) => {
   const statusMap = {
     NAO_INICIADO: 0,
     INICIADO: 1,
-    NA_VAN: 2,
-    NAO_IRA: 3,
-    NA_ESCOLA: 4,
+    NAO_IRA: 2,
+    INDO_PRA_ESCOLA: 3,
+    VOLTANDO_PRA_CASA: 4,
+    NA_ESCOLA: 5,
+    CONVERSA_CRIADA: 6,
+    EM_CASA: 7,
   };
 
   return (

@@ -23,18 +23,15 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
         }
       );
 
-      // Cria uma URL para o blob que será baixado
-      const blob = new Blob([response.data], { type: "text/plain" }); // Ajuste o tipo se necessário
+      const blob = new Blob([response.data], { type: "text/plain" });
       const url = window.URL.createObjectURL(blob);
 
-      // Cria um link temporário para fazer o download
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", `TRAJETOS-MOTORISTA-${motoristaId}.txt`);
       document.body.appendChild(link);
-      link.click(); // Simula o clique para iniciar o download
+      link.click();
 
-      // Limpa o link temporário após o download
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (e) {
@@ -44,10 +41,9 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
 
   const trajetosFiltrados = Array.isArray(trajetos)
     ? trajetos.filter((trajeto) =>
-      trajeto.escola.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
-    )
+        trajeto.escola.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+      )
     : [];
-
 
   return (
     <div className={styles["card"]}>
@@ -62,19 +58,20 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
         className={styles["search"]}
         type="text"
         placeholder="Pesquisar"
-        value={termoPesquisa} // O valor do input é ligado ao estado termoPesquisa
-        onChange={(e) => setTermoPesquisa(e.target.value)} // Atualiza o estado conforme o usuário digita
+        value={termoPesquisa}
+        onChange={(e) => setTermoPesquisa(e.target.value)}
       />
 
       {Array.isArray(trajetos) ? (
         (trajetoAtivo != null
-          ? trajetosFiltrados.filter((trajeto) => trajeto.id === trajetoAtivo.id)
+          ? trajetosFiltrados.filter(
+              (trajeto) => trajeto.id === trajetoAtivo.id
+            )
           : trajetosFiltrados
         ).map((trajeto) => (
-          
           <Card
             key={trajeto.id}
-            id={trajeto.id} 
+            id={trajeto.id}
             trajeto={trajeto}
             onAtivoChange={onAtivoChange}
           />

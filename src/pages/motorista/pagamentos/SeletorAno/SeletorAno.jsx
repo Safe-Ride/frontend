@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./SeletorAno.module.css";
 
-function SeletorAno({handler}) {
+function SeletorAno({ handler }) {
   const onChange = (event) => {
-    event.preventDefault()
-    handler(event.target.value)
-  }
-  
+    event.preventDefault();
+    handler(event.target.value);
+  };
+
   const anoAtual = new Date(Date.now()).getFullYear();
   const anos = () => {
     let a = [];
@@ -18,14 +18,17 @@ function SeletorAno({handler}) {
   };
   return (
     <>
-      <h3 className={styles["container"]}>
-        Ano:{" "}
-        <select  onChange={onChange} id="anos" name={"anos"} defaultValue={anoAtual} className={styles["seletor"]}>
-          {anos().map((ano) => {
-            return <option value={ano}>{ano}</option>;
-          })}
-        </select>
-      </h3>
+      <select
+        onChange={onChange}
+        id="anos"
+        name={"anos"}
+        defaultValue={anoAtual}
+        className={styles["seletor"]}
+      >
+        {anos().map((ano) => {
+          return <option value={ano}>{ano}</option>;
+        })}
+      </select>
     </>
   );
 }
