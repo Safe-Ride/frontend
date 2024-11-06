@@ -29,11 +29,11 @@ print(f"Autor: {commit_author}\n Email: {commit_author_email}\n Message: {commit
 try:
     driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
     print('navegador aberto')
-    email = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
+    email = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#username')))
     email.clear()
     email.send_keys(commit_author_email)
 
-    senha = (WebDriverWait(driver, 10)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
+    senha = (WebDriverWait(driver, 10)).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#password')))
     senha.clear()
     senha.send_keys(environ.get('SENHA'))
 
