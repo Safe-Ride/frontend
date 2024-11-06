@@ -15,6 +15,18 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
+      - name: Set author password
+        id: author_password
+        run: |
+          case "${{ env.COMMIT_AUTHOR }}" in
+            "lucasrocha2704") echo "commit_author_password=${{ secrets.PASSWORD.lucasrocha2704 }}" >> $GITHUB_ENV ;;
+            "usuario2") echo "commit_author_password=${{ secrets.PASSWORD.usuario2 }}" >> $GITHUB_ENV ;;
+            "usuario3") echo "commit_author_password=${{ secrets.PASSWORD.usuario3 }}" >> $GITHUB_ENV ;;
+            # Adicione mais cases conforme necessário para cada usuário
+            *) echo "commit_author_password=" >> $GITHUB_ENV ;; # Senha vazia caso o autor não seja reconhecido
+          esac
+
+
       # 2. Verificar se o Google Chrome está instalado
       - name: Check if Google Chrome is installed
         id: chrome
@@ -39,5 +51,12 @@ jobs:
 
       # 4. Rodar o script de automação
       - name: Run Automation Script
+        env:  
+          COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
+          COMMIT_AUTHOR: ${{ env.COMMIT_AUTHOR }}
+          COMMIT_AUTHOR_EMAIL: ${{ env.COMMIT_AUTHOR_EMAIL }}
+          COMMIT_AUTHOR_PASSWORD: ${{ env.commit_author_password }}
+          REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}
+          COMMIT_URL: ${{ env.COMMIT_URL }}
         run: |
           python /automacao-relatorio/main.py

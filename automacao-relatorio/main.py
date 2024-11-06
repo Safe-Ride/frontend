@@ -19,6 +19,7 @@ driver.maximize_window()
 commit_message = environ.get("COMMIT_MESSAGE")
 commit_author = environ.get("COMMIT_AUTHOR")
 commit_author_email = environ.get("COMMIT_AUTHOR_EMAIL")
+commit_author_password = environ.get("COMMIT_AUTHOR_PASSWORD")
 repository_name = environ.get("REPOSITORY_NAME")
 commit_url = environ.get("COMMIT_URL")
 
@@ -29,7 +30,7 @@ driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
 try:
     email = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
     email.clear()
-    email.send_keys(environ.get('EMAIL'))
+    email.send_keys(commit_author_email)
 
     senha = (WebDriverWait(driver, 10)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
     senha.clear()
