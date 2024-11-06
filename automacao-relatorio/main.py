@@ -23,20 +23,26 @@ commit_author_password = environ.get("COMMIT_AUTHOR_PASSWORD")
 repository_name = environ.get("REPOSITORY_NAME").split('/')[1]
 commit_url = environ.get("COMMIT_URL")
 
+# commit_author_email="lucas.rocha@sptech.school"
+# commit_author_password="#Gf54496745895"
+# commit_message="teste"
+# commit_author="lucasrocha2704"
+# repository_name="frontend"
+# commit_url="https://github.com/Safe-Ride/frontend/commit/9ee374c9854213a420fdf95d0943d6b6d47b4bf7"
+
 print(f"Autor: {commit_author}\n Email: {commit_author_email}\n Message: {commit_message}\n Repository: {repository_name}\n commit_url: {commit_url}")
 
+driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
 
 try:
-    driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
-    
     email = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
-    # email.clear()
+    email.clear()
     email.send_keys(commit_author_email)
     print('Email inserido')
 
     senha = (WebDriverWait(driver, 10)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
-    # senha.clear()
-    senha.send_keys(environ.get('SENHA'))
+    senha.clear()
+    senha.send_keys(commit_author_password)
     print('senha inserida')
 
     botao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#loginbtn')))
