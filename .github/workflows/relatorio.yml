@@ -59,4 +59,4 @@ jobs:
           REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}
           COMMIT_URL: ${{ env.COMMIT_URL }}
         run: |
-          python /automacao-relatorio/main.py
+          python -u automacao-relatorio/main.py
