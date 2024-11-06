@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r /automacao-relatorio/requirements.txt
 
       # 4. Rodar o script de automação
       - name: Run Automation Script
@@ -59,8 +59,4 @@ jobs:
           REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}
           COMMIT_URL: ${{ env.COMMIT_URL }}
         run: |
-<<<<<<< HEAD
           python /automacao-relatorio/main.py
-=======
-          python /automacao-relatorio/main.py
->>>>>>> origin
