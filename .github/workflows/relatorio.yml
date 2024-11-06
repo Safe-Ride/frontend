@@ -3,7 +3,7 @@ name: Run Selenium Automation
 on:
   push:
     branches:
-      - main  # Ou outra branch desejada
+      - teste-automacao  # Ou outra branch desejada
   workflow_dispatch:  # Permite rodar manualmente pelo GitHub Actions
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         id: author_password
         run: |
           case "${{ env.COMMIT_AUTHOR }}" in
-            "lucasrocha2704") echo "commit_author_password=${{ secrets.PASSWORD.lucasrocha2704 }}" >> $GITHUB_ENV ;;
+            "lucasrocha2704") echo "commit_author_password=${{ secrets.PASSWORD_lucasrocha2704 }}" >> $GITHUB_ENV ;;
             "usuario2") echo "commit_author_password=${{ secrets.PASSWORD.usuario2 }}" >> $GITHUB_ENV ;;
             "usuario3") echo "commit_author_password=${{ secrets.PASSWORD.usuario3 }}" >> $GITHUB_ENV ;;
             # Adicione mais cases conforme necessário para cada usuário
