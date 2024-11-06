@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 driver.maximize_window()
 
@@ -29,13 +29,13 @@ print(f"Autor: {commit_author}\n Email: {commit_author_email}\n Message: {commit
 try:
     driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
     
-    email = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#username')))
-    email.clear()
+    email = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
+    # email.clear()
     email.send_keys(commit_author_email)
     print('Email inserido')
 
-    senha = (WebDriverWait(driver, 10)).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#password')))
-    senha.clear()
+    senha = (WebDriverWait(driver, 10)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
+    # senha.clear()
     senha.send_keys(environ.get('SENHA'))
     print('senha inserida')
 
