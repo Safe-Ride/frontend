@@ -26,40 +26,19 @@ function ClienteId() {
       .get(`/${id}`)
       .then((response) => {
         const { data } = response;
-        const { nome, foto, status, horario } = data;
+        const { nome, imagem, status, horario } = data;
 
         setResponsavel(data);
 
         setNome(nome);
-        setFoto(foto);
+        setFoto(imagem.caminho);
         setStatus(status);
         setHorario(horario);
-
-        console.log(response);
       })
       .catch((error) => {
         console.log("Erro ao buscar os detalhes da música: ", error);
       });
   }, [id]);
-
-  // const responsavel = {
-  //   nome: "teste",
-  //   email: "teste",
-  //   cpf: "teste",
-  //   telefone: "teste",
-  //   dataNascimento: "teste",
-  // };
-
-  const dependentes = [
-    {
-      id: 1,
-      nome: "teste",
-    },
-    {
-      id: 2,
-      nome: "teste",
-    },
-  ];
 
   return (
     <>
