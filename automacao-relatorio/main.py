@@ -28,42 +28,52 @@ print(f"Autor: {commit_author}\n Email: {commit_author_email}\n Message: {commit
 
 try:
     driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
-    print('navegador aberto')
+    
     email = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#username')))
     email.clear()
     email.send_keys(commit_author_email)
+    print('Email inserido')
 
     senha = (WebDriverWait(driver, 10)).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#password')))
     senha.clear()
     senha.send_keys(environ.get('SENHA'))
+    print('senha inserida')
 
     botao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#loginbtn')))
     botao.click()
+    print('login concluido')
 
     inicio_relatorio = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[1]/div[3]/div/div/section/div[1]/div[3]/div/form/button')))
     inicio_relatorio.click()
+    print('iniciando relatório')
 
     grupo = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[1]/div[3]/div/div/section[1]/div[1]/form/div/div[1]/div[2]/div/div[2]/div[2]/div[10]/input')))
     grupo.click()
+    print('grupo selecionado')
 
     proximo = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[1]/div[3]/div/div/section[1]/div[1]/form/div/div[2]/input')))
     proximo.click()
+    print('indo para questão 2')
 
     explicacao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[1]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[2]/div')))
     escrever = ActionChains(driver)
     escrever.click(explicacao).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).send_keys(Keys.DELETE).perform()
     escrever.send_keys(f'{repository_name}: {commit_message}').perform()
+    print('explicando entrega')
 
     proximo = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[2]/input[2]')))
     proximo.click()
+    print('indo para questão 3')
 
     explicacao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[1]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[2]/div')))
     escrever = ActionChains(driver)
     escrever.click(explicacao).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).send_keys(Keys.DELETE).perform()
     escrever.send_keys(f'{commit_url}').perform()
+    print('inserindo evidência')
 
     proximo = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[2]/input[2]')))
     proximo.click()
+    print('indo para questão 4')
 
     explicacao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[1]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[2]/div')))
     escrever = ActionChains(driver)
@@ -79,9 +89,11 @@ try:
         mensagem = "terraform: desenvolvemento da infraestrutura"
 
     escrever.send_keys('Trello: Gestão do Projeto - Kanban').send_keys(Keys.ENTER).send_keys(f'{mensagem}').perform()
+    print('respondendo questão 4')
 
     proximo = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[2]/input[2]')))
     proximo.click()
+    print('indo para botão de conclusão')
 
 except TimeoutException:
     print("Timed out waiting for page to load")
