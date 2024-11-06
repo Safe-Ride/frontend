@@ -1,0 +1,43 @@
+name: Run Selenium Automation
+
+on:
+  push:
+    branches:
+      - main  # Ou outra branch desejada
+  workflow_dispatch:  # Permite rodar manualmente pelo GitHub Actions
+
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Configuração do ambiente
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      # 2. Verificar se o Google Chrome está instalado
+      - name: Check if Google Chrome is installed
+        id: chrome
+        run: |
+          if ! command -v google-chrome-stable &> /dev/null
+          then
+            echo "Google Chrome not found, installing..."
+            sudo apt-get update -y
+            sudo apt-get install -y wget
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome-stable_current_amd64.deb
+            sudo apt-get install -f -y  # Resolve dependências faltantes
+          else
+            echo "Google Chrome is already installed"
+          fi
+
+      # 3. Instalar dependências do Python
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Rodar o script de automação
+      - name: Run Automation Script
+        run: |
+          python /automacao-relatorio/main.py
