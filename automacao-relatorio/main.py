@@ -106,6 +106,9 @@ try:
     proximo.click()
     print('indo para botão de conclusão')
 
+    botao_envio = carregou_elemento_interativo('/html/body/div[1]/div[3]/div/div/section[1]/div[1]/div[3]/div/div/form/button')
+    botao_envio.click()
+
 except TimeoutException:
     print("Timed out waiting for page to load")
 except ElementNotInteractableException:
