@@ -116,7 +116,7 @@ function Dependente({ onSubmit, show, onBack }) {
         onSubmit={handleSubmit}
         fields={dependenteFields}
         action={{ name: "Concluir" }}
-        onBack={{onBack}}
+        onBack={onBack}
       />
     </>
   );

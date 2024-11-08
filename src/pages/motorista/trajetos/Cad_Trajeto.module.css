@@ -10,10 +10,11 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 3vh;
   padding: 10px 8px;
   height: 100%;
-  gap: 10px;
+  gap: 20px 0px;
 }
 
 .title {
@@ -57,7 +58,8 @@ html {
 
 .choices .choice-item select {
   width: 190px;
-  height: 24px;
+  /* height: 24px; */
+  padding: 8px;
 
   background: #f7f7f0;
   border: 1px solid #2d2a32;
@@ -71,9 +73,18 @@ html {
   border-radius: 8px;
   margin-bottom: 2vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   background-color: #2d2a32;
   padding-bottom: 1rem;
+}
+
+.text-introduction {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
 .header {
@@ -86,11 +97,13 @@ html {
 
 .card .title {
   font-size: 16px;
+  width: 90%;
   font-weight: 800;
   border-radius: 8px;
   height: auto;
   text-align: start;
   color: #f7f7f0;
+  box-sizing: border-box;
 }
 
 .search {
@@ -98,7 +111,9 @@ html {
   outline: none;
   border: 2px solid #2d2a32;
   padding: 3% 1vh;
-  /* width: ; */
+  margin: 0px;
+  width: 90%;
+  box-sizing: border-box;
 }
 
 .search:focus {
@@ -135,7 +150,7 @@ html {
   font-size: medium;
   font-weight: 300;
   color: #f7f7f0;
-  margin: 0;
+  margin: 4% 0%;
 }
 
 .title h2 {
@@ -174,12 +189,21 @@ html {
 }
 
 .input-file {
-  width: 45%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
   margin: 0;
   border-radius: 8px;
   font-size: 14px;
   font-family: "Montserrat";
-  border: 1px solid var(--preto);
-  align-items: center;
   font-weight: 500;
+  border: 1px solid var(--preto);
+  box-sizing: border-box;
+}
+
+.file-interface {
+  gap: 0px 15px;
+  display: flex;
+  justify-content: space-between;
 }

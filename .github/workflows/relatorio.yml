@@ -3,7 +3,7 @@ name: Run Selenium Automation
 on:
   push:
     branches:
-      - teste-automacao  # Ou outra branch desejada
+      - SR-105  # Ou outra branch desejada
   workflow_dispatch:  # Permite rodar manualmente pelo GitHub Actions
 
 jobs:

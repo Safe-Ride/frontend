@@ -13,7 +13,7 @@ function DadosPessoais({ onSubmit, show }) {
   };
 
   const onBack = () => {
-    navigate("/cadastrar")
+    navigate("/cadastro")
   }
 
   const dadosPessoaisFields = [

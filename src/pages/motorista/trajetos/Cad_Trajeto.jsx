@@ -70,20 +70,22 @@ const Cad_Trajeto = () => {
       <NavBarTop titulo={titulo} />
       <div className={styles["container"]}>
         <h2>Adicionar novo trajeto</h2>
-        <input
-          type="file"
-          accept=".txt"
-          onChange={selecionarTxt}
-          className={styles["input-file"]}
-        />
-        <button
-          className={styles["btn-upload"]}
-          onClick={enviarTxt}
-          disabled={isUploading}
-        ></button>
-        {uploadMessage && (
-          <p className={styles["upload-message"]}>{uploadMessage}</p>
-        )}
+        <div className={styles["file-interface"]}>
+          <input
+            type="file"
+            accept=".txt"
+            onChange={selecionarTxt}
+            className={styles["input-file"]}
+          />
+          <button
+            className={styles["btn-upload"]}
+            onClick={enviarTxt}
+            disabled={isUploading}
+          ></button>
+          {uploadMessage && (
+            <p className={styles["upload-message"]}>{uploadMessage}</p>
+          )}
+        </div>
 
         <div className={styles["escolha-escola"]}>
           <h1 className={styles["text"]}>Escola do Trajeto:</h1>
