@@ -108,6 +108,9 @@ try:
 
     botao_envio = carregou_elemento_interativo('/html/body/div[1]/div[3]/div/div/section[1]/div[1]/div[3]/div/div/form/button')
     botao_envio.click()
+
+    confirmar = carregou_elemento_interativo('/html/body/div[3]/div[3]/div/div[2]/div/div[2]/input[1]')
+    confirmar.click()
     print('relatório realizado com sucesso!!!')
 
 except TimeoutException:
