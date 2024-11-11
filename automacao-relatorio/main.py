@@ -125,10 +125,6 @@ try:
     confirmar.click()
     print('relatório realizado com sucesso!!!')
 
-# except TimeoutException:
-#     print("Timed out waiting for page to load")
-# except ElementNotInteractableException:
-#     print("Element not interactable")
 except Exception as e:
     raise Exception(f'Erro: {e}' )
 finally:
