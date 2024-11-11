@@ -1,0 +1,47 @@
+.card {
+    width: 100%;
+    height: auto;
+    box-shadow: 1px 1px 8px hsla(263, 9%, 18%, 0.3);
+    border-radius: 8px;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2c718;
+    padding-bottom: 3%;
+  }
+  
+  .title {
+    font-size: 16px;
+    padding: 2vh 5%;
+    font-weight: 800;
+    border-radius: 8px;
+    width: 80%;
+    height: auto;
+    text-align: start;
+  }
+
+  body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3vh;
+}
+
+.trajeto{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.espaco-fim {
+  width: 100%;
+  height: 5vh;
+}
