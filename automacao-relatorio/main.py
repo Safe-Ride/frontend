@@ -9,7 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-
+from dotenv import load_dotenv
+load_dotenv()
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
@@ -65,8 +66,7 @@ try:
     botao.click()
     print('login concluido')
 
-    '/html/body/div[1]/div[3]/div/div/section/div[1]/div[4]/div/form/button'
-    inicio_relatorio = carregou_elemento_interativo('/html/body/div[1]/div[3]/div/div/section/div[1]/div[4]/div/form/button')
+    inicio_relatorio = carregou_elemento_interativo_css('#region-main > div:nth-child(2) > div.box.py-3.quizattempt > div')
     inicio_relatorio.click()
     print('iniciando relatório')
 
@@ -130,6 +130,6 @@ try:
 # except ElementNotInteractableException:
 #     print("Element not interactable")
 except Exception as e:
-    raise Exception(f'Erro: {e}')
+    raise Exception(f'Erro: {e}' )
 finally:
     driver.quit()
