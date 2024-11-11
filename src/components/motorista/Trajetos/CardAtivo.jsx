@@ -29,9 +29,8 @@ const CardAtivo = ({
         },
       });
       setAtivo(res.data.status);
-      closeModal();
       statusTrajeto(true)
-      // console.log(res.data);
+      closeModal();
     } catch (e) {
       console.error("Erro ao fazer o PATCH:", e);
     }
