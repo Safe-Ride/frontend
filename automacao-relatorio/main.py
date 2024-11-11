@@ -29,7 +29,7 @@ driver.get('https://moodle.sptech.school/mod/quiz/view.php?id=30413')
 
 def carregou_elemento_interativo(xpath:str):
     try:
-        element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, xpath)))
         return element
     except TimeoutException:
         print("Timed out waiting for page to load")
@@ -39,22 +39,34 @@ def carregou_elemento_interativo(xpath:str):
         print(e)
 
 
+def carregou_elemento_interativo_css(selector:str):
+    try:
+        element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selector)))
+        return element
+    except TimeoutException:
+        print("Timed out waiting for page to load")
+    except ElementNotInteractableException:
+        print("Element not interactable")
+    except Exception as e:
+        print(e)
+
 try:
-    email = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
+    email = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#username')))
     email.clear()
     email.send_keys(commit_author_email)
     print('Email inserido')
 
-    senha = (WebDriverWait(driver, 10)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
+    senha = (WebDriverWait(driver, 30)).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#password')))
     senha.clear()
     senha.send_keys(commit_author_password)
     print('senha inserida')
 
-    botao = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#loginbtn')))
+    botao = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#loginbtn')))
     botao.click()
     print('login concluido')
 
-    inicio_relatorio = carregou_elemento_interativo('/html/body/div[1]/div[3]/div/div/section/div[1]/div[3]/div/form/button')
+    '/html/body/div[1]/div[3]/div/div/section/div[1]/div[4]/div/form/button'
+    inicio_relatorio = carregou_elemento_interativo('/html/body/div[1]/div[3]/div/div/section/div[1]/div[4]/div/form/button')
     inicio_relatorio.click()
     print('iniciando relatório')
 
@@ -113,11 +125,11 @@ try:
     confirmar.click()
     print('relatório realizado com sucesso!!!')
 
-except TimeoutException:
-    print("Timed out waiting for page to load")
-except ElementNotInteractableException:
-    print("Element not interactable")
+# except TimeoutException:
+#     print("Timed out waiting for page to load")
+# except ElementNotInteractableException:
+#     print("Element not interactable")
 except Exception as e:
-    print(e)
+    raise Exception(f'Erro: {e}')
 finally:
     driver.quit()
