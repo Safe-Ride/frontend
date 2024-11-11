@@ -99,7 +99,7 @@ try:
     else:
         mensagem = "terraform: desenvolvemento da infraestrutura"
 
-    escrever.send_keys('Trello: Gestão do Projeto - Kanban').send_keys(Keys.ENTER).send_keys(f'{mensagem}').perform()
+    escrever.send_keys('Jira: Gestão do Projeto - Kanban').send_keys(Keys.ENTER).send_keys(f'{mensagem}').perform()
     print('respondendo questão 4')
 
     proximo = carregou_elemento_interativo('/html/body/div[2]/div[3]/div/div/section[1]/div[1]/form/div/div[2]/input[2]')
