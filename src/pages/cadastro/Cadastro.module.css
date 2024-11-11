@@ -82,7 +82,7 @@ input {
   border-style: solid;
   border-width: 0.09rem;
   padding: 0.3rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   background-color: var(--branco);
   width: 87%;
 }
@@ -91,31 +91,65 @@ label {
   width: 50%;
   text-align: left;
   padding: 0.5rem 0.5rem;
-  margin-left: 1.4rem;
   margin-top: 0.7rem;
 }
 
 .form {
   font-size: small;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   border-radius: 8px;
   box-shadow: 0px 0px 2px 2px rgba(45, 42, 50, 0.25);
   text-align: center;
   margin-bottom: 10px;
-  width: 90%;
-  margin-left: 1.2rem;
+  width: 80%;
+  height: auto;
+  margin: 0 auto; /* Centraliza o formulário */
+  padding: 1rem; /* Adiciona espaço interno para o formulário */
 }
+
+.form label {
+  width: 100%;
+  padding: 0.5rem 0; 
+  margin-top: 0.7rem;
+}
+
+.form input {
+  display: block;
+  border-color: var(--preto);
+  border-radius: 2rem;
+  border-style: solid;
+  border-width: 0.09rem;
+  padding: 0.5rem 0.7rem; /* Adiciona padding vertical e horizontal para os inputs */
+  margin-top: 0.5rem; /* Espaçamento entre o input e o label acima dele */
+  background-color: var(--branco);
+  width: 100%;
+}
+
 
 .inner-grid {
   display: grid;
-  text-align: left;
-  grid-template-columns: 50%;
+  width: 100%; /* Mantém o conteúdo dentro da largura do contêiner pai */
+  margin-bottom: 3%;
+  text-align: left; /* Alinha o texto à esquerda */
+  justify-content: space-between;
+  box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+}
+
+.inner-grid input {
+  width: calc(100% - 5px); /* Subtrai 16px de cada lado (16px de padding esquerda e direita) */
+  box-sizing: border-box; /* Garante que o padding seja incluído no cálculo da largura */
+}
+.inner-grid label {
+  width: calc(100% - 32px); /* Ajuste do mesmo jeito para labels, se necessário */
+  box-sizing: border-box;
 }
 
 .input-medium-right {
   width: 80%;
   grid-column-start: 2;
-  margin-left: 0.3rem;
+  margin-left: 5px;
 }
 
 input.input-medium-right {
@@ -135,17 +169,17 @@ label.input-medium-right {
 
 .inner-grid button {
   margin-top: 2rem;
-  width: 50%;
+  width: 100%;
   padding: 0.4rem;
 }
 
 .inner-grid .btn-light {
   grid-column-start: 2;
-  margin-left: 40%;
+  margin-left: 0%;
 }
 
 .inner-grid .btn-dark {
-  margin-left: 10%;
+  margin-left: 0%;
 }
 
 *:disabled {
