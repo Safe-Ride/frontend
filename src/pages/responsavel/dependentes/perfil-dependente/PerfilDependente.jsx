@@ -80,10 +80,23 @@ const PerfilDependente = () => {
       .then((res) => {
         const data = res.data;
         const nomesEscolas = data.map((e) => ({ id: e.id, value: e.nome }));
-        console.log(nomesEscolas); // Verifica o resultado
-        setOpcoesEscolas(nomesEscolas); // Agora setOpcoesEscolas terá apenas os nomes
+        console.log(nomesEscolas);
+        setOpcoesEscolas(nomesEscolas);
       })
       .catch((err) => console.error("erro escola: " + err));
+  }
+
+  function getTransporte(motoristaId) {
+    console.log(`/transportes/motorista/${motoristaId}`)
+    api.get(`/transportes/motorista/${motoristaId}`)
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+      setDependenteInfo((prev) => ({
+        ...prev,
+        placaTransporte: data[0].placa,
+      }))
+    })
   }
 
   useEffect(() => {
@@ -93,6 +106,10 @@ const PerfilDependente = () => {
         const data = res.data;
         console.info(data);
         setDependenteInfo(data);
+
+        if (data.placaTransporte == null) {
+          getTransporte(data.idMotorista);
+        }
       })
       .catch((err) => console.error(err));
 
