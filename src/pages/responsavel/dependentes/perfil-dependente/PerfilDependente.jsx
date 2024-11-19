@@ -8,16 +8,21 @@ import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import icoCasa from "../../../../utils/assets/dependentes/casa.png";
+import icoStart from "../../../../utils/assets/dependentes/start.png";
 import Imagem from "../../../../utils/assets/perfil/usuario.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FormatarData from "../../../../utils/functions/FormatarData";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
   const { id } = useParams();
   const [dependenteInfo, setDependenteInfo] = useState({});
+  const [historico, setHistorico] = useState([]);
+  const idUsuario = sessionStorage.getItem("ID_USUARIO");
+
   const opcoesSerie = [
     {
       id: 0,
@@ -93,45 +98,38 @@ const PerfilDependente = () => {
         const data = res.data;
         console.info(data);
         setDependenteInfo(data);
+        getHistorico(data.idMotorista);
       })
       .catch((err) => console.error(err));
 
     getEscolas();
   }, [id]);
 
-  const historico = [
-    {
-      id: 1,
-      status: "Na Escola",
-      horario: "12:52",
-    },
-    {
-      id: 2,
-      status: "Indo Para Escola",
-      horario: "12:29",
-    },
-    {
-      id: 3,
-      status: "Em Casa",
-      horario: "Ontem, 18:16",
-    },
-    {
-      id: 4,
-      status: "Voltando Para Casa",
-      horario: "Ontem, 17:43",
-    },
-  ];
+  function getHistorico(idMotorista) {
+    api
+      .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${idMotorista}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.token}` },
+      })
+      .then((res) => {
+        const data = res.data;
+        console.info(data);
+        setHistorico(data.mensagens);
+      })
+      .catch((err) => console.error(err));
+  }
 
   function returnIconeStatus(status) {
     switch (status) {
-      case "Na Escola":
+      case "Na escola":
         return icoEscola;
-      case "Indo Para Escola":
+      case "Indo para escola":
         return icoVeiculo;
-      case "Em Casa":
+      case "Em casa":
         return icoCasa;
-      case "Voltando Para Casa":
+      case "Voltando para casa":
         return icoVeiculo;
+      case "":
+        return icoStart;
     }
   }
 
@@ -229,18 +227,18 @@ const PerfilDependente = () => {
       </div>
       <div className={styles["wrapper"]}>
         <Box titulo={"Histórico"}>
-          {/* Hist */}
-          {historico.map((h) => {
-            var icone = returnIconeStatus(h.status);
-            return (
-              <CardInfo
-                key={h.id}
-                icone={icone}
-                categoria={h.status}
-                info={h.horario}
-              />
-            );
-          })}
+          {Array.isArray(historico) &&
+            historico.map((h) => {
+              const icone = returnIconeStatus(h.status);
+              return (
+                <CardInfo
+                  key={h.id}
+                  icone={icone}
+                  categoria={h.status}
+                  info={FormatarData(h.horario)}
+                />
+              );
+            })}
         </Box>
       </div>
       <NavBarBot />
