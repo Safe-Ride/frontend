@@ -61,18 +61,19 @@ const PerfilDependente = () => {
     },
     {
       id: 10,
-      value: "1° Ano Ensino Médio",
+      value: "1ª série",
     },
     {
       id: 11,
-      value: "2° Ano Ensino Médio",
+      value: "2ª série",
     },
     {
       id: 12,
-      value: "3° Ano Ensino Médio",
+      value: "3ª série",
     },
   ];
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
+  const [historico, setHistorico] = useState([]);
 
   function getEscolas() {
     api
@@ -86,6 +87,20 @@ const PerfilDependente = () => {
       .catch((err) => console.error("erro escola: " + err));
   }
 
+  function getHistorico() {
+    api
+      .get(`/usuarios/status-dependentes/dependente/${id}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.token}` }
+      })
+      .then((res) => {
+        setHistorico(res.data);
+        console.log("Historico: ", res.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar histórico:", error);
+      });
+  };
+
   useEffect(() => {
     api
       .get(`/dependentes/${id}/perfil`)
@@ -97,9 +112,10 @@ const PerfilDependente = () => {
       .catch((err) => console.error(err));
 
     getEscolas();
+    getHistorico();
   }, [id]);
 
-  const historico = [
+  const historico1 = [
     {
       id: 1,
       status: "Na Escola",
@@ -122,16 +138,44 @@ const PerfilDependente = () => {
     },
   ];
 
-  function returnIconeStatus(status) {
-    switch (status) {
-      case "Na Escola":
-        return icoEscola;
-      case "Indo Para Escola":
-        return icoVeiculo;
-      case "Em Casa":
-        return icoCasa;
-      case "Voltando Para Casa":
-        return icoVeiculo;
+  function formatarHistorico(historico) {
+    switch (historico.mensagemStatus) {
+      case "Na escola":
+        return (
+          <CardInfo
+            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
+            icone={icoEscola}
+            categoria={historico.mensagemStatus}
+            info={historico.horarioFim}
+          />
+        );
+      case "Indo para escola":
+        return (
+          <CardInfo
+            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
+            icone={icoVeiculo}
+            categoria={historico.mensagemStatus}
+            info={historico.horarioInicio}
+          />
+        );
+      case "Em casa":
+        return (
+          <CardInfo
+            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
+            icone={icoCasa}
+            categoria={historico.mensagemStatus}
+            info={historico.horarioFim}
+          />
+        );
+      case "Voltando para casa":
+        return (
+          <CardInfo
+            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
+            icone={icoVeiculo}
+            categoria={historico.mensagemStatus}
+            info={historico.horarioInicio}
+          />
+        );
     }
   }
 
@@ -230,16 +274,8 @@ const PerfilDependente = () => {
       <div className={styles["wrapper"]}>
         <Box titulo={"Histórico"}>
           {/* Hist */}
-          {historico.map((h) => {
-            var icone = returnIconeStatus(h.status);
-            return (
-              <CardInfo
-                key={h.id}
-                icone={icone}
-                categoria={h.status}
-                info={h.horario}
-              />
-            );
+          {historico && historico.map(h => {
+            return formatarHistorico(h);
           })}
         </Box>
       </div>
