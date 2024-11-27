@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -43,6 +45,9 @@ jobs:
 
       - name: List files  # Opcional, para depuração
         run: ls -la
+
+      - name: List files in frontend (if applicable)
+        run: ls -la ./frontend
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
