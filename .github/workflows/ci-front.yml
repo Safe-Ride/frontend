@@ -44,7 +44,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: . 
-          dockerfile: ./Dockerfile
+          context: .  # Caminho correto para o contexto do Docker
+          dockerfile: ./Dockerfile  # Caminho correto para o Dockerfile
           push: true
           tags: lucasrocha2704/ci-front:latest
