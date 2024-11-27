@@ -41,10 +41,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: List files  # Opcional, para depuração
+        run: ls -la
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .  # Caminho correto para o contexto do Docker
-          file: ./Dockerfile  # Caminho correto para o Dockerfile
+          context: ./
           push: true
-          tags: lucasrocha2704/ci-front:latest
+          tags: lucasrocha2704/frontend:latest

@@ -1,4 +1,6 @@
 FROM node:18 AS build
+LABEL authors="lucas"
+
 
 WORKDIR /app
 
