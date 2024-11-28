@@ -5,9 +5,9 @@ on:
     branches-ignore: 
       - main
 
-    pull_request:
-      branches-ignore:
-        - main
+  pull_request:
+    branches-ignore:
+      - main
   workflow_dispatch: 
 
 jobs:
