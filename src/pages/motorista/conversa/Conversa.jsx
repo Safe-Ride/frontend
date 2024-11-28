@@ -28,6 +28,7 @@ const Conversas = () => {
       })
       .then((res) => {
         setMotoristas(res.data);
+        console.log(res.data);
       });
   };
 
@@ -47,6 +48,7 @@ const Conversas = () => {
                 key={index}
                 onClick={() => {
                   sessionStorage.setItem("conversaId", m.conversaId);
+                  sessionStorage.setItem("FOTO_USUARIO", m.foto);
                   navigate(`/motorista/conversas/${m.id}`);
                 }}
               >
