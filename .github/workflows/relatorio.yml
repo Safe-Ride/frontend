@@ -2,9 +2,13 @@ name: Run Selenium Automation
 
 on:
   push:
-     branches-ignore:  # Ignora a execução para a branch main
-      - main 
-  workflow_dispatch:  
+    branches-ignore: 
+      - main
+
+    pull_request:
+      branches-ignore:
+        - main
+  workflow_dispatch: 
 
 jobs:
   automation:
