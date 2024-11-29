@@ -26,9 +26,18 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: List files in the build directory (for debugging)
+        run: ls -la ./build # Verifica se a pasta de build está correta
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aplicacao # Nome do artefato a ser baixado posteriormente
+          path: ./build # Caminho onde os arquivos de build estão localizados
+
   docker:
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - build
     steps:
       - name: Checkout repository
@@ -46,12 +55,51 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: List files  # Opcional, para depuração
-        run: ls -la
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./
+          context: ./ # Contexto para o build do Docker
           push: true
           tags: lucasrocha2704/frontend:latest
+
+  deploy:
+    needs:
+      - build
+      - docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperar artefatos do build
+        uses: actions/download-artifact@v4
+        with:
+          name: aplicacao # Nome do artefato que foi carregado na etapa anterior
+          path: ./build # Caminho onde o artefato será salvo
+
+      - name: List files in the downloaded artifact (for debugging)
+        run: ls -la ./build # Verifica os arquivos baixados na pasta de build
+
+      - name: Criar arquivo .pem
+        run: |
+          echo "${{ secrets.DEPLOY_KEY }}" >> $HOME/${{ secrets.NOME_ARQUIVO_PEM }}
+          chmod 400 $HOME/${{ secrets.NOME_ARQUIVO_PEM }}
+
+      - name: Enviar arquivos do build para a EC2 via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          source: "./build/"
+          target: "/home/ubuntu/frontend/"
+
+      - name: Ajustar permissões no servidor remoto
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: |
+            chown -R ubuntu:ubuntu /home/ubuntu/frontend/
+            chmod -R 770 /home/ubuntu/frontend/
