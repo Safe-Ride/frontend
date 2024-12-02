@@ -10,6 +10,7 @@ const TrajetoEdicao = () => {
   const [trajeto, setTrajeto] = useState({});
   const params = useParams();
   const idTrajeto = params["id"];
+  const [atualizarTela, setAtualizarTela] = useState(false)
   
 
   useEffect(() => {
@@ -17,7 +18,8 @@ const TrajetoEdicao = () => {
       const { data } = res;
       setTrajeto(data);
     });
-  }, [idTrajeto]);
+    setAtualizarTela(false)
+  }, [idTrajeto, atualizarTela]);
 
   return (
     <>
@@ -34,6 +36,7 @@ const TrajetoEdicao = () => {
                 rotaId={rota.id}
                 dependente={rota.dependente}
                 enderecoId={rota.endereco.id}
+                atualizarTela={setAtualizarTela}
               />
             ))
           ) : (
