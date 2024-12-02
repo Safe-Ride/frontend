@@ -123,7 +123,7 @@ const PerfilDependente = () => {
 
     getEscolas();
   }, [id]);
-
+  
   function getHistorico(idMotorista) {
     api
       .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${idMotorista}`, {
