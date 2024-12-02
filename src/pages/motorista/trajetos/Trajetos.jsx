@@ -15,6 +15,7 @@ const Trajetos = () => {
   const token = sessionStorage.getItem("token");
 
   useEffect(() =>{
+    setStatusTrajeto(false)
     api
         .get(`/trajetos/motorista/${id}`, {
           headers: {

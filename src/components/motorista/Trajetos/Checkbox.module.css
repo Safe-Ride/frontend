@@ -6,6 +6,7 @@
     cursor: pointer;
     font-size: 22px;
     user-select: none;
+    margin-left: 15px;
 }
 
 /* Hide the browser's default checkbox */

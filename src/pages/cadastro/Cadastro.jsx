@@ -15,13 +15,13 @@ function Cadastro() {
           <p>Conte-nos um pouco mais sobre você</p>
           <button
             className={styles["btn-light"]}
-            onClick={() => navigate("/cadastrar/responsavel")}
+            onClick={() => navigate("/cadastro/responsavel")}
           >
             Sou Responsável
           </button>
           <button
             className={styles["btn-dark"]}
-            onClick={() => navigate("/cadastrar/motorista")}
+            onClick={() => navigate("/cadastro/motorista")}
           >
             Sou Motorista
           </button>
