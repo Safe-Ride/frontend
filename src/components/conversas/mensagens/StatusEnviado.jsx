@@ -2,8 +2,13 @@ import React from "react";
 import FormatarData from "../../../utils/functions/FormatarData";
 import FotoPerfil from "../../../utils/functions/FotoPerfil";
 import styles from "./StatusEnviado.module.css";
+import Imagem from "../../../utils/assets/perfil/usuario.png"
 
 const StatusEnviado = ({ mensagem }) => {
+  const handleImageError = (e) => {
+    e.target.src = Imagem;
+  } 
+
   return (
     
     <div className={styles["container-enviado"]}>
@@ -28,6 +33,7 @@ const StatusEnviado = ({ mensagem }) => {
         src={FotoPerfil(sessionStorage.FOTO_USUARIO)}
         alt="Foto responsável"
         className={styles["foto"]}
+        onError={handleImageError}
       />
     </div>
   );
