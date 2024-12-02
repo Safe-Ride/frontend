@@ -78,7 +78,6 @@ const PerfilDependente = () => {
     },
   ];
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
-  const [historico, setHistorico] = useState([]);
 
   function getEscolas() {
     api
@@ -123,7 +122,6 @@ const PerfilDependente = () => {
       .catch((err) => console.error(err));
 
     getEscolas();
-    getHistorico();
   }, [id]);
   
   function getHistorico(idMotorista) {
