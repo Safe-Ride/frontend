@@ -183,14 +183,14 @@ function Rotas() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/responsavel/dependentes"
           element={
             <PrivateRoute>
               <RDependentes />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route
           path="/responsavel/dependentes"
           element={

@@ -39,6 +39,7 @@ const Conversas = () => {
               <div
                 onClick={() => {
                   sessionStorage.setItem("conversaId", m.conversaId);
+                  sessionStorage.setItem("FOTO_USUARIO", m.foto);
                   navigate(`/responsavel/conversas/${m.id}`);
                 }}
               >

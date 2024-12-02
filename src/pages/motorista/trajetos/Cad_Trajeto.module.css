@@ -42,7 +42,7 @@ html {
 .choices .choice-item {
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -57,7 +57,7 @@ html {
 }
 
 .choices .choice-item select {
-  width: 190px;
+  /* width: 190px; */
   /* height: 24px; */
   padding: 8px;
 
@@ -206,4 +206,5 @@ html {
   gap: 0px 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }

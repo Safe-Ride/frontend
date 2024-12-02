@@ -38,7 +38,7 @@ function CampoPesquisa({ onSearch }) {
   };
 
   return (
-    <div>
+    <div className={styles['container-pesquisa']}>
       <input
         className={`${styles["barraPesquisa"]} ${termo ? styles["barraPesquisaSelected"] : ""}`}
         type="text"

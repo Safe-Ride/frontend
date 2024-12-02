@@ -8,16 +8,21 @@ import icoEscola from "../../../../utils/assets/dependentes/escola.png";
 import icoVeiculo from "../../../../utils/assets/dependentes/veiculo.png";
 import icoTelefone from "../../../../utils/assets/dependentes/telefone.png";
 import icoCasa from "../../../../utils/assets/dependentes/casa.png";
+import icoStart from "../../../../utils/assets/dependentes/start.png";
 import Imagem from "../../../../utils/assets/perfil/usuario.png";
 import FotoPerfil from "../../../../utils/functions/FotoPerfil";
 import api from "../../../../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FormatarData from "../../../../utils/functions/FormatarData";
 
 const PerfilDependente = () => {
   const titulo = "MEUS DEPENDENTES";
   const { id } = useParams();
   const [dependenteInfo, setDependenteInfo] = useState({});
+  const [historico, setHistorico] = useState([]);
+  const idUsuario = sessionStorage.getItem("ID_USUARIO");
+
   const opcoesSerie = [
     {
       id: 0,
@@ -81,25 +86,24 @@ const PerfilDependente = () => {
       .then((res) => {
         const data = res.data;
         const nomesEscolas = data.map((e) => ({ id: e.id, value: e.nome }));
-        console.log(nomesEscolas); // Verifica o resultado
-        setOpcoesEscolas(nomesEscolas); // Agora setOpcoesEscolas terá apenas os nomes
+        console.log(nomesEscolas);
+        setOpcoesEscolas(nomesEscolas);
       })
       .catch((err) => console.error("erro escola: " + err));
   }
 
-  function getHistorico() {
-    api
-      .get(`/usuarios/status-dependentes/dependente/${id}`, {
-        headers: { Authorization: `Bearer ${sessionStorage.token}` }
-      })
-      .then((res) => {
-        setHistorico(res.data);
-        console.log("Historico: ", res.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar histórico:", error);
-      });
-  };
+  function getTransporte(motoristaId) {
+    console.log(`/transportes/motorista/${motoristaId}`)
+    api.get(`/transportes/motorista/${motoristaId}`)
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+      setDependenteInfo((prev) => ({
+        ...prev,
+        placaTransporte: data[0].placa,
+      }))
+    })
+  }
 
   useEffect(() => {
     api
@@ -108,74 +112,45 @@ const PerfilDependente = () => {
         const data = res.data;
         console.info(data);
         setDependenteInfo(data);
+        if (data.placaTransporte == null) {
+          getTransporte(data.idMotorista);
+        }
+
+        if (data) {
+          getHistorico(data.idMotorista);
+        }
       })
       .catch((err) => console.error(err));
 
     getEscolas();
     getHistorico();
   }, [id]);
+  
+  function getHistorico(idMotorista) {
+    api
+      .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${idMotorista}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.token}` },
+      })
+      .then((res) => {
+        const data = res.data;
+        console.info(data);
+        setHistorico(data.mensagens);
+      })
+      .catch((err) => console.error(err));
+  }
 
-  const historico1 = [
-    {
-      id: 1,
-      status: "Na Escola",
-      horario: "12:52",
-    },
-    {
-      id: 2,
-      status: "Indo Para Escola",
-      horario: "12:29",
-    },
-    {
-      id: 3,
-      status: "Em Casa",
-      horario: "Ontem, 18:16",
-    },
-    {
-      id: 4,
-      status: "Voltando Para Casa",
-      horario: "Ontem, 17:43",
-    },
-  ];
-
-  function formatarHistorico(historico) {
-    switch (historico.mensagemStatus) {
+  function returnIconeStatus(status) {
+    switch (status) {
       case "Na escola":
-        return (
-          <CardInfo
-            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
-            icone={icoEscola}
-            categoria={historico.mensagemStatus}
-            info={historico.horarioFim}
-          />
-        );
+        return icoEscola;
       case "Indo para escola":
-        return (
-          <CardInfo
-            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
-            icone={icoVeiculo}
-            categoria={historico.mensagemStatus}
-            info={historico.horarioInicio}
-          />
-        );
+        return icoVeiculo;
       case "Em casa":
-        return (
-          <CardInfo
-            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
-            icone={icoCasa}
-            categoria={historico.mensagemStatus}
-            info={historico.horarioFim}
-          />
-        );
+        return icoCasa;
       case "Voltando para casa":
-        return (
-          <CardInfo
-            key={`historico-${historico.historicoId}-${historico.horarioInicio}-${historico.horarioFim}-${historico.mensagemStatus}`}
-            icone={icoVeiculo}
-            categoria={historico.mensagemStatus}
-            info={historico.horarioInicio}
-          />
-        );
+        return icoVeiculo;
+      case "":
+        return icoStart;
     }
   }
 
@@ -273,10 +248,18 @@ const PerfilDependente = () => {
       </div>
       <div className={styles["wrapper"]}>
         <Box titulo={"Histórico"}>
-          {/* Hist */}
-          {historico && historico.map(h => {
-            return formatarHistorico(h);
-          })}
+          {Array.isArray(historico) &&
+            historico.map((h) => {
+              const icone = returnIconeStatus(h.status);
+              return (
+                <CardInfo
+                  key={h.id}
+                  icone={icone}
+                  categoria={h.status}
+                  info={FormatarData(h.horario)}
+                />
+              );
+            })}
         </Box>
       </div>
       <NavBarBot />

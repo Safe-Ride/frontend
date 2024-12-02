@@ -115,8 +115,8 @@ const Cad_Trajeto = () => {
               <option value="Quarta-feira">Quarta-feira</option>
               <option value="Quinta-feira">Quinta-feira</option>
               <option value="Sexta-feira">Sexta-feira</option>
-              <option value="Sábado">Sábado</option>
-              <option value="Domingo">Domingo</option>
+              {/* <option value="Sábado">Sábado</option>
+              <option value="Domingo">Domingo</option> */}
             </select>
           </div>
         </div>

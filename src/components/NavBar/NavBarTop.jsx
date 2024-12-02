@@ -9,7 +9,7 @@ const NavBarTop = ({ titulo }) => {
   const navigate = useNavigate();
 
   const goProfile = () => {
-    navigate('/motorista/perfil', { state: { idUsuario } });
+    navigate('/motorista/perfil');
   }
 
   const handleGoBack = () => {
@@ -23,7 +23,7 @@ const NavBarTop = ({ titulo }) => {
       <nav className={styles["navbartop"]}>
         <img className={styles["voltar"]} src={imgVoltar} alt="" onClick={handleGoBack}/>
         <p className={styles["titulo"]}>{titulo}</p>
-        <a href="" onClick={goProfile}>
+        <a onClick={goProfile}>
           <img className={styles["perfil"]} src={imgPerfil} alt="" />
         </a>
       </nav>
