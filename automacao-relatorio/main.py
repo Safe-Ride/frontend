@@ -62,11 +62,13 @@ def enviar_credenciais(email_autor:str, senha_autor:str):
     input_email = carregou_elemento_interativo_css('#username')
     input_email.clear()
     input_email.send_keys(email_autor)
+    print(email_autor)
     print('Email inserido')
 
     input_senha = carregou_elemento_interativo_css('#password')
     input_senha.clear()
     input_senha.send_keys(senha_autor)
+    print(senha_autor)
     print('senha inserida')
 
     botao = carregou_elemento_interativo_css('#loginbtn')
