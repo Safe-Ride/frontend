@@ -43,7 +43,7 @@ const VisaoGeralResponsavel = () => {
       {/* Div de contêiner para os cards */}
       <div className={styles["cardsContainer"]}>
         {/* Renderiza um CardVisao para cada dependente */}
-        {dependentes.map((dependente, index) => (
+        {dependentes && dependentes.map((dependente, index) => (
           <CardVisao
             key={index}
             id={dependente.dependenteId}
