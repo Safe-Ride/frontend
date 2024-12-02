@@ -66,15 +66,15 @@ const PerfilDependente = () => {
     },
     {
       id: 10,
-      value: "1° Ano Ensino Médio",
+      value: "1ª série",
     },
     {
       id: 11,
-      value: "2° Ano Ensino Médio",
+      value: "2ª série",
     },
     {
       id: 12,
-      value: "3° Ano Ensino Médio",
+      value: "3ª série",
     },
   ];
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
@@ -115,6 +115,9 @@ const PerfilDependente = () => {
           getTransporte(data.idMotorista);
         }
 
+        if (data) {
+          getHistorico(data.idMotorista);
+        }
       })
       .catch((err) => console.error(err));
 
