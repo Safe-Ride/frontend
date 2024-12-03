@@ -61,16 +61,6 @@
 }
 
 .leg-2 {
-    background: linear-gradient(320deg,
-            #ff944d 25%,
-            #f60 25%,
-            #f60 50%,
-            #ff944d 50%,
-            #ff944d 75%,
-            #f60 75%);
-}
-
-.leg-3 {
     background: linear-gradient(270deg,
             #ff6363 25%,
             #e50101 25%,
@@ -80,7 +70,27 @@
             #e50101 75%);
 }
 
+.leg-3 {
+    background: linear-gradient(320deg,
+            #ff944d 25%,
+            #f60 25%,
+            #f60 50%,
+            #ff944d 50%,
+            #ff944d 75%,
+            #f60 75%);
+}
+
 .leg-4 {
+    background: linear-gradient(320deg,
+            #ff944d 25%,
+            #f60 25%,
+            #f60 50%,
+            #ff944d 50%,
+            #ff944d 75%,
+            #f60 75%);
+}
+
+/* .leg-4 {
     background: linear-gradient(135deg,
             #333333 25%,
             #000000 25%,
@@ -88,4 +98,4 @@
             #333333 50%,
             #333333 75%,
             #000000 75%);
-}
+} */
