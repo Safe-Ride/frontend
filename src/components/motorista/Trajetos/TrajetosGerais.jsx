@@ -7,6 +7,29 @@ import styles from "./TrajetosGerais.module.css";
 const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
   const navigate = useNavigate();
   const [termoPesquisa, setTermoPesquisa] = useState("");
+  const [mostrarTrajetosDoDia, setMostrarTrajetosDoDia] = useState(false);
+
+  const diasDaSemana = {
+    "SEGUNDA": 1,
+    "TERCA": 2, 
+    "QUARTA": 3, 
+    "QUINTA": 4, 
+    "SEXTA": 5
+  }
+
+  const handleChange = () => {
+    setMostrarTrajetosDoDia(!mostrarTrajetosDoDia)
+
+    mostrarTrajetos()
+  }
+
+  const mostrarTrajetos = () => {
+    let hoje = new Date().getDay()
+    if(mostrarTrajetosDoDia) {
+      return trajetos.filter(t => diasDaSemana[t.diaSemana] === hoje)
+    }
+    return trajetos
+  }
 
   const baixarTrajetosTxt = async () => {
     try {
@@ -17,9 +40,9 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
         `/trajetos/baixar-trajeto-motorista/${motoristaId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           },
-          responseType: "blob",
+          responseType: "blob"
         }
       );
 
@@ -39,8 +62,8 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
     }
   };
 
-  const trajetosFiltrados = Array.isArray(trajetos)
-    ? trajetos.filter((trajeto) =>
+  const trajetosFiltrados = Array.isArray(mostrarTrajetos())
+    ? mostrarTrajetos().filter((trajeto) =>
         trajeto.escola.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
       )
     : [];
@@ -49,6 +72,11 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
     <div className={styles["card"]}>
       <div className={styles["header"]}>
         <div className={styles["title"]}>TRAJETOS</div>
+        <p className={styles["title"]}>HOJE</p>
+        <label className={styles["switch"]}>
+          <input type="checkbox" checked={mostrarTrajetosDoDia} onChange={handleChange} />
+          <span className={styles["slider"]}></span>
+        </label>
         <button
           className={styles["btn-download"]}
           onClick={baixarTrajetosTxt}
@@ -90,3 +118,4 @@ const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
 };
 
 export default TrajetosGerais;
+
