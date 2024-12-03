@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../api";
 import CardDependenteEdicao from "../../../components/motorista/Trajetos/CardDependenteEdicao";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
@@ -10,15 +10,15 @@ const TrajetoEdicao = () => {
   const [trajeto, setTrajeto] = useState({});
   const params = useParams();
   const idTrajeto = params["id"];
-  const [atualizarTela, setAtualizarTela] = useState(false)
-  
+  const [atualizarTela, setAtualizarTela] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get(`/trajetos/${idTrajeto}`).then((res) => {
       const { data } = res;
       setTrajeto(data);
     });
-    setAtualizarTela(false)
+    setAtualizarTela(false);
   }, [idTrajeto, atualizarTela]);
 
   return (
@@ -42,6 +42,14 @@ const TrajetoEdicao = () => {
           ) : (
             <div></div>
           )}
+          <div
+            className={styles["container"]}
+            onClick={() =>
+              navigate(`/motorista/trajetos/${trajeto.id}/adicionar-dependente`)
+            }
+          >
+            <h3 className={styles["text"]}>+ Adicionar dependentes</h3>
+          </div>
         </div>
       </div>
       <NavBarBot />

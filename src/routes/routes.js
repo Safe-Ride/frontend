@@ -11,6 +11,7 @@ import MotoristaConversa from "../pages/motorista/conversa/Conversa";
 import MPagamentos from "../pages/motorista/pagamentos/Pagamentos";
 import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
 import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
+import MTrajetosAdicionarDependentes from "../pages/motorista/trajetos/TrajetoAdicionarDependente";
 import MTrajetosEdicao from "../pages/motorista/trajetos/TrajetoEdicao";
 import MTrajetos from "../pages/motorista/trajetos/Trajetos";
 import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
@@ -68,6 +69,15 @@ function Rotas() {
           element={
             <PrivateRoute>
               <MTrajetosEdicao />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/motorista/trajetos/:id/adicionar-dependente"
+          element={
+            <PrivateRoute>
+              <MTrajetosAdicionarDependentes />
             </PrivateRoute>
           }
         />
