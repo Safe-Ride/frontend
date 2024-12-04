@@ -1,4 +1,4 @@
-import apiLine from "../../../apiLine";
+import api from "../../../api";
 import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 
@@ -7,8 +7,12 @@ const LineChart = () => {
 
   const recuperarInformacoesCliente = async () => {
     try {
-      const response = await apiLine.get();
-      const data = agruparPorAnoMes(response.data);
+      const response = await api.get("/pagamentos/renda-bruta-mes", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      });
+      const data = response.data;
 
       const months = [];
       const values = [];
@@ -16,8 +20,8 @@ const LineChart = () => {
       console.log(data);
 
       for (const key in data) {
-          months.push(nomeMes(data[key].data) + `/${numeroAno(data[key].data)}`);
-          values.push(data[key].valor);
+        months.push(nomeMes(data[key].data) + `/${numeroAno(data[key].data)}`);
+        values.push(data[key].valor);
       }
 
       setChartData({ months, values });
@@ -34,10 +38,12 @@ const LineChart = () => {
     const maxValueWidth = getMaxValueWidth(chartData.values); // Ajusta conforme necessário
     return {
       tooltip: {
-        trigger: 'axis',
+        trigger: "axis",
         formatter: function (params) {
           params = params[0];
-          return params.name + ":<br/>" + "R$" + Number(params.value).toFixed(2);
+          return (
+            params.name + ":<br/>" + "R$" + Number(params.value).toFixed(2)
+          );
         },
         textStyle: {
           fontSize: 12,
@@ -77,7 +83,7 @@ const LineChart = () => {
           // smooth: true,
         },
       ],
-    }
+    };
   };
 
   return (
@@ -103,28 +109,30 @@ function numeroAno(data) {
 
 function agruparPorAnoMes(dados) {
   const agrupado = dados.reduce((acumulador, item) => {
-      const [ano, mes] = item.data.split("-");
-      const chave = `${ano}-${mes}`;
+    const [ano, mes] = item.data.split("-");
+    const chave = `${ano}-${mes}`;
 
-      if (!acumulador[chave]) {
-          acumulador[chave] = 0;
-      }
+    if (!acumulador[chave]) {
+      acumulador[chave] = 0;
+    }
 
-      acumulador[chave] += item.valor;
+    acumulador[chave] += item.valor;
 
-      return acumulador;
+    return acumulador;
   }, {});
 
-  return Object.entries(agrupado).map(([data, valor]) => ({
+  return Object.entries(agrupado)
+    .map(([data, valor]) => ({
       data,
       valor,
-  })).sort((a, b) => new Date(`${a.data}-01`) - new Date(`${b.data}-01`))
-  .slice(-6);
-};
+    }))
+    .sort((a, b) => new Date(`${a.data}-01`) - new Date(`${b.data}-01`))
+    .slice(-6);
+}
 
 function getMaxValueWidth(values) {
   const maxValue = Math.max(...values);
-  
+
   // Formata o valor como string e calcula a largura (simula o comportamento, o cálculo real pode variar conforme a fonte)
   const maxValueString = maxValue.toLocaleString("pt-BR", {
     minimumFractionDigits: 0,
@@ -139,7 +147,6 @@ function getMaxValueWidth(values) {
 
   // Define uma margem para o valor
   return textWidth + 20; // Adiciona 20px para margem
-};
-
+}
 
 export default LineChart;

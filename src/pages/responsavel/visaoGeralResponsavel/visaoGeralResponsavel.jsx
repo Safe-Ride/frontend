@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
@@ -11,7 +10,6 @@ const VisaoGeralResponsavel = () => {
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
-  const navigate = useNavigate();
   const [dependentes, setDependentes] = useState([]);
   const api = axios.create({
     baseURL: `http://localhost:8080/`,
@@ -20,7 +18,7 @@ const VisaoGeralResponsavel = () => {
   const buscarDependentes = () => {
     api
       .get(`/usuarios/status-dependentes/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         setDependentes(res.data);
@@ -32,9 +30,7 @@ const VisaoGeralResponsavel = () => {
   };
 
   useEffect(() => {
-
-      buscarDependentes();
-  
+    buscarDependentes();
   }, []);
 
   return (
