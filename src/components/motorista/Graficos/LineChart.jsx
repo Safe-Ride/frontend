@@ -1,4 +1,4 @@
-import apiLine from "../../../apiLine";
+import api from "../../../api";
 import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 
@@ -7,7 +7,11 @@ const LineChart = () => {
 
   const recuperarInformacoesCliente = async () => {
     try {
-      const response = await apiLine.get();
+      const response = await api.get("/pagamentos/renda-bruta-mes", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      });
       const data = response.data;
 
       const months = [];

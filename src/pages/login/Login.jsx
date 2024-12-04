@@ -1,4 +1,4 @@
-import apiLogin from "./../../apiLogin";
+import api from "./../../api";
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,8 @@ const Clientes = () => {
     }
 
     try {
-      const response = await apiLogin.post(
-        "/login",
+      const response = await api.post(
+        "/usuarios/login",
         {
           email,
           senha,

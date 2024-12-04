@@ -14,7 +14,6 @@ import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "../pages/notFound/NotFound";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
-import RDependentes from "../pages/responsavel/dependentes/Dependentes";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
 import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
@@ -241,7 +240,7 @@ function Rotas() {
         />
         <Route
           path="/responsavel/dependentes/:idDependente/motorista/:idMotorista/solicitacao"
-          element={ 
+          element={
             <PrivateRoute>
               <RSolicitacoes />
             </PrivateRoute>
