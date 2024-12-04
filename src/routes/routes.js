@@ -1,36 +1,37 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
 import Cadastro from "../pages/cadastro/Cadastro";
 import CadastroMotorista from "../pages/cadastro/CadastroMotorista/CadastroMotorista";
 import CadastroResponsavel from "../pages/cadastro/CadastroResponsavel/CadastroResponsavel";
+import Login from "../pages/login/Login";
 import MClientes from "../pages/motorista/clientes/Clientes";
 import MClientesClienteId from "../pages/motorista/clientes/id/ClienteId";
 import MotoristaConversa from "../pages/motorista/conversa/Conversa";
 import MPagamentos from "../pages/motorista/pagamentos/Pagamentos";
 import MotoristaPagamentosResponsaveis from "../pages/motorista/pagamentos/pagamentosResponsaveis/PagamentosResponsaveis";
 import MotoristaPerfil from "../pages/motorista/perfil/Perfil";
+import MTrajetosAdicionarDependentes from "../pages/motorista/trajetos/TrajetoAdicionarDependente";
+import MTrajetosEdicao from "../pages/motorista/trajetos/TrajetoEdicao";
 import MTrajetos from "../pages/motorista/trajetos/Trajetos";
 import MVisaoGeral from "../pages/motorista/visaoGeral/VisaoGeral";
 import NotFound from "../pages/notFound/NotFound";
 import ResponsavelConversas from "../pages/responsavel/conversa/Conversas";
 import ResponsavelConversaMotorista from "../pages/responsavel/conversa/mensagem/ConversaMotorista";
+import EncontrarMotorista from "../pages/responsavel/dependentes/encontrar-motorista/EncontrarMotorista";
 import RPagamentos from "../pages/responsavel/pagamentos/Pagamentos";
 import ResponsavelPagamentosDependente from "../pages/responsavel/pagamentos/pagamentos-motoristas/PagamentosMotoristas";
 import VisaoGeralResponsavel from "../pages/responsavel/visaoGeralResponsavel/visaoGeralResponsavel";
 import PrivateRoute from "./PrivateRoute";
 
-import EditarDependente from "../components/responsavel/dependentes/editarDependente/EditarDependente";
-import EncontrarMotorista from "../pages/responsavel/dependentes/encontrar-motorista/EncontrarMotorista";
-import Login from "../pages/login/Login";
-
-import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
-import MSolicitacoes from "../pages/motorista/solicitacoes/Solicitacoes";
-import MSolicitacao from "../pages/motorista/solicitacoes/Solicitacao";
 import MotoristaConversaResponsavel from "../pages/motorista/conversa/mensagem/ConversaResponsavel";
+import MSolicitacao from "../pages/motorista/solicitacoes/Solicitacao";
+import MSolicitacoes from "../pages/motorista/solicitacoes/Solicitacoes";
 import CadastroDependente from "../pages/responsavel/dependentes/cadastro-dependente/CadastroDependente";
 import Dependentes from "../pages/responsavel/dependentes/Dependentes";
 import PerfilDependente from "../pages/responsavel/dependentes/perfil-dependente/PerfilDependente";
 import PerfilMotorista from "../pages/responsavel/dependentes/perfil-motorista/PerfilMotorista";
+import RSolicitacoes from "../pages/responsavel/dependentes/solicitacoes/Solicitacoes";
 import RTempoReal from "../pages/responsavel/tempo_real/TempoReal";
 import RTempoRealMapa from "../pages/responsavel/tempo_real/TempoRealMapa";
 
@@ -58,6 +59,24 @@ function Rotas() {
           element={
             <PrivateRoute>
               <MTrajetos />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/motorista/trajetos/:id"
+          element={
+            <PrivateRoute>
+              <MTrajetosEdicao />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/motorista/trajetos/:id/adicionar-dependente"
+          element={
+            <PrivateRoute>
+              <MTrajetosAdicionarDependentes />
             </PrivateRoute>
           }
         />
