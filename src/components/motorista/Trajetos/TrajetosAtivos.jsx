@@ -7,8 +7,8 @@ const TrajetosAtivos = ({ trajetoAtivo, statusTrajeto }) => {
     NAO_INICIADO: 0,
     INICIADO: 1,
     NAO_IRA: 2,
-    INDO_PRA_ESCOLA: 3,
-    VOLTANDO_PRA_CASA: 4,
+    INDO_PARA_ESCOLA: 3,
+    VOLTANDO_PARA_CASA: 4,
     NA_ESCOLA: 5,
     CONVERSA_CRIADA: 6,
     EM_CASA: 7,
@@ -26,7 +26,7 @@ const TrajetosAtivos = ({ trajetoAtivo, statusTrajeto }) => {
           <CardAtivo
             key={index}
             nome={rota.dependente.nome}
-            hora={"12:00"}
+            hora={rota.horario}
             status={statusMap[rota.status] || 0}
             rotaId={rota.id}
             dependenteId={rota.dependente.id}
