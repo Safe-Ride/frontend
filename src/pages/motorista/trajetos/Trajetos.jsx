@@ -24,6 +24,7 @@ const Trajetos = () => {
         })
         .then((res) => {
           setDados(res.data);
+          console.log(res.data)
 
           const trajetoAtivoEncontrado = res.data.find(
             (trajeto) => trajeto.ativo

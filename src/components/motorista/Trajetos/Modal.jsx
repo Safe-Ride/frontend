@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import style from "./Modal.module.css";
 
-const Modal = ({ isOpen, onClose, salvar, setStatus }) => {
+const Modal = ({ isOpen, onClose, salvar, setStatus, tipoTrajeto }) => {
   const [selectedLegenda, setSelectedLegenda] = useState(null);
 
   const handleLegendaClick = (index) => {
     const statusMap = {
       1: "INICIADO",
-      2: "NA_VAN",
+      2: "INDO_PARA_ESCOLA",
       3: "NAO_IRA",
     };
-
+    if(tipoTrajeto === "VOLTA") statusMap["2"] = "VOLTANDO_PARA_CASA"
     setSelectedLegenda(index);
     setStatus(statusMap[index]);
   };
