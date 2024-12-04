@@ -32,10 +32,18 @@ const TempoReal = () => {
       <div>
         {listaDependentes.map((dependente) => {
           return (
-            <div onClick={() => navigate(`/responsavel/tempo-real/${dependente.id}`)}>
-              <CardDependente key={dependente.id} dependente={dependente} />
+            <div
+              key={dependente.id}
+              onClick={() => {
+                // Armazena o ID no sessionStorage
+                sessionStorage.setItem("DEPENDENTE_ID", dependente.id);
+                // Redireciona para a página
+                navigate(`/responsavel/tempo-real/${dependente.id}`);
+              }}
+            >
+              <CardDependente dependente={dependente} />
             </div>
-          )
+          );
         })}
       </div>
 
