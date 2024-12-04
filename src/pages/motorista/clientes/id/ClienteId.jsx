@@ -5,13 +5,8 @@ import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import Card1 from "../../../../components/motorista/clientes/perfil-cliente/Card1";
 import DadosResponsavel from "../../../../components/motorista/clientes/perfil-cliente/DadosResponsavel";
 import DadosDependentes from "../../../../components/motorista/clientes/perfil-cliente/DadosDependentes";
-import Historico from "../../../../components/motorista/clientes/perfil-cliente/Historico";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: `http://localhost:8080/usuarios/`,
-});
+import api from "../../../../api";
 
 function ClienteId() {
   const { id } = useParams();
@@ -23,7 +18,7 @@ function ClienteId() {
 
   useEffect(() => {
     api
-      .get(`/${id}`)
+      .get(`/usuarios/${id}`)
       .then((response) => {
         const { data } = response;
         const { nome, imagem, status, horario } = data;

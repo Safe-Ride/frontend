@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import ReactEcharts from "echarts-for-react";
-
-const api = axios.create({
-  baseURL: `http://localhost:8080/contratos`,
-});
+import api from "../../../../api";
 
 const DonutChart = () => {
   const { id } = useParams();
-  
+
   const [statusContrato, setStatusContrato] = useState({
     pago: 0,
     pendente: 0,
@@ -19,7 +15,7 @@ const DonutChart = () => {
   useEffect(() => {
     function recuperarInformacoes() {
       api
-        .get(`/${id}`, {
+        .get(`/contratos/${id}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
           },
@@ -59,11 +55,11 @@ const DonutChart = () => {
             show: true, // Esconde rótulos padrão
             position: "inside",
             formatter: function (params) {
-              return params.value > 0 ? params.value : ''; // Exibe valor apenas se for maior que 0
+              return params.value > 0 ? params.value : ""; // Exibe valor apenas se for maior que 0
             },
             fontSize: 20,
             color: "#ffffff",
-            fontWeight: "bold"
+            fontWeight: "bold",
           },
           emphasis: {
             label: {

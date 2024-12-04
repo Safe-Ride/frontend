@@ -13,7 +13,7 @@ const BarChart = () => {
     const recuperarInformacoesCliente = async () => {
       try {
         const response = await api.get(
-          "/pagamentos/pagamentos/pagamentos-total-efetuados",
+          "/pagamentos/pagamentos-total-efetuados",
           {
             headers: {
               Authorization: `Bearer ${sessionStorage.token}`,

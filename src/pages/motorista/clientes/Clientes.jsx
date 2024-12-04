@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-// import styles from "./Clientes.module.css";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import OpcaoCliente from "../../../components/motorista/clientes/OpcaoCliente";
 import Solicitacoes from "../../../components/motorista/clientes/Solicitacoes";
 import Pesquisa from "../../../components/motorista/clientes/Pesquisa";
 import { useNavigate } from "react-router-dom";
-import api from "../../../api"
-
-const apiClientes = axios.create({
-  baseURL: `http://localhost:8080/usuarios/clientes-motorista`,
-});
+import api from "../../../api";
 
 const titulo = "clientes";
 
@@ -26,8 +20,8 @@ const Clientes = () => {
   );
 
   function recuperarInformacoes() {
-    apiClientes
-      .get(`/${sessionStorage.ID_USUARIO}`, {
+    api
+      .get(`/usuarios/clientes-motorista/${sessionStorage.ID_USUARIO}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.token}`,
         },
@@ -43,17 +37,21 @@ const Clientes = () => {
   }
 
   function recuperarQtdSolicitacoes() {
-    api.get(`/solicitacoes/motorista/${sessionStorage.ID_USUARIO}/qtdSolicitacao`, {
-      headers: {
-       Authorization: `Bearer ${sessionStorage.token}`,
-      }
-    })
-    .then((response) => {
-      const data = response.data;
-      console.log(data);
-      setQtdSolicitacao(data);
-    })
-    .catch((err) => console.error(err));
+    api
+      .get(
+        `/solicitacoes/motorista/${sessionStorage.ID_USUARIO}/qtdSolicitacao`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        setQtdSolicitacao(data);
+      })
+      .catch((err) => console.error(err));
   }
 
   useEffect(() => {
@@ -71,12 +69,12 @@ const Clientes = () => {
             key={index}
             onClick={() => navigate(`/motorista/clientes/${cliente.id}`)}
           >
-            <OpcaoCliente foto={cliente.foto} nome={cliente.nome}/>
+            <OpcaoCliente foto={cliente.foto} nome={cliente.nome} />
           </div>
         ))}
       </div>
       <div onClick={() => navigate(`/motorista/solicitacoes`)}>
-        <Solicitacoes qtdSolicitacoes={qtdSolicitacao}/>
+        <Solicitacoes qtdSolicitacoes={qtdSolicitacao} />
       </div>
       <NavBarBot />
     </>
