@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CardTrajeto.module.css";
 import OnOff from "./OnOff";
 
-const CardTrajeto = ({ id, trajeto, onAtivoChange}) => {
+const CardTrajeto = ({ id, trajeto, onAtivoChange }) => {
   const navigate = useNavigate();
-
 
   return (
     <div className={styles["container"]}>
@@ -18,7 +17,7 @@ const CardTrajeto = ({ id, trajeto, onAtivoChange}) => {
         <h3 className={styles["tipo"]}>{trajeto.tipo}</h3>
       </div>
       <div className={styles["campo-onoff"]}>
-        <OnOff     
+        <OnOff
           trajetoId={trajeto.id}
           ativo={trajeto.ativo}
           onAtivoChange={onAtivoChange}
