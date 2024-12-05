@@ -35,6 +35,7 @@ const TempoReal = () => {
               onClick={() => {
                 // Armazena o ID no sessionStorage
                 sessionStorage.setItem("DEPENDENTE_ID", dependente.id);
+                sessionStorage.setItem("DEPENDENTE_NOME", dependente.nome);
                 sessionStorage.setItem("MOTORISTA_ID", dependente.motorista.id);
                 // Redireciona para a página
                 navigate(`/responsavel/tempo-real/${dependente.id}`);

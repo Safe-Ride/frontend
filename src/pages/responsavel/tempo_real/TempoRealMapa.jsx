@@ -20,7 +20,7 @@ const TempoReal = () => {
   const [lng, setLng] = useState(null); // Longitude atual.
   const [lat, setLat] = useState(null); // Latitude atual.
   const [zoom, setZoom] = useState(15); // Nível de zoom.
-
+  const nomeDependente = sessionStorage.getItem("DEPENDENTE_NOME")
   const idDependente = sessionStorage.getItem("DEPENDENTE_ID")
   
   useEffect(() => {
@@ -100,7 +100,7 @@ useEffect(() => {
       <div className={styles["container"]}>
         <div className={styles["dependente"]}>
           <img src={FotoPerfil()} alt="foto perfil" onError={handleImageError}/>
-          <span>Bruno Henrique</span>
+          <span>{nomeDependente}</span>
         </div>
         <div ref={mapContainer} className={styles["map-container"]} />
       </div>
