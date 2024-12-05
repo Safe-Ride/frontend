@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useRef, useState } from "react";
 import api from "../../../api";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
@@ -20,12 +21,12 @@ const TempoReal = () => {
   const [lat, setLat] = useState(null); // Latitude atual.
   const [zoom, setZoom] = useState(15); // Nível de zoom.
 
-  const idMotorista = sessionStorage.getItem("MOTORISTA_ID")
+  const idDependente = sessionStorage.getItem("DEPENDENTE_ID")
   
   useEffect(() => {
     const fetchLocation = () => {
       api
-        .get(`/tempo-real/${idMotorista}`)
+        .get(`/tempo-real/${idDependente}`)
         .then((res) => {
           const data = res.data;
           setLng(data.longitude);
@@ -35,7 +36,7 @@ const TempoReal = () => {
         .catch((err) => console.error("Erro ao obter coordenadas:", err));
     };
     
-    if(idMotorista > 0) {
+    if(idDependente > 0) {
       fetchLocation();
     }  
     // Atualiza a cada 10 segundos
@@ -43,7 +44,7 @@ const TempoReal = () => {
   
     // Limpa o intervalo ao desmontar o componente
     return () => clearInterval(intervalId);
-  }, [idMotorista]);
+  }, [idDependente]);
 
 
 useEffect(() => {
@@ -83,7 +84,7 @@ useEffect(() => {
     marker.current.setLngLat([lng, lat]);
 
     console.log("Marcador atualizado para:", marker.current.getLngLat());
-  }, 1000); // Atualizar a cada 1 segundo
+  }, 10000); // Atualizar a cada 1 segundo
 
   // Limpar o intervalo ao desmontar o componente
   return () => clearInterval(intervalId);

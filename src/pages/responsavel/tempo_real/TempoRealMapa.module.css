@@ -36,5 +36,5 @@ html {
   width: 32px;
 }
 .custom-marker {
-  position: fixed;
+  position: absolute;
 }
