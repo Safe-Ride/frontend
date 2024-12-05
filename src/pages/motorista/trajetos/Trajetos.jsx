@@ -5,12 +5,14 @@ import NavBarTop from "../../../components/NavBar/NavBarTop";
 import TrajetosAtivos from "../../../components/motorista/Trajetos/TrajetosAtivos";
 import TrajetosGerais from "../../../components/motorista/Trajetos/TrajetosGerais";
 import styles from "./Trajetos.module.css";
+import MapboxExample from "../../../components/motorista/Trajetos/mapbox_trajetos";  
 
 const Trajetos = () => {
   const titulo = "trajetos";
   const [dados, setDados] = useState({});
   const [trajetoAtivo, setTrajetoAtivo] = useState(false);
   const [statusTrajeto, setStatusTrajeto] = useState(false);
+  const [idTrajetoMapBox, setIdTrajetoMapBox] = useState();
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
@@ -30,6 +32,7 @@ const Trajetos = () => {
             (trajeto) => trajeto.ativo
           );
           setTrajetoAtivo(trajetoAtivoEncontrado || null);
+          setIdTrajetoMapBox(trajetoAtivoEncontrado?.id);
         })
         .catch((err) => {
           console.log("erro:", err);
@@ -53,7 +56,12 @@ const Trajetos = () => {
       <div className={styles["container"]}>
         <div className={styles["trajeto"]}></div>
         <TrajetosAtivos trajetoAtivo={trajetoAtivo} statusTrajeto={setStatusTrajeto} />
-        <TrajetosGerais trajetos={dados} onAtivoChange={handleAtivoChange} trajetoAtivo={trajetoAtivo} />
+        {trajetoAtivo && <MapboxExample trajetoId={idTrajetoMapBox}/>}
+        <TrajetosGerais
+         trajetos={dados}
+         onAtivoChange={handleAtivoChange}
+         trajetoAtivo={trajetoAtivo}
+          />
       </div>
       <NavBarBot />
     </>

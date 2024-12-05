@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./OnOff.module.css";
 import api from "../../../api";
 import Modal from "react-modal";
 
-const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
+
+const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange}) => {
   const [ativo, setAtivo] = useState(inicialAtivo); // Estado inicial do trajeto
   const [modalAberto, setModalAberto] = useState(false); // Estado para controlar a visibilidade do modal
   const [novoAtivo, setNovoAtivo] = useState(!ativo); // Estado temporário para armazenar o valor que será aplicado
@@ -36,7 +37,7 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
 
         setAtivo(novoAtivo);
         onAtivoChange(trajetoId, novoAtivo);
-        fecharModal(); 
+        fecharModal();
       } catch (e) {
         console.error("Erro ao fazer o PATCH:", e.response?.data || e.message);
       }
@@ -46,7 +47,6 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
   const alterarAtivo = () => {
     const proximoAtivo = !ativo;
     setNovoAtivo(proximoAtivo);
-
     if (ativo && !proximoAtivo) {
       abrirModal();
     } else {
@@ -64,10 +64,10 @@ const OnOff = ({ trajetoId, ativo: inicialAtivo, onAtivoChange }) => {
       {/* Modal de confirmação */}
       <Modal
         isOpen={modalAberto}
-        onRequestClose={fecharModal} 
+        onRequestClose={fecharModal}
         style={{
           overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.5)", 
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
           content: {
             width: "80%",
