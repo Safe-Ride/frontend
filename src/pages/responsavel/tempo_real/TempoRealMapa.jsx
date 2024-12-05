@@ -18,7 +18,7 @@ const TempoReal = () => {
   const marker = useRef(null); // Referência para o marcador.
   const [lng, setLng] = useState(null); // Longitude atual.
   const [lat, setLat] = useState(null); // Latitude atual.
-  const [zoom, setZoom] = useState(18); // Nível de zoom.
+  const [zoom, setZoom] = useState(15); // Nível de zoom.
   const [dependenteId, setDependenteId] = useState(null); // ID do dependente.
 
 
@@ -55,32 +55,24 @@ useEffect(() => {
       // Criar o mapa apenas na primeira renderização
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v12",
+        style: "mapbox://styles/mapbox/streets-v11",
         center: [lng, lat],
         zoom: zoom,
       });
-       // Criar um elemento HTML para o marcador
-    const markerElement = document.createElement("div");
-    markerElement.className = "custom-marker"; // Classe CSS definida acima
-    markerElement.innerHTML = "📍"; // Opcional: conteúdo ou ícone no marcador
 
-    // Criar o marcador com o elemento HTML
-    marker.current = new mapboxgl.Marker({ element: markerElement })
-      .setLngLat([lng, lat])
-      .addTo(map.current);
-    } else {
-      map.current.setCenter([lng, lat]); // Atualizar centro do mapa
-
+      marker.current = new mapboxgl.Marker({
+        color: 'blue',
+        draggable: false,
+        anchor: 'center' // Certifica-se de que o marcador está centralizado
+      })
+        .setLngLat([lng, lat])
+        .addTo(map.current);
+      
     }
   };
 
   initializeMap();
 
-  const intervalId = setInterval(() => {
-    initializeMap();
-  }, 11000); // Atualiza o mapa a cada 11 segundos
-
-  return () => clearInterval(intervalId); // Limpa o intervalo ao desmontar
 }, [lng, lat]);
 
 useEffect(() => {
@@ -90,7 +82,8 @@ useEffect(() => {
   // Atualizar o marcador a cada segundo
   const intervalId = setInterval(() => {
     marker.current.setLngLat([lng, lat]);
-    console.log("Marcador atualizado para:", lng, lat);
+
+    console.log("Marcador atualizado para:", marker.current.getLngLat());
   }, 1000); // Atualizar a cada 1 segundo
 
   // Limpar o intervalo ao desmontar o componente
