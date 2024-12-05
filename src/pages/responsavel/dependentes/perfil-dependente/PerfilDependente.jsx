@@ -66,15 +66,15 @@ const PerfilDependente = () => {
     },
     {
       id: 10,
-      value: "1° Ano Ensino Médio",
+      value: "1ª série",
     },
     {
       id: 11,
-      value: "2° Ano Ensino Médio",
+      value: "2ª série",
     },
     {
       id: 12,
-      value: "3° Ano Ensino Médio",
+      value: "3ª série",
     },
   ];
   const [opcoesEscolas, setOpcoesEscolas] = useState([]);
@@ -85,10 +85,23 @@ const PerfilDependente = () => {
       .then((res) => {
         const data = res.data;
         const nomesEscolas = data.map((e) => ({ id: e.id, value: e.nome }));
-        console.log(nomesEscolas); // Verifica o resultado
-        setOpcoesEscolas(nomesEscolas); // Agora setOpcoesEscolas terá apenas os nomes
+        console.log(nomesEscolas);
+        setOpcoesEscolas(nomesEscolas);
       })
       .catch((err) => console.error("erro escola: " + err));
+  }
+
+  function getTransporte(motoristaId) {
+    console.log(`/transportes/motorista/${motoristaId}`)
+    api.get(`/transportes/motorista/${motoristaId}`)
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+      setDependenteInfo((prev) => ({
+        ...prev,
+        placaTransporte: data[0].placa,
+      }))
+    })
   }
 
   useEffect(() => {
@@ -98,13 +111,19 @@ const PerfilDependente = () => {
         const data = res.data;
         console.info(data);
         setDependenteInfo(data);
-        getHistorico(data.idMotorista);
+        if (data.placaTransporte == null) {
+          getTransporte(data.idMotorista);
+        }
+
+        if (data) {
+          getHistorico(data.idMotorista);
+        }
       })
       .catch((err) => console.error(err));
 
     getEscolas();
   }, [id]);
-
+  
   function getHistorico(idMotorista) {
     api
       .get(`/conversas?responsavelId=${idUsuario}&motoristaId=${idMotorista}`, {

@@ -1,0 +1,71 @@
+name: ci-cd
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aplicacao
+          path: ./build
+
+  deploy:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperar artefatos do build
+        uses: actions/download-artifact@v4
+        with:
+          name: aplicacao
+          path: ./build
+
+      - name: Criar arquivo .pem
+        run: |
+          echo "${{ secrets.DEPLOY_KEY }}" >> $HOME/${{ secrets.NOME_ARQUIVO_PEM }}
+          chmod 400 $HOME/${{ secrets.NOME_ARQUIVO_PEM }}
+
+      - name: Enviar arquivos do build para a EC2 via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          source: "./build/"
+          target: "/home/ubuntu/frontend/"
+
+      - name: Ajustar permissões no servidor remoto
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: |
+            sudo chown -R ubuntu:ubuntu /home/ubuntu/frontend/
+            sudo chmod -R 770 /home/ubuntu/frontend/

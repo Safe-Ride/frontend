@@ -2,19 +2,15 @@ import React, { useState, useEffect } from "react";
 import styles from "./ListaMotoristas.module.css";
 import { useNavigate } from "react-router-dom";
 import Motorista from "./Motorista";
-import axios from "axios";
+import api from "../../../api";
 
 const ListaMotoristas = () => {
-  const api = axios.create({
-    baseURL: "http://localhost:8080/contratos/responsavel",
-  });
-
   const navigate = useNavigate();
   const [cardContrato, setCardContrato] = useState();
 
   function recuperarInformacoesCliente() {
     api
-      .get(`/${sessionStorage.ID_USUARIO}`, {
+      .get(`/contratos/responsavel/${sessionStorage.ID_USUARIO}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.token}`,
         },

@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
 import CardVisao from "../../../components/responsavel/visaoGeral/Card1";
 import styles from "./visaoGeralResponsavel.module.css";
+import api from "../../../api";
 
 const VisaoGeralResponsavel = () => {
   const titulo = "Visão Geral";
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
-  const navigate = useNavigate();
   const [dependentes, setDependentes] = useState([]);
-  const api = axios.create({
-    baseURL: `http://localhost:8080/`,
-  });
 
   const buscarDependentes = () => {
     api
       .get(`/usuarios/status-dependentes/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         setDependentes(res.data);
@@ -32,9 +27,7 @@ const VisaoGeralResponsavel = () => {
   };
 
   useEffect(() => {
-
-      buscarDependentes();
-  
+    buscarDependentes();
   }, []);
 
   return (
@@ -43,18 +36,19 @@ const VisaoGeralResponsavel = () => {
       {/* Div de contêiner para os cards */}
       <div className={styles["cardsContainer"]}>
         {/* Renderiza um CardVisao para cada dependente */}
-        {dependentes.map((dependente, index) => (
-          <CardVisao
-            key={index}
-            id={dependente.dependenteId}
-            nomeDependente={dependente.dependenteNome}
-            status={dependente.mensagemStatus}
-            enderecoSaida={dependente.dependenteEndereco}
-            horarioSaida={dependente.horarioInicio}
-            enderecoRetorno={dependente.escolaNome}
-            horarioRetorno={dependente.horarioFim}
-          />
-        ))}
+        {dependentes &&
+          dependentes.map((dependente, index) => (
+            <CardVisao
+              key={index}
+              id={dependente.dependenteId}
+              nomeDependente={dependente.dependenteNome}
+              status={dependente.mensagemStatus}
+              enderecoSaida={dependente.dependenteEndereco}
+              horarioSaida={dependente.horarioInicio}
+              enderecoRetorno={dependente.escolaNome}
+              horarioRetorno={dependente.horarioFim}
+            />
+          ))}
       </div>
       <NavBarBot />
     </>

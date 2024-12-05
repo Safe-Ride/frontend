@@ -3,13 +3,9 @@ import styles from "./PagamentosResponsaveis.module.css";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Cobranca from "../../../../components/pagamentos/Cobranca";
 import CampoGrafico from "../../../../components/motorista/pagamentos/pagamentosResponsaveis/CampoGrafico";
-
-const api = axios.create({
-  baseURL: `http://localhost:8080/contratos`,
-});
+import api from "../../../../api";
 
 const PagamentosResponsaveis = () => {
   const { id } = useParams();
@@ -19,7 +15,7 @@ const PagamentosResponsaveis = () => {
 
   function recuperarInformacoes() {
     api
-      .get(`/${id}`, {
+      .get(`/contratos/${id}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.token}`,
         },

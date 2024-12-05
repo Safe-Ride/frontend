@@ -5,17 +5,17 @@ import icoEscola from "../../../utils/assets/dependentes/escola.png";
 import setaAmarela from "../../../utils/assets/dependentes/Arrow 2.png";
 import { useNavigate } from "react-router-dom";
 
-const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, enderecoRetorno, horarioRetorno }) => {
+const CardVisao = ({ id, nomeDependente, status, enderecoSaida, horarioSaida, enderecoRetorno, horarioRetorno }) => {
   const navigate = useNavigate();
 
- 
+
   const statusConfig = {
-    "Voltando para Casa": {
+    "Voltando para casa": {
       firstIcon: icoEscola,
-      firstAddress: enderecoSaida,
+      firstAddress: enderecoRetorno,
       firstTime: horarioSaida,
       secondIcon: icoCasa,
-      secondAddress: enderecoRetorno,
+      secondAddress: enderecoSaida,
       secondTime: horarioRetorno,
     },
     "Indo para escola": {
@@ -26,7 +26,7 @@ const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, end
       secondAddress: enderecoRetorno,
       secondTime: horarioRetorno,
     },
-    "Na Escola": {
+    "Na escola": {
       firstIcon: icoCasa,
       firstAddress: enderecoSaida,
       firstTime: horarioSaida,
@@ -34,9 +34,28 @@ const CardVisao = ({ id,nomeDependente, status, enderecoSaida, horarioSaida, end
       secondAddress: enderecoRetorno,
       secondTime: horarioRetorno,
     },
+    "Em casa": {
+      firstIcon: icoEscola,
+      firstAddress: enderecoRetorno,
+      firstTime: horarioSaida,
+      secondIcon: icoCasa,
+      secondAddress: enderecoSaida,
+      secondTime: horarioRetorno,
+    }
   };
 
-const { firstIcon, firstAddress, firstTime, secondIcon, secondAddress, secondTime } = statusConfig[status];
+  const defaultConfig = {
+    firstIcon: '',
+    firstAddress: '',
+    firstTime: '',
+    secondIcon: '',
+    secondAddress: '',
+    secondTime: ''
+  };
+  const { firstIcon, firstAddress, firstTime, secondIcon, secondAddress, secondTime } = statusConfig[status] || defaultConfig;
+
+
+  // const { firstIcon, firstAddress, firstTime, secondIcon, secondAddress, secondTime } = statusConfig[status];
 
   return (
     <div className={styles["Card"]}>

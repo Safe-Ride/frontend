@@ -1,4 +1,4 @@
-import apiBar from "../../../apiBar";
+import api from "../../../api";
 import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 
@@ -12,7 +12,14 @@ const BarChart = () => {
   useEffect(() => {
     const recuperarInformacoesCliente = async () => {
       try {
-        const response = await apiBar.get();
+        const response = await api.get(
+          "/pagamentos/pagamentos-total-efetuados",
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.token}`,
+            },
+          }
+        );
         const data = response.data;
         const mes = data.map((item) => nomeMes(item.data));
         const total = data.map((item) => item.total);

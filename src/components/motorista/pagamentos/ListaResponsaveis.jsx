@@ -1,24 +1,23 @@
-import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ListaResponsaveis.module.css";
 import Responsavel from "./Responsavel";
+import api from "../../../api";
 
-const ListaResponsaveis = ({anoSelecionado}) => {
-  const api = axios.create({
-    baseURL: "http://localhost:8080/contratos/motorista",
-  });
-
+const ListaResponsaveis = ({ anoSelecionado }) => {
   const navigate = useNavigate();
   const [cardContrato, setCardContrato] = useState();
 
   const recuperarInformacoesCliente = useCallback(() => {
     api
-      .get(`/${sessionStorage.ID_USUARIO}/ano/${anoSelecionado}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.token}`,
-        },
-      })
+      .get(
+        `/contratos/motorista/${sessionStorage.ID_USUARIO}/ano/${anoSelecionado}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         const { data } = response;
@@ -27,7 +26,7 @@ const ListaResponsaveis = ({anoSelecionado}) => {
       .catch(() => {
         console.log("Deu erro, tente novamente! ");
       });
-  }, [anoSelecionado])
+  }, [anoSelecionado]);
 
   useEffect(() => {
     recuperarInformacoesCliente();
@@ -54,9 +53,11 @@ const ListaResponsaveis = ({anoSelecionado}) => {
 };
 
 function ultimoPagamento(pagamentos) {
-  pagamentos.sort((a, b) => new Date(b.dataVencimento) - new Date(a.dataVencimento));
+  pagamentos.sort(
+    (a, b) => new Date(b.dataVencimento) - new Date(a.dataVencimento)
+  );
   for (let i = 0; i < pagamentos.length; i++) {
-      return pagamentos[i];
+    return pagamentos[i];
   }
 
   return null;

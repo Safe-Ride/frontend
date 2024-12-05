@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import styles from "./PagamentosMotoristas.module.css";
 import NavBarTop from "../../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../../components/NavBar/NavBarBot";
 import LegendaStatus from "../../../../components/pagamentos/LegendaStatus";
 import ProximoPagamento from "../../../../components/pagamentos/responsavel/ProximoPagamento";
 import Cobranca from "../../../../components/pagamentos/Cobranca";
-
-const api = axios.create({
-  baseURL: `http://localhost:8080/contratos`,
-});
+import api from "../../../../api";
 
 const PagamentosMotoristas = () => {
   const { id } = useParams();
@@ -20,7 +16,7 @@ const PagamentosMotoristas = () => {
 
   function recuperarInformacoesCobranca() {
     api
-      .get(`/${id}`, {
+      .get(`/contratos/${id}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.token}`,
         },

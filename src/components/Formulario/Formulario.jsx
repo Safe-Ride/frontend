@@ -15,7 +15,8 @@ function Formulario({ show, onSubmit, fields, action, onBack }) {
     if (event.target.name === "cep" && event.target.value.length === 8) {
       api.get(`/enderecos/buscar-cep/${event.target.value}`).then((res) => {
         const { data } = res;
-        document.getElementsByName("logradouro")[0].placeholder = data.logradouro;
+        document.getElementsByName("logradouro")[0].placeholder =
+          data.logradouro;
         document.getElementsByName("bairro")[0].placeholder = data.bairro;
         document.getElementsByName("cidade")[0].placeholder = data.localidade;
         document.getElementsByName("uf")[0].placeholder = data.uf;
@@ -39,8 +40,6 @@ function Formulario({ show, onSubmit, fields, action, onBack }) {
     event.preventDefault();
     onSubmit(formData);
   };
-
-  const navigate = useNavigate();
 
   if (show) {
     return (

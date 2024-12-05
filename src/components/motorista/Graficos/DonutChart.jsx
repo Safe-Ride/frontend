@@ -1,4 +1,4 @@
-import apiDonut from "../../../apiDonut";
+import api from "../../../api";
 import React, { useState } from "react";
 import ReactEcharts from "echarts-for-react";
 
@@ -8,8 +8,12 @@ const DonutChart = () => {
   const [qtdAtrasado, setQtdAtrasado] = useState("");
 
   function recuperarInformacoesCliente() {
-    apiDonut
-      .get()
+    api
+      .get("/pagamentos/pagamento-status", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      })
       .then((response) => {
         const { data } = response;
         const { pago, pendente, atrasado } = data;
@@ -47,11 +51,11 @@ const DonutChart = () => {
             show: true, // Esconde rótulos padrão
             position: "inside",
             formatter: function (params) {
-              return params.value > 0 ? params.value : ''; // Exibe valor apenas se for maior que 0
+              return params.value > 0 ? params.value : ""; // Exibe valor apenas se for maior que 0
             },
             fontSize: 20,
             color: "#ffffff",
-            fontWeight: "bold"
+            fontWeight: "bold",
           },
           emphasis: {
             label: {
