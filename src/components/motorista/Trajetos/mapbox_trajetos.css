@@ -1,0 +1,73 @@
+/* Contêiner geral que contém o mapa e o painel de instruções */
+.map-wrapper {
+  display: flex;
+  flex-direction: column; /* Para melhor adaptação em dispositivos móveis */
+  height: 100vh; /* O layout ocupa toda a altura da tela */
+  width: 90vw;
+  z-index: 0; /* O layout ocupa toda a largura da tela */
+}
+
+/* Mapa */
+.map-container {
+  flex: 1; /* O mapa ocupa todo o espaço disponível */
+  height: 100%; /* Certifica-se de que o mapa preencha toda a altura */
+}
+
+/* Painel de Instruções Responsivo com Fundo Preto e Letras Amarelas */
+.directions-panel {
+  position: absolute;
+  top: 5%; /* Espaçamento do topo relativo à altura da tela */
+  right: 5%; /* Espaçamento da direita relativo à largura da tela */
+  width: 20%; /* O painel ocupa 90% da largura da tela */
+ height: 20%;
+  background-color: #000; /* Fundo preto */
+  color: #ffd700; /* Texto amarelo */
+  padding: 1rem; /* Espaçamento interno */
+  border-radius: 0.5rem; /* Cantos arredondados */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5); /* Sombra para destaque */
+  font-family: 'Arial', sans-serif; /* Tipografia */
+  overflow-y: auto; /* Permite rolagem para conteúdo excedente */
+  border: 0.1rem solid #ffd700; /* Borda amarela */
+  z-index: 10; /* Garante que o painel fique sobre outros elementos */
+}
+
+/* Título do painel */
+.directions-panel strong {
+  font-size: 1rem; /* Tamanho do texto do título */
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffd700; /* Título em amarelo */
+}
+
+/* Lista de instruções */
+.directions-panel ol {
+  list-style: decimal inside; /* Números internos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada instrução */
+.directions-panel li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem; /* Texto ligeiramente menor */
+  color: #ffd700; /* Texto amarelo */
+  line-height: 1.2; /* Espaçamento entre linhas */
+}
+
+/* Efeito ao passar o mouse em cada instrução */
+.directions-panel li:hover {
+  background-color: #333; /* Fundo cinza escuro ao passar o mouse */
+  color: #fff; /* Texto branco ao passar o mouse */
+  cursor: pointer; /* Indica interatividade */
+}
+
+/* Adaptação para telas muito pequenas */
+@media (max-width: 480px) {
+  .directions-panel {
+    top: 2%; /* Menor espaçamento no topo */
+    right: 2%; /* Menor espaçamento na lateral */
+    width: 40%; /* Painel ocupa quase toda a largura */
+    height: 20%;
+    font-size: 0.85rem; /* Texto ligeiramente menor */
+  }
+}
