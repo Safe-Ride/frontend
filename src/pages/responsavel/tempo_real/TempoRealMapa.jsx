@@ -13,70 +13,96 @@ mapboxgl.accessToken =
 const titulo = "tempo real";
 
 const TempoReal = () => {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const marker = useRef(null);
-  const [lng, setLng] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [zoom, setZoom] = useState(18);
-  const [dependenteId, setDependenteId] = useState(null);
+  const mapContainer = useRef(null); // Referência para o container do mapa.
+  const map = useRef(null); // Referência para o objeto do mapa.
+  const marker = useRef(null); // Referência para o marcador.
+  const [lng, setLng] = useState(null); // Longitude atual.
+  const [lat, setLat] = useState(null); // Latitude atual.
+  const [zoom, setZoom] = useState(18); // Nível de zoom.
+  const [dependenteId, setDependenteId] = useState(null); // ID do dependente.
+
 
   
   useEffect(() => {
-    // Obtém o ID do dependente do sessionStorage
-    const storedDependenteId = sessionStorage.getItem("DEPENDENTE_ID");
-    setDependenteId(storedDependenteId); // Atualiza o estado com o ID
-
-    if (storedDependenteId) {
-      const fetchLocation = () => {
-        api
-          .get(`/tempo-real/${storedDependenteId}`)
-          .then((res) => {
-            const data = res.data;
-            setLng(data.longitude);
-            setLat(data.latitude);
-            console.log(lat, lng)
-          })
-          .catch((err) => console.error("Erro ao obter coordenadas:", err));
-      };
-
-      // Chamada inicial
-      fetchLocation();
-
-      // Configura o intervalo de 10 segundos
-      const intervalId = setInterval(fetchLocation, 10000);
-
-      // Limpa o intervalo ao desmontar o componente
-      return () => clearInterval(intervalId);
-    }
+    const fetchLocation = () => {
+      api
+        .get(`/tempo-real/${sessionStorage.getItem("DEPENDENTE_ID")}`)
+        .then((res) => {
+          const data = res.data;
+          setLng(data.longitude);
+          setLat(data.latitude);
+          console.log("Atualizando coordenadas:", data.latitude, data.longitude);
+        })
+        .catch((err) => console.error("Erro ao obter coordenadas:", err));
+    };
+  
+    // Chamada inicial
+    fetchLocation();
+  
+    // Atualiza a cada 10 segundos
+    const intervalId = setInterval(fetchLocation, 10000);
+  
+    // Limpa o intervalo ao desmontar o componente
+    return () => clearInterval(intervalId);
   }, []);
 
 
-  useEffect(() => {
-    if (lng === null || lat === null) return; // Aguarde até que lng e lat sejam carregados
+useEffect(() => {
+  if (lng === null || lat === null) return; // Aguarda até que lng e lat sejam carregados
 
+  const initializeMap = () => {
     if (!map.current) {
-      // Criar o mapa na primeira renderização
+      // Criar o mapa apenas na primeira renderização
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v12",
         center: [lng, lat],
         zoom: zoom,
       });
+       // Criar um elemento HTML para o marcador
+    const markerElement = document.createElement("div");
+    markerElement.className = "custom-marker"; // Classe CSS definida acima
+    markerElement.innerHTML = "📍"; // Opcional: conteúdo ou ícone no marcador
 
-      // Criar um marcador no centro do mapa
-      marker.current = new mapboxgl.Marker()
-        .setLngLat([lng, lat])
-        .addTo(map.current);
-      marker.current.addTo(map.current)
+    // Criar o marcador com o elemento HTML
+    marker.current = new mapboxgl.Marker({ element: markerElement })
+      .setLngLat([lng, lat])
+      .addTo(map.current);
     } else {
-      // Atualizar o centro do mapa
-      map.current.setCenter([lng, lat]);
+      map.current.setCenter([lng, lat]); // Atualizar centro do mapa
 
-      // Atualizar a posição do marcador
-      marker.current.setLngLat([lng, lat]);
     }
-  }, [lng, lat, zoom]);  // Atualizar quando lng ou lat mudarem
+  };
+
+  initializeMap();
+
+  const intervalId = setInterval(() => {
+    initializeMap();
+  }, 11000); // Atualiza o mapa a cada 11 segundos
+
+  return () => clearInterval(intervalId); // Limpa o intervalo ao desmontar
+}, [lng, lat]);
+
+useEffect(() => {
+  // Verificar se o marcador está inicializado
+  if (!marker.current) return;
+
+  // Atualizar o marcador a cada segundo
+  const intervalId = setInterval(() => {
+    marker.current.setLngLat([lng, lat]);
+    console.log("Marcador atualizado para:", lng, lat);
+  }, 1000); // Atualizar a cada 1 segundo
+
+  // Limpar o intervalo ao desmontar o componente
+  return () => clearInterval(intervalId);
+}, [lng, lat]); // Dependências opcionais
+
+
+
+
+  
+
+
   const handleImageError = (e) => {
     e.target.src = Imagem;
   }
