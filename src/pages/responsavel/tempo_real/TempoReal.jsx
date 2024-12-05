@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import CardDependente from "../../../components/responsavel/dependentes/CardDependente/CardDependente";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../../api";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
 import NavBarBot from "../../../components/NavBar/NavBarBot";
-import mapboxgl from "mapbox-gl";
-import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
+import CardDependente from "../../../components/responsavel/dependentes/CardDependente/CardDependente";
 
 const titulo = "tempo real";
 
@@ -21,7 +19,7 @@ const TempoReal = () => {
         const data = res.data;
         setListaDependentes(data);
       });
-  });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -37,6 +35,7 @@ const TempoReal = () => {
               onClick={() => {
                 // Armazena o ID no sessionStorage
                 sessionStorage.setItem("DEPENDENTE_ID", dependente.id);
+                sessionStorage.setItem("MOTORISTA_ID", dependente.motorista.id);
                 // Redireciona para a página
                 navigate(`/responsavel/tempo-real/${dependente.id}`);
               }}

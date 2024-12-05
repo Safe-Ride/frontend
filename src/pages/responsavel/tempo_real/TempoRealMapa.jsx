@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
-import styles from "./TempoRealMapa.module.css";
-import NavBarTop from "../../../components/NavBar/NavBarTop";
-import NavBarBot from "../../../components/NavBar/NavBarBot";
 import mapboxgl from "mapbox-gl";
+import React, { useEffect, useRef, useState } from "react";
 import api from "../../../api";
-import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import NavBarBot from "../../../components/NavBar/NavBarBot";
+import NavBarTop from "../../../components/NavBar/NavBarTop";
 import Imagem from "../../../utils/assets/perfil/usuario.png";
+import FotoPerfil from "../../../utils/functions/FotoPerfil";
+import styles from "./TempoRealMapa.module.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaGlkZWtpMTkiLCJhIjoiY2x3cXcwZGx4MDZ0NDJrcTNtODlhZHYzNSJ9.XDo6sDF-eMr7z6_oFtyw8w";
@@ -19,14 +19,13 @@ const TempoReal = () => {
   const [lng, setLng] = useState(null); // Longitude atual.
   const [lat, setLat] = useState(null); // Latitude atual.
   const [zoom, setZoom] = useState(15); // Nível de zoom.
-  const [dependenteId, setDependenteId] = useState(null); // ID do dependente.
 
-
+  const idMotorista = sessionStorage.getItem("MOTORISTA_ID")
   
   useEffect(() => {
     const fetchLocation = () => {
       api
-        .get(`/tempo-real/${sessionStorage.getItem("DEPENDENTE_ID")}`)
+        .get(`/tempo-real/${idMotorista}`)
         .then((res) => {
           const data = res.data;
           setLng(data.longitude);
@@ -35,16 +34,16 @@ const TempoReal = () => {
         })
         .catch((err) => console.error("Erro ao obter coordenadas:", err));
     };
-  
-    // Chamada inicial
-    fetchLocation();
-  
+    
+    if(idMotorista > 0) {
+      fetchLocation();
+    }  
     // Atualiza a cada 10 segundos
     const intervalId = setInterval(fetchLocation, 10000);
   
     // Limpa o intervalo ao desmontar o componente
     return () => clearInterval(intervalId);
-  }, []);
+  }, [idMotorista]);
 
 
 useEffect(() => {
@@ -89,12 +88,6 @@ useEffect(() => {
   // Limpar o intervalo ao desmontar o componente
   return () => clearInterval(intervalId);
 }, [lng, lat]); // Dependências opcionais
-
-
-
-
-  
-
 
   const handleImageError = (e) => {
     e.target.src = Imagem;
