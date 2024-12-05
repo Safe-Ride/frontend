@@ -4,7 +4,7 @@ import api from "../../../api";
 import Card from "./CardTrajeto";
 import styles from "./TrajetosGerais.module.css";
 
-const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo }) => {
+const TrajetosGerais = ({ trajetos, onAtivoChange, trajetoAtivo}) => {
   const navigate = useNavigate();
   const [termoPesquisa, setTermoPesquisa] = useState("");
   const [mostrarTrajetosDoDia, setMostrarTrajetosDoDia] = useState(false);
