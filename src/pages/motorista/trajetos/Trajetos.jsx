@@ -16,15 +16,36 @@ const Trajetos = () => {
   const id = sessionStorage.getItem("ID_USUARIO");
   const token = sessionStorage.getItem("token");
 
-  useEffect(() =>{
-    setStatusTrajeto(false)
-    api
-        .get(`/trajetos/motorista/${id}`, {
+  // Função para atualizar a geolocalização
+  const updateGeolocation = (callback) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          callback(latitude, longitude);
+        },
+        (error) => {
+          console.error("Erro ao obter localização:", error.message);
+        }
+      );
+    } else {
+      console.error("Geolocalização não suportada neste navegador.");
+    }
+  };
+
+  // Função para enviar as coordenadas para a API
+  const sendRealTimeCoordinates = (latitude, longitude) => {
+    if (trajetoAtivo?.id && latitude && longitude) {
+      const coords = { latitude, longitude };
+
+      api
+        .post(`/tempo-real/${id}`, coords, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
+          console.log("Localização enviada:", res.data);
           setDados(res.data);
           console.log(res.data)
 
@@ -35,9 +56,48 @@ const Trajetos = () => {
           setIdTrajetoMapBox(trajetoAtivoEncontrado?.id);
         })
         .catch((err) => {
-          console.log("erro:", err);
+          console.error("Erro ao enviar localização:", err);
         });
+    }
+  };
+
+  // Busca os trajetos e verifica o trajeto ativo
+  useEffect(() => {
+    setStatusTrajeto(false);
+    api
+      .get(`/trajetos/motorista/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setDados(res.data);
+
+        const trajetoAtivoEncontrado = res.data.find((trajeto) => trajeto.ativo);
+        setTrajetoAtivo(trajetoAtivoEncontrado || null);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar trajetos:", err);
+      });
   }, [id, token, statusTrajeto]);
+
+  // Atualiza a localização em intervalos regulares se o trajeto estiver ativo
+  useEffect(() => {
+    let interval;
+    if (trajetoAtivo) {
+      updateGeolocation((latitude, longitude) => {
+        sendRealTimeCoordinates(latitude, longitude); // Envia localização imediatamente
+      });
+
+      interval = setInterval(() => {
+        updateGeolocation((latitude, longitude) => {
+          sendRealTimeCoordinates(latitude, longitude);
+        });
+      }, 15000);
+    }
+
+    return () => clearInterval(interval); // Limpa o intervalo ao desmontar ou desativar o trajeto
+  }, [trajetoAtivo]);
 
   const handleAtivoChange = (trajetoId) => {
     if (trajetoAtivo && trajetoAtivo.id === trajetoId) {

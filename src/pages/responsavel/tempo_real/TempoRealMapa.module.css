@@ -19,8 +19,8 @@ html {
   box-shadow: 1px 1px 8px 0px rgba(45, 42, 50, 0.25);
   color: var(--preto);
   padding: 8px 16px;
-  /* z-index: 1; */
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   left: 50%;
   transform: translate(-50%);
   margin-top: 16px;
@@ -34,4 +34,7 @@ html {
 .dependente img {
   height: 32px;
   width: 32px;
+}
+.custom-marker {
+  position: absolute;
 }
